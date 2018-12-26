@@ -1,0 +1,40 @@
+<!-- Component -->
+<thf-avatar
+  [t-size]="size"
+  [t-src]="src">
+</thf-avatar>
+
+<hr>
+
+<!-- Properties -->
+<form #f="ngForm">
+  <div class="thf-row">
+    <thf-input
+      class="thf-lg-6"
+      name="src"
+      [(ngModel)]="src"
+      t-help="Enter a url or path of the image that will be displayed"
+      t-label="Source"
+      t-required>
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-radio-group
+      class="thf-lg-6"
+      name="sizes"
+      [(ngModel)]="size"
+      t-help="Select a size for the avatar"
+      t-label="Size"
+      [t-options]="sizeOptions">
+    </thf-radio-group>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      t-label="Sample Restore"
+      (t-click)="restore()">
+    </thf-button>
+  </div>
+</form>
