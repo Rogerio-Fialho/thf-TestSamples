@@ -3,17 +3,16 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
-import { ThfAvatarModule } from '@totvs/thf-ui/components/thf-avatar';
-import { ThfFieldModule } from '@totvs/thf-ui/components/thf-field';
+import { ThfCalendarModule } from '@totvs/thf-ui/components/thf-calendar';
+import { ThfDateService } from '@totvs/thf-ui/services/thf-date';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    ThfAvatarModule,
-    ThfFieldModule
+    ThfCalendarModule
   ],
-  providers: [],
+  providers: [ThfDateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
