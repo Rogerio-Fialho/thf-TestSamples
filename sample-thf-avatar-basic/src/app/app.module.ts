@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { ThfAvatarModule } from '@totvs/thf-ui/components/thf-avatar';
@@ -10,7 +9,6 @@ import { ThfAvatarModule } from '@totvs/thf-ui/components/thf-avatar';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     ThfAvatarModule
   ],
   providers: [],
