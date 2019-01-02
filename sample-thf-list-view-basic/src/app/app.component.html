@@ -1,0 +1,12 @@
+<thf-list-view
+  t-property-title="name"
+  [t-items]="[{ name: 'Registro 1', email: 'register@totvs.com' }, { name: 'Registro 2', email: 'register2@totvs.com' }]">
+
+  <ng-template t-list-view-content-template let-item>
+    <div class="thf-row">
+      <thf-info class="thf-md-12" t-label="Email" [t-value]="item.email"></thf-info>
+    </div>
+  </ng-template>
+
+</thf-list-view>
+

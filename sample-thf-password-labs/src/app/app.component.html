@@ -1,0 +1,124 @@
+<thf-password
+  name="password"
+  [(ngModel)]="password"
+  [t-clean]="properties.includes('clean')"
+  [t-disabled]="properties.includes('disabled')"
+  [t-error-pattern]="errorPattern"
+  [t-help]="help"
+  [t-label]="label"
+  [t-maxlength]="maxlength"
+  [t-minlength]="minlength"
+  [t-pattern]="pattern"
+  [t-placeholder]="placeholder"
+  [t-readonly]="properties.includes('readonly')"
+  [t-required]="properties.includes('required')"
+  (t-blur)="changeEvent('t-blur')"
+  (t-change)="changeEvent('t-change')"
+  (t-change-model)="changeEvent('t-change-model')"
+  (t-enter)="changeEvent('t-enter')">
+</thf-password>
+
+<hr>
+
+<div class="thf-row">
+  <thf-info
+    class="thf-md-6"
+    t-label="Model"
+    [t-value]="password">
+  </thf-info>
+
+  <thf-info
+    class="thf-md-6"
+    t-label="Event"
+    [t-value]="event">
+  </thf-info>
+</div>
+
+<hr>
+
+<form #f="ngForm">
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="label"
+      [(ngModel)]="label"
+      t-clean
+      t-label="Label">
+    </thf-input>
+
+    <thf-input
+      class="thf-md-6"
+      name="help"
+      [(ngModel)]="help"
+      t-clean
+      t-label="Help">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="placeholder"
+      [(ngModel)]="placeholder"
+      t-clean
+      t-label="Placeholder">
+    </thf-input>
+
+    <thf-input
+      class="thf-md-6"
+      name="errorPattern"
+      [(ngModel)]="errorPattern"
+      t-clean
+      t-label="Error Pattern">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-12"
+      name="pattern"
+      [(ngModel)]="pattern"
+      t-clean
+      t-help="Ex.: '[a-zA]{5}[Z0-9]{3}'"
+      t-label="Pattern (Regex)">
+    </thf-input>
+  </div>
+
+
+  <div class="thf-row">
+    <thf-number
+      class="thf-md-6"
+      name="minlength"
+      [(ngModel)]="minlength"
+      t-clean
+      t-label="Min Length">
+    </thf-number>
+
+    <thf-number
+      class="thf-md-6"
+      name="maxlength"
+      [(ngModel)]="maxlength"
+      t-clean
+      t-label="Max Length">
+    </thf-number>
+  </div>
+
+  <div class="thf-row">
+    <thf-checkbox-group
+      class="thf-md-12"
+      name="properties"
+      [(ngModel)]="properties"
+      t-label="Properties"
+      [t-options]="propertiesOptions">
+    </thf-checkbox-group>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      t-label="Sample Restore"
+      (t-click)="restore()">
+    </thf-button>
+  </div>
+</form>
+

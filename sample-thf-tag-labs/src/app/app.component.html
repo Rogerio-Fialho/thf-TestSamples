@@ -1,0 +1,62 @@
+<thf-tag
+  [t-icon]="icon"
+  [t-label]="label"
+  [t-orientation]="orientation"
+  [t-type]="type"
+  [t-value]="value">
+</thf-tag>
+
+<hr>
+
+<form #f="ngForm">
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="label"
+      [(ngModel)]="label"
+      t-clean
+      t-label="Label">
+    </thf-input>
+
+    <thf-input
+      class="thf-md-6"
+      name="value"
+      [(ngModel)]="value"
+      t-clean
+      t-label="Value"
+      t-required>
+    </thf-input>
+
+    <thf-switch
+      class="thf-md-12"
+      name="icon"
+      [(ngModel)]="icon"
+      t-label="Icon">
+    </thf-switch>
+
+    <thf-radio-group
+      class="thf-md-6"
+      name="orientation"
+      [(ngModel)]="orientation"
+      t-label="Orientation"
+      [t-options]="orientationOptions">
+    </thf-radio-group>
+
+    <thf-radio-group
+      class="thf-md-6"
+      name="type"
+      [(ngModel)]="type"
+      t-label="Type"
+      [t-options]="typeOptions">
+    </thf-radio-group>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      t-label="Sample Restore"
+      (t-click)="restore()">
+    </thf-button>
+  </div>
+</form>
+

@@ -1,0 +1,77 @@
+<h3>Calculate Tax</h3>
+
+<hr>
+
+<form #f="ngForm">
+  <div class="thf-row">
+    <thf-number
+      class="thf-md-6"
+      name="price"
+      [(ngModel)]="price"
+      t-label="Price"
+      t-required>
+    </thf-number>
+
+    <thf-number
+      class="thf-md-6"
+      name="quantity"
+      [(ngModel)]="quantity"
+      t-label="Quantity"
+      t-required>
+    </thf-number>
+  </div>
+
+  <div>
+    <thf-select
+      class="thf-md-6 thf-lg-3"
+      name="state"
+      [(ngModel)]="state"
+      t-label="State"
+      t-required
+      t-sort
+      [t-options]="statesOptions"
+      (t-change)="loadICMS()">
+    </thf-select>
+
+    <thf-number
+      class="thf-md-6 thf-lg-3"
+      name="icms"
+      [(ngModel)]="icms"
+      t-label="ICMS %"
+      t-disabled>
+    </thf-number>
+
+    <thf-number
+      class="thf-md-6 thf-lg-3"
+      name="liquid"
+      [(ngModel)]="liquid"
+      t-label="Liquid"
+      t-disabled>
+    </thf-number>
+
+    <thf-number
+      class="thf-md-6 thf-lg-3"
+      name="total"
+      [(ngModel)]="total"
+      t-label="Total"
+      t-disabled>
+    </thf-number>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      t-label="Calculate"
+      [t-disabled]="f.invalid"
+      (t-click)="calculate()">
+    </thf-button>
+
+    <thf-button
+      class="thf-md-3"
+      t-label="Clean"
+      [t-disabled]="f.invalid"
+      (t-click)="f.reset()">
+    </thf-button>
+  </div>
+</form>
+

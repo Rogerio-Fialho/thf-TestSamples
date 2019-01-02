@@ -1,0 +1,254 @@
+<div class="thf-row">
+  <thf-widget
+    class="thf-md-9"
+    t-title="Product Detail">
+    <div class="thf-row">
+      <div class="thf-lg-4">
+        <img src="../../../assets/graphics/shoe.gif" width="250" height="200">
+      </div>
+      <div class="thf-lg-8">
+        <p class="thf-font-title"> Nike XYZ - Red/Gold Stripes</p>
+        <p class="thf-font-text-large-bold"> Brand: Nike | Style: Modern | Men's </p>
+        <p class="thf-font-text"> Width: 12.5 - COD: 001254648412319 </p>
+        <hr>
+        <p class="thf-font-text"> Price: $2.500,00 | Discount: $500,00 | Tax: $160,00  </p>
+      </div>
+    </div>
+  </thf-widget>
+
+  <thf-widget
+    class="thf-md-3"
+    t-height="317"
+    t-title="Price">
+    <p class="thf-font-text"> $2.500,00</p>
+    <p class="thf-font-text"> $500,00(-)</p>
+    <p class="thf-font-text"> $160,00(+)</p>
+    <hr>
+    <p class="thf-font-text-large-bold"> Total: $2.160,00</p>
+  </thf-widget>
+</div>
+
+<hr>
+
+<div class="thf-row">
+  <thf-stepper
+    class="thf-md-2"
+    t-mode="vertical"
+    t-sequential="true"
+    [t-step]="step"
+    [t-steps]="steps"
+    (t-change-step)="nextStep($event)">
+  </thf-stepper>
+
+  <thf-widget
+    class="thf-md-10"
+    t-height="380"
+    [t-primary-label]="labelWidget"
+    t-title="Purchase"
+    (t-primary-action)="onConfirmStep(step + 1)">
+
+    <ng-container *ngIf="step === 1">
+      <p class="thf-font-text-large">Personal Information.</p>
+
+      <form #fstep1="ngForm">
+        <div class="thf-row">
+          <thf-input
+            class="thf-md-6"
+            name="name"
+            [(ngModel)]="name"
+            t-clean
+            t-label="Name"
+            t-required>
+          </thf-input>
+          <thf-datepicker
+            class="thf-md-3"
+            name="birthday"
+            [(ngModel)]="birthday"
+            t-format="dd/mm/yyyy"
+            t-label="Birthday"
+            t-required>
+          </thf-datepicker>
+          <thf-input
+            class="thf-md-3"
+            name="document"
+            [(ngModel)]="document"
+            t-label="Document"
+            t-required>
+          </thf-input>
+        </div>
+      </form>
+    </ng-container>
+
+    <ng-container *ngIf="step === 2">
+      <form #fstep2="ngForm">
+        <div class="thf-row">
+          <thf-input
+            class="thf-md-6"
+            name="street"
+            [(ngModel)]="street"
+            t-label="Street/House"
+            t-required>
+          </thf-input>
+          <thf-input
+            class="thf-md-3"
+            name="number"
+            [(ngModel)]="number"
+            t-label="Number"
+            t-required>
+          </thf-input>
+          <thf-input
+            class="thf-md-3"
+            name="city"
+            [(ngModel)]="city"
+            t-label="City"
+            t-required>
+          </thf-input>
+        </div>
+        <div class="thf-row">
+          <thf-input
+            class="thf-md-3"
+            name="code"
+            [(ngModel)]="code"
+            t-label="Postal Code"
+            t-required>
+          </thf-input>
+          <thf-input
+            class="thf-md-3"
+            name="country"
+            [(ngModel)]="country"
+            t-label="Country"
+            t-required>
+          </thf-input>
+          <thf-input
+            class="thf-md-6"
+            name="reference"
+            [(ngModel)]="reference"
+            t-label="Reference">
+          </thf-input>
+        </div>
+      </form>
+    </ng-container>
+
+    <ng-container *ngIf="step === 3">
+      <p class="thf-font-text-large">Payment Information.</p>
+      <form #fstep3="ngForm">
+        <div class="thf-row">
+          <thf-input
+            #cardname
+            class="thf-lg-6"
+            name="cardName"
+            [(ngModel)]="cardName"
+            t-clean
+            t-label="Name"
+            t-required>
+          </thf-input>
+
+          <thf-input
+            #cardcode
+            class="thf-lg-4 thf-md-9"
+            name="cardCode"
+            [(ngModel)]="cardCode"
+            t-clean
+            t-label="Code"
+            t-mask="9999 9999 9999 9999"
+            t-mask-format-model
+            t-pattern="\d{4} \d{4} \d{4} \d{4}"
+            t-required>
+          </thf-input>
+
+          <thf-input
+            #carddate
+            class="thf-lg-2 thf-md-3"
+            name="cardValid"
+            [(ngModel)]="cardValid"
+            t-clean
+            t-label="Expiration Date"
+            t-mask="12/99"
+            t-mask-format-model
+            t-pattern="\d{2}\/\d{2}"
+            t-required>
+          </thf-input>
+        </div>
+      </form>
+    </ng-container>
+
+    <ng-container *ngIf="step === 4">
+      <div class="thf-row">
+        <thf-info
+          class="thf-md-3"
+          t-label="Name"
+          [t-value]="name">
+        </thf-info>
+        <thf-info
+          class="thf-md-3"
+          t-label="Document"
+          [t-value]="document">
+        </thf-info>
+      </div>
+      <div class="thf-row">
+        <thf-info
+          class="thf-md-3"
+          t-label="Address"
+          [t-value]="street">
+        </thf-info>
+        <thf-info
+          class="thf-md-3"
+          t-label="Number"
+          [t-value]="number">
+        </thf-info>
+        <thf-info
+          class="thf-md-3"
+          t-label="City"
+          [t-value]="city">
+        </thf-info>
+        <thf-info
+          class="thf-md-3"
+          t-label="Country"
+          [t-value]="country">
+        </thf-info>
+      </div>
+      <hr>
+      <div class="thf-row">
+        <thf-info
+          class="thf-md-4"
+          t-label="Product"
+          t-value="Nike XYZ - Red/Gold Stripes">
+        </thf-info>
+        <thf-info
+          class="thf-md-2"
+          t-label="Price"
+          t-value="$2.500,00">
+        </thf-info>
+        <thf-info
+          class="thf-md-2"
+          t-label="Discount"
+          t-value="$500,00">
+        </thf-info>
+        <thf-info
+          class="thf-md-2"
+          t-label="Tax"
+          t-value="$160,00">
+        </thf-info>
+        <thf-info
+          class="thf-md-2"
+          t-label="Final Price"
+          t-value="$2.160,00">
+        </thf-info>
+      </div>
+    </ng-container>
+
+  </thf-widget>
+</div>
+
+<thf-modal #sucessData
+  t-title="Informations">
+
+  <div class="thf-row">
+      <img
+        class="thf-offset-md-6 thf-offset-xl-3 "
+        src="../../../assets/graphics/check.jpg" width="350" height="350">
+      <p class="thf-offset-md-8 thf-offset-xl-3 thf-font-title"> Sucess! ORDER NUMBER: 5767686678609-XPTOA </p>
+  </div>
+
+</thf-modal>
+

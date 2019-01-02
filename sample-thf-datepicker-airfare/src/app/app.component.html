@@ -1,0 +1,75 @@
+<form #formAirfare="ngForm">
+  <div class="thf-row">
+    <thf-datepicker
+      class="thf-md-6"
+      name="startDate"
+      [(ngModel)]="startDate"
+      t-clean
+      t-format="dd/mm/yyyy"
+      t-label="Date start"
+      t-required>
+    </thf-datepicker>
+
+    <thf-datepicker
+      class="thf-md-6"
+      name="endDate"
+      [(ngModel)]="endDate"
+      t-clean
+      t-format="dd/mm/yyyy"
+      t-label="Date end"
+      t-required
+      [t-start]="startDate">
+    </thf-datepicker>
+  </div>
+
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="origin"
+      [(ngModel)]="origin"
+      t-placeholder="Flight origin"
+      t-label="Origin"
+      t-required>
+    </thf-input>
+
+    <thf-input
+      class="thf-md-6"
+      name="destination"
+      [(ngModel)]="destination"
+      t-label="Destination"
+      t-placeholder="Flight destination"
+      t-required>
+    </thf-input>
+  </div>
+
+  <div clas="thf-row">
+    <thf-select
+      class="thf-md-6"
+      name="ticketClass"
+      [(ngModel)]="classValue"
+      t-label="Class"
+      t-required
+      [t-options]="ticketClass">
+    </thf-select>
+
+    <thf-select
+      class="thf-md-6"
+      name="accompanyNumber"
+      [(ngModel)]="accompany"
+      t-label="Accompany"
+      t-required
+      [t-options]="accompanyNumber">
+    </thf-select>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3 thf-offset-md-9 thf-offset-lg-9"
+      name="applyButton"
+      t-label="Apply"
+      [t-disabled]="formAirfare.invalid"
+      (t-click)="apply()">
+    </thf-button>
+  </div>
+</form>
+

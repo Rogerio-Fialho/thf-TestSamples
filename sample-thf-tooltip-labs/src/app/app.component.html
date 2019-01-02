@@ -1,0 +1,43 @@
+<div class="thf-row">
+  <div class="thf-md-4 thf-lg-2 thf-offset-md-4 thf-offset-lg-5 thf-offset-xl-5">
+    <thf-button
+      [t-tooltip]="tooltip"
+      [t-tooltip-position]="tooltipPosition"
+      t-label="Thf-Tooltip">
+    </thf-button>
+  </div>
+</div>
+
+<hr>
+
+<form #f="ngForm">
+  <div class="thf-row">
+    <thf-input
+      class="thf-lg-12"
+      name="tooltip"
+      [(ngModel)]="tooltip"
+      t-clean
+      t-label="Tooltip"
+      t-maxlength="140">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-radio-group
+      class="thf-lg-6"
+      name="tooltipPosition"
+      [(ngModel)]="tooltipPosition"
+      t-label="Position"
+      [t-options]="tooltipPositionOptions">
+    </thf-radio-group>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      t-label="Sample Restore"
+      (t-click)="restore()">
+    </thf-button>
+  </div>
+</form>
+

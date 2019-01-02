@@ -1,0 +1,80 @@
+<thf-popover
+  t-trigger="click"
+  [t-hide-arrow]="properties.includes('hideArrow')"
+  [t-position]="position"
+  [t-target]="buttonClickRef"
+  [t-title]="title">
+  {{ content }}
+</thf-popover>
+
+<thf-popover
+  t-trigger="hover"
+  [t-hide-arrow]="properties.includes('hideArrow')"
+  [t-position]="position"
+  [t-target]="buttonHoverRef"
+  [t-title]="title">
+  {{ content }}
+</thf-popover>
+
+<div class="thf-row">
+  <div class="thf-offset-xl-1 thf-offset-lg-1 thf-md-6 thf-lg-3">
+    <thf-button #buttonClick
+      t-label="Popover with click">
+    </thf-button>
+  </div>
+
+  <div class="thf-offset-xl-1 thf-offset-lg-1 thf-md-6 thf-lg-3">
+    <thf-button #buttonHover
+      t-label="Popover with hover">
+    </thf-button>
+  </div>
+</div>
+
+<hr>
+
+<form #f="ngForm">
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="title"
+      [(ngModel)]="title"
+      t-clean
+      t-label="Title">
+    </thf-input>
+
+    <thf-input
+      class="thf-md-6"
+      name="content"
+      [(ngModel)]="content"
+      t-clean
+      t-label="Content">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-radio-group
+      class="thf-md-8"
+      name="position"
+      [(ngModel)]="position"
+      t-label="Position"
+      [t-options]="positionOptions">
+    </thf-radio-group>
+
+    <thf-checkbox-group
+      class="thf-md-4"
+      name="properties"
+      [(ngModel)]="properties"
+      t-label="Properties"
+      [t-options]="propertiesOptions">
+    </thf-checkbox-group>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      t-label="Sample Restore"
+      (t-click)="restore()">
+    </thf-button>
+  </div>
+</form>
+

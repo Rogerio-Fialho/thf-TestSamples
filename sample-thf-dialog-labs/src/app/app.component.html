@@ -1,0 +1,85 @@
+<thf-button
+  name="openDialog"
+  t-label="Open Dialog"
+  [t-disabled]="f.invalid"
+  (t-click)="openDialog()">
+</thf-button>
+
+<hr>
+
+<div class="thf-row">
+  <thf-info
+    class="thf-md-12"
+    t-label="Action clicked"
+    [t-value]="action">
+  </thf-info>
+</div>
+
+<hr>
+
+<form #f="ngForm">
+
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="title"
+      [(ngModel)]="title"
+      t-clean
+      t-label="Title"
+      t-required>
+    </thf-input>
+
+    <thf-input
+      class="thf-md-6"
+      name="message"
+      [(ngModel)]="message"
+      t-clean
+      t-label="Message"
+      t-required>
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-radio-group
+      class="thf-md-12"
+      name="dialogMethod"
+      [(ngModel)]="dialogMethod"
+      t-label="Dialog method"
+      [t-options]="dialogMethodOptions"
+      (t-change)="changeMethod()">
+    </thf-radio-group>
+  </div>
+
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-12"
+      name="literals"
+      [(ngModel)]="literals"
+      t-clean
+      t-label="Literals"
+      [t-help]="help"
+      (t-blur)="changeLiterals()"
+      (t-change-model)="changeLiterals()">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-checkbox-group
+      class="thf-md-12"
+      name="actionOptions"
+      [(ngModel)]="actionOptions"
+      t-label="Action options"
+      [t-options]="dialogActionOptions">
+    </thf-checkbox-group>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      t-label="Sample Restore"
+      (t-click)="restore()">
+    </thf-button>
+  </div>
+
+</form>
+

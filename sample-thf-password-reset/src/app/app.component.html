@@ -1,0 +1,52 @@
+<form #passwordForm="ngForm">
+  <thf-password
+    class="thf-sm-12"
+    name="currentPassword"
+    [(ngModel)]="currentPassword"
+    t-clean
+    t-error-pattern="invalid password"
+    t-label="Current Password"
+    t-mask="999999"
+    t-required
+    [t-help]="help">
+  </thf-password>
+
+  <thf-password
+    class="thf-sm-12"
+    name="newPassword"
+    [(ngModel)]="newPassword"
+    t-clean
+    t-error-pattern="invalid password"
+    t-label="New password"
+    t-mask="999999"
+    t-minlength="6"
+    t-required
+    [t-disabled]="currentPassword !== password">
+  </thf-password>
+
+  <thf-password
+    class="thf-sm-12"
+    name="confirmNewPassword"
+    [(ngModel)]="confirmNewPassword"
+    t-clean
+    t-error-pattern="invalid password"
+    t-label="Confirm New Password"
+    t-mask="999999"
+    t-minlength="6"
+    t-required
+    [t-disabled]="currentPassword !== password">
+  </thf-password>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-4"
+      t-label="Save"
+      [t-disabled]="passwordForm.invalid"
+      (t-click)="setPassword()">
+    </thf-button>
+  </div>
+
+</form>
+
+
+

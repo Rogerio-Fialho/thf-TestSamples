@@ -1,0 +1,29 @@
+<div class="thf-lg-12 thf-text-center thf-font-subtitle">
+  Enter your email to receive THF news, be sure to participate.
+</div>
+
+<form #f="ngForm">
+  <div class="thf-row">
+    <thf-email
+      class="thf-lg-12"
+      name="email"
+      [(ngModel)]="email"
+      t-clean
+      t-error-pattern="Invalid e-mail"
+      t-label="Email"
+      t-placeholder="Enter your e-mail"
+      t-required>
+    </thf-email>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-4"
+      t-label="Send"
+      t-type="primary"
+      [t-disabled]="f.form.invalid"
+      (t-click)="openDialog()">
+    </thf-button>
+  </div>
+</form>
+

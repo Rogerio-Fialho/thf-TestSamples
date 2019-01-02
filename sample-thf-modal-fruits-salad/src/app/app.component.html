@@ -1,0 +1,46 @@
+<thf-modal
+  t-title="Options"
+  [t-primary-action]="confirm"
+  [t-secondary-action]="close">
+
+  <form #optionsForm="ngForm">
+    <div class="thf-row">
+      <thf-checkbox-group
+        class="thf-md-12"
+        name="checkboxGroup"
+        [(ngModel)]="fruits"
+        t-label="Fruits:"
+        t-required
+        [t-options]="fruitsOptions">
+      </thf-checkbox-group>
+    </div>
+
+    <div class="thf-row">
+      <thf-combo
+        class="thf-md-12"
+        name="accompaniment"
+        [(ngModel)]="accompaniment"
+        t-label="Accompaniment:"
+        t-required
+        [t-options]="accompanimentOptions">
+      </thf-combo>
+    </div>
+
+    <div class="thf-row">
+      <thf-textarea
+        class="thf-md-12"
+        name="orderDetail"
+        [(ngModel)]="orderDetail"
+        t-label="Details:"
+        t-rows="8">
+      </thf-textarea>
+    </div>
+  </form>
+
+</thf-modal>
+
+<thf-button
+  t-label="Buy fruits salad"
+  (t-click)="openQuestionnaire()">
+</thf-button>
+

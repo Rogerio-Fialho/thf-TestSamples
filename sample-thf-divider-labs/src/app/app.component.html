@@ -1,0 +1,22 @@
+<thf-divider [t-label]="label"></thf-divider>
+
+<form #f="ngForm">
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="label"
+      [(ngModel)]="label"
+      t-clean
+      t-label="Label">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      t-label="Sample Restore"
+      (t-click)="restore()">
+    </thf-button>
+  </div>
+</form>
+

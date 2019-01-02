@@ -1,0 +1,132 @@
+<thf-popup #popup
+  t-position="right"
+  [t-actions]="popupActions"
+  [t-target]="targetRef">
+
+  <div t-popup-header-template>
+    <div class="sample-popup-header-template">
+        Settings
+    </div>
+  </div>
+</thf-popup>
+
+<div class="thf-row">
+  <thf-widget class="thf-sm-12" t-title="Send email">
+    <form #formEmail="ngForm">
+
+      <div class="thf-row">
+        <thf-email
+          class="thf-sm-12"
+          name="to"
+          [(ngModel)]="to"
+          t-clean
+          t-label="To"
+          t-required>
+        </thf-email>
+
+        <thf-email
+          class="thf-sm-12"
+          name="cc"
+          [(ngModel)]="cc"
+          t-clean
+          t-label="CC">
+        </thf-email>
+
+        <thf-input
+          class="thf-sm-12"
+          name="subject"
+          [(ngModel)]="subject"
+          t-clean
+          t-label="Subject"
+          t-required>
+        </thf-input>
+      </div>
+
+      <div class="thf-row">
+        <thf-textarea #target
+          class="thf-lg-10"
+          name="message"
+          [(ngModel)]="emailText"
+          t-help="Click show settings popup"
+          t-label="Message"
+          t-required
+          (click)="popup.toggle()">
+        </thf-textarea>
+
+        <img class="thf-lg-2 sample-logo-totvs" src="../../../assets/graphics/totvs.jpg">
+      </div>
+
+      <div class="thf-row">
+        <thf-button
+          class="thf-md-4"
+          t-label="Send"
+          t-type="primary"
+          [t-disabled]="formEmail.form.invalid"
+          (t-click)="send()">
+        </thf-button>
+        <thf-button
+          class="thf-md-4"
+          t-label="Reset"
+          [t-disabled]="formEmail.form.invalid"
+          (t-click)="reset()">
+        </thf-button>
+      </div>
+
+    </form>
+  </thf-widget>
+</div>
+
+<thf-modal
+  t-title="Email successfully sent"
+  [t-primary-action]="primaryAction">
+
+  <div class="thf-row">
+    <thf-info
+      class="thf-md-6"
+      t-label="From:"
+      [t-value]="from">
+    </thf-info>
+
+    <thf-info
+      class="thf-md-6"
+      t-label="To:"
+      [t-value]="to">
+    </thf-info>
+  </div>
+
+  <hr>
+
+  <div *ngIf="cc !== ''">
+    <div class="thf-row">
+        <thf-info
+          class="thf-md-12"
+          t-label="CC:"
+          [t-value]="cc">
+        </thf-info>
+    </div>
+    <hr>
+  </div>
+
+  <div class="thf-row">
+    <thf-info
+      class="thf-md-12"
+      t-label="subject:"
+      [t-value]="subject">
+    </thf-info>
+  </div>
+
+  <hr>
+
+  <div class="thf-row">
+    <thf-textarea
+      class="thf-md-12"
+      name="text"
+      [(ngModel)]="emailText"
+      t-label="E-mail"
+      t-readonly
+      t-rows="6"
+      ngDefaultControl>
+    </thf-textarea>
+  </div>
+</thf-modal>
+

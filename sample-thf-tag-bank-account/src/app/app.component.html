@@ -1,0 +1,67 @@
+<thf-page-default t-title="Bank Statement">
+
+  <div class="thf-mt-1 thf-lg-7">
+    <thf-widget class="thf-md-12 thf-sm-mb-1 thf-mb-1 thf-lg-mb-1" t-title="User information">
+      <div class="thf-row">
+        <div class="thf-md-5 thf-lg-4">
+          <thf-avatar t-size="xl" t-src="assets/graphics/{{ userData.photo }}"></thf-avatar>
+        </div>
+        <div class="thf-md-7 thf-lg-8">
+          <div class="thf-mb-2">
+            <thf-info
+              t-label="Name"
+              [t-value]="userData.name">
+            </thf-info>
+            <thf-tag t-value="Premium Account">
+            </thf-tag>
+          </div>
+          <div class="thf-mb-2">
+            <thf-info
+              class="thf-mt-5"
+              t-label="Email"
+              [t-value]="userData.email">
+            </thf-info>
+          </div>
+        </div>
+      </div>
+    </thf-widget>
+
+    <thf-widget class="thf-md-12 thf-sm-mt-1 thf-mt-1 thf-lg-mt-1" t-title="My Investiments">
+      <div class="thf-row">
+        <thf-tag *ngFor="let investiment of investiments"
+          class="thf-md-6 thf-lg-3"
+          [t-label]="investiment.label"
+          [t-type]="investiment.type"
+          [t-value]="investiment.value">
+        </thf-tag>
+      </div>
+    </thf-widget>
+  </div>
+  <thf-widget t-title="Last three month operations" class="thf-mt-1 thf-lg-5">
+    <thf-tabs>
+      <thf-tab *ngFor="let item of items"
+        t-active
+        t-label="{{ item.month }}">
+        <thf-widget class="thf-lg-12 thf-sm-mb-1 thf-mb-1 thf-lg-mb-1" *ngFor="let item of item.details">
+          <div class="thf-row">
+            <thf-info
+              class="thf-lg-9 thf-md-8"
+              t-label-size="6"
+              t-orientation="horizontal"
+              [t-label]="item.label"
+              [t-value]="item.value">
+            </thf-info>
+            <thf-tag
+              class="thf-lg-3 thf-md-4"
+              t-icon
+              t-orientation="horizontal"
+              [t-type]="item.type"
+              [t-value]="item.text">
+            </thf-tag>
+          </div>
+        </thf-widget>
+      </thf-tab>
+    </thf-tabs>
+  </thf-widget>
+</thf-page-default>
+

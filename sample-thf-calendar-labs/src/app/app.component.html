@@ -1,0 +1,68 @@
+<thf-calendar
+  [(ngModel)]="calendar"
+  [t-locale]="locale"
+  [t-min-date]="minDate"
+  [t-max-date]="maxDate"
+  (t-change)="changeEvent('t-change')">
+</thf-calendar>
+
+<hr>
+
+<div class="thf-row">
+  <thf-info
+    class="thf-md-6"
+    t-label="Model"
+    [t-value]="calendar">
+  </thf-info>
+  <thf-info
+    class="thf-md-6"
+    t-label="Event"
+    [t-value]="event">
+  </thf-info>
+</div>
+
+<hr>
+
+<form #f="ngForm">
+
+  <div class="thf-row">
+    <thf-datepicker
+      class="thf-md-6"
+      name="minDate"
+      [(ngModel)]="minDate"
+      t-clean
+      t-label="Min Date"
+      [t-end]="maxDate">
+    </thf-datepicker>
+
+    <thf-datepicker
+      class="thf-md-6"
+      name="maxDate"
+      [(ngModel)]="maxDate"
+      t-clean
+      t-label="Max Date"
+      [t-start]="minDate">
+    </thf-datepicker>
+  </div>
+
+  <div class="thf-row">
+    <thf-radio-group
+      class="thf-md-6"
+      name="locales"
+      [(ngModel)]="locale"
+      t-columns="3"
+      t-help="Select a locale for the calendar"
+      t-label="Locale"
+      [t-options]="localeOptions">
+    </thf-radio-group>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      t-label="Sample Restore"
+      (t-click)="restore()">
+    </thf-button>
+  </div>
+</form>
+

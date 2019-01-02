@@ -1,0 +1,92 @@
+<thf-page-default t-title="Check the speaker's list">
+
+  <thf-tabs>
+    <thf-tab *ngFor="let speaker of speakers"
+      t-label="{{ speaker.createdDate | date: 'MMM d' }}"
+      [t-active]="speaker.id === '1'"
+      [t-hide]="speaker.subscribe">
+      <div class="thf-row thf-mt-5">
+        <div class="thf-offset-lg-1 thf-offset-xl-1 thf-lg-10">
+          <div class="thf-row">
+
+            <div class="thf-lg-8 thf-mb-2">
+              <thf-widget>
+                <div class="thf-row">
+                  <div class="thf-md-5 thf-lg-4">
+                    <thf-avatar t-size="xl" t-src="assets/graphics/{{ speaker.photo }}"></thf-avatar>
+                  </div>
+                  <div class="thf-md-7 thf-lg-8">
+                    <div class="thf-mb-2">
+                      <thf-info t-label="Speaker" [t-value]="speaker.name"></thf-info>
+                    </div>
+                    <div class="thf-mb-2">
+                      <thf-info
+                        class="thf-mt-5"
+                        t-label="Email"
+                        [t-value]="speaker.email">
+                      </thf-info>
+                    </div>
+                    <div class="thf-mb-2">
+                      <thf-info
+                        class="thf-mb-5"
+                        t-label="Description"
+                        [t-value]="speaker.description">
+                      </thf-info>
+                    </div>
+                  </div>
+                </div>
+              </thf-widget>
+            </div>
+
+            <div class="thf-lg-4 thf-mb-2">
+              <thf-widget t-title="Subscription">
+                <div class="thf-font-subtitle thf-mb-2">TFace Conference Week</div>
+                <div class="thf-font-text-bold thf-mb-5">From 21th September until 26th setember 2018</div>
+                <hr>
+                <div class="thf-row">
+                  <div class="thf-md-6 thf-lg-12">
+                    <span class="thf-mr-1 thf-font-subtitle">
+                      <div class="thf-icon thf-icon-calendar"></div>
+                    </span>
+                    <span class="thf-font-text thf-mb-2">{{ speaker.createdDate | date: 'MM/dd/yyyy' }}</span>
+                  </div>
+                  <div class="thf-md-6 thf-lg-12">
+                    <span class="thf-mr-1 thf-font-subtitle">
+                      <div class="thf-icon thf-icon-pin"></div>
+                    </span>
+                    <span class="thf-font-text">Av. Braz Leme, 1000, Santana</span>
+                  </div>
+                </div>
+                <div class="thf-mt-5">
+                  <thf-button
+                    class="thf-mt-5"
+                    t-label="Subscription"
+                    (t-click)="confirmSubscription(speaker)">
+                  </thf-button>
+                </div>
+              </thf-widget>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </thf-tab>
+  </thf-tabs>
+
+  <hr class="thf-offset-lg-1 thf-offset-xl-1 thf-lg-10 thf-mt-0">
+
+  <div class="thf-row">
+    <div class="thf-offset-lg-1 thf-offset-xl-1 thf-lg-10">
+      <div class="thf-row">
+        <thf-button
+          class="thf-offset-lg-8 thf-offset-xl-8 thf-lg-4"
+          t-label="Cancel Subscription"
+          [t-disabled]="disableRestoreBtn"
+          (t-click)="cancelSubscription()">
+        </thf-button>
+      </div>
+    </div>
+  </div>
+
+</thf-page-default>
+

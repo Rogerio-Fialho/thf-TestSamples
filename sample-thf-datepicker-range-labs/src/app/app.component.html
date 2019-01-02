@@ -1,0 +1,103 @@
+<thf-datepicker-range
+  class="thf-sm-12"
+  name="datepickerRange"
+  [(ngModel)]="datepickerRange"
+  [t-clean]="properties.includes('clean')"
+  [t-disabled]="properties.includes('disabled')"
+  [t-end-date]="endDate"
+  [t-help]="help"
+  [t-label]="label"
+  [t-literals]="customLiterals"
+  [t-readonly]="properties.includes('readonly')"
+  [t-required]="properties.includes('required')"
+  [t-start-date]="startDate"
+  (t-change)="changeEvent('t-change')">
+</thf-datepicker-range>
+
+<hr>
+
+<div class="thf-row">
+  <thf-info
+    class="thf-md-6"
+    t-label="Model"
+    [t-value]="getDatepickerRange()">
+  </thf-info>
+
+  <thf-info
+    class="thf-md-6"
+    t-label="Event"
+    [t-value]="event">
+  </thf-info>
+</div>
+
+<hr>
+
+<form #f="ngForm">
+
+  <div class="thf-row">
+    <thf-datepicker
+      class="thf-md-6"
+      name="startDate"
+      [(ngModel)]="startDate"
+      t-clean
+      t-label="Start Date">
+    </thf-datepicker>
+
+    <thf-datepicker
+      class="thf-md-6"
+      name="endDate"
+      [(ngModel)]="endDate"
+      t-clean
+      t-label="End Date">
+    </thf-datepicker>
+  </div>
+
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="label"
+      [(ngModel)]="label"
+      t-clean
+      t-label="Label">
+    </thf-input>
+
+    <thf-input
+      class="thf-md-6"
+      name="help"
+      [(ngModel)]="help"
+      t-clean
+      t-label="Help">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-input
+      class="thf-lg-6 thf-md-12"
+      name="literals"
+      [(ngModel)]="literals"
+      t-help='Ex.: { "invalidFormat": "Date in inconsistent format", "startDateGreaterThanEndDate": "End date less than start date" }'
+      t-label="Literals"
+      (t-change)="changeLiterals()">
+    </thf-input>
+
+    <thf-checkbox-group
+      class="thf-md-6"
+      name="properties"
+      [(ngModel)]="properties"
+      t-columns="2"
+      t-label="Properties"
+      [t-options]="propertiesOptions">
+    </thf-checkbox-group>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      name="restore"
+      t-label="Sample Restore"
+      (t-click)="restore()">
+    </thf-button>
+  </div>
+
+</form>
+

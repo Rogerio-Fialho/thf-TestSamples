@@ -1,0 +1,55 @@
+<div class="thf-row">
+  <thf-widget
+    class="thf-lg-6"
+    t-primary-label="Know more"
+    (t-primary-action)="knowMore()">
+
+    <div [formGroup]="form">
+      <thf-combo
+        name="heroName"
+        formControlName="hero"
+        t-field-label="nickname"
+        t-field-value="name"
+        t-filter-service="https://thf.totvs.com.br/sample/api/new/heroes"
+        t-label="Search a Hero"
+        t-sort
+        (t-change)="onChangeHero($event)">
+      </thf-combo>
+    </div>
+
+    <ng-container *ngIf="hero$ | async as hero">
+
+      <div class="thf-row">
+        <thf-info
+          class="thf-md-6"
+          t-label="Name"
+          [t-value]="hero.name">
+        </thf-info>
+
+        <thf-info
+          class="thf-md-6"
+          t-label="Nickname"
+          [t-value]="hero.nickname">
+        </thf-info>
+      </div>
+
+      <hr>
+
+      <div class="thf-row">
+        <thf-info
+          class="thf-md-6"
+          t-label="Birthday"
+          t-value="{{ hero.birthday | date }}">
+        </thf-info>
+
+        <thf-info
+          class="thf-md-6"
+          t-label="Email"
+          [t-value]="hero.email">
+        </thf-info>
+      </div>
+    </ng-container>
+
+  </thf-widget>
+</div>
+

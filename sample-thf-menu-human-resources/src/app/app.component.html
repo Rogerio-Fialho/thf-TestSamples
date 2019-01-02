@@ -1,0 +1,11 @@
+<div class="thf-wrapper">
+  <thf-toolbar t-title="THF - Human Resources" [t-show-notification]="false"></thf-toolbar>
+
+  <thf-menu
+    t-filter
+    [t-menus]="menus">
+  </thf-menu>
+
+  <thf-page-default [t-title]="menuItemSelected"></thf-page-default>
+</div>
+

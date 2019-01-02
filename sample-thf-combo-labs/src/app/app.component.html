@@ -1,0 +1,178 @@
+<thf-combo
+  class="thf-md-12"
+  name="combo"
+  [(ngModel)]="combo"
+  [t-change-on-enter]="properties.includes('changeOnEnter')"
+  [t-debounce-time]="debounceTime"
+  [t-disabled]="properties.includes('disabled')"
+  [t-disabled-init-filter]="properties.includes('disableInitFilter')"
+  [t-field-label]="fieldLabel"
+  [t-field-value]="fieldValue"
+  [t-filter-minlength]="filterMinlength"
+  [t-filter-mode]="filterMode"
+  [t-filter-service]="filterService"
+  [t-help]="help"
+  [t-label]="label"
+  [t-options]="options"
+  [t-placeholder]="placeholder"
+  [t-required]="properties.includes('required')"
+  [t-sort]="properties.includes('sort')"
+  (t-change)="changeEvent('t-change')">
+</thf-combo>
+
+<hr>
+
+<div class="thf-row">
+  <thf-info
+    class="thf-md-6"
+    t-label="Model"
+    [t-value]="combo">
+  </thf-info>
+
+  <thf-info
+    class="thf-md-6"
+    t-label="Event"
+    [t-value]="event">
+  </thf-info>
+</div>
+
+<hr>
+
+<form #fOption="ngForm">
+
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="optionLabel"
+      [(ngModel)]="option.label"
+      t-label="Option Label"
+      t-required>
+    </thf-input>
+
+    <thf-input
+      class="thf-md-6"
+      name="optionValue"
+      [(ngModel)]="option.value"
+      t-label="Option Value"
+      t-required>
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-6 thf-lg-3"
+      t-label="Add Option"
+      [t-disabled]="fOption.form.invalid"
+      (t-click)="addOption()">
+    </thf-button>
+  </div>
+
+</form>
+
+<hr>
+
+<form #f="ngForm">
+
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-12"
+      name="label"
+      [(ngModel)]="label"
+      t-clean
+      t-label="Label">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="help"
+      [(ngModel)]="help"
+      t-clean
+      t-label="Help">
+    </thf-input>
+
+    <thf-input
+      class="thf-md-6"
+      name="placeholder"
+      [(ngModel)]="placeholder"
+      t-clean
+      t-label="Placeholder">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-checkbox-group
+      class="thf-lg-6"
+      name="properties"
+      [(ngModel)]="properties"
+      t-label="Properties"
+      [t-options]="propertiesOptions">
+    </thf-checkbox-group>
+
+    <thf-radio-group
+      class="thf-lg-6"
+      name="filterMode"
+      [(ngModel)]="filterMode"
+      t-label="Filter Mode"
+      [t-options]="filterModeOptions">
+    </thf-radio-group>
+  </div>
+
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-12"
+      name="filterService"
+      [(ngModel)]="filterService"
+      t-clean
+      t-help="https://thf.totvs.com.br/sample/api/comboOption/heroes"
+      t-label="Filter Service">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="fieldValue"
+      [(ngModel)]="fieldValue"
+      t-clean
+      t-label="Field Value">
+    </thf-input>
+
+    <thf-input
+      class="thf-md-6"
+      name="fieldLabel"
+      [(ngModel)]="fieldLabel"
+      t-clean
+      t-label="Field Label">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-number
+      class="thf-md-6"
+      name="debounceTime"
+      [(ngModel)]="debounceTime"
+      t-clean
+      t-label="Debounce Time">
+    </thf-number>
+
+    <thf-number
+      class="thf-md-6"
+      name="filterMinlength"
+      [(ngModel)]="filterMinlength"
+      t-clean
+      t-label="Filter Min Length">
+    </thf-number>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      t-label="Sample Restore"
+      (t-click)="restore()">
+    </thf-button>
+  </div>
+
+</form>
+

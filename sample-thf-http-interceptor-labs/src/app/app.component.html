@@ -1,0 +1,70 @@
+<form #f="ngForm">
+
+  <div class="thf-row">
+    <thf-input class="thf-lg-5"
+      name="text"
+      [(ngModel)]="text"
+      t-clean
+      t-label="Texto da notificação"
+      t-placeholder="Texto"
+      t-maxlength="50"
+      t-required>
+    </thf-input>
+
+    <thf-input class="thf-md-4 thf-lg-2"
+      name="code"
+      [(ngModel)]="code"
+      t-clean
+      t-label="Código"
+      t-maxlength="5"
+      t-placeholder="Código">
+    </thf-input>
+
+    <thf-url class="thf-md-8 thf-lg-5"
+      name="help"
+      [(ngModel)]="help"
+      t-clean
+      t-label="Url para Ajuda"
+      t-placeholder="Url">
+    </thf-url>
+  </div>
+
+  <div class="thf-row">
+    <thf-radio-group class="thf-md-6"
+      name="type"
+      [(ngModel)]="type"
+      t-label="Tipo de Notificação"
+      t-required
+      [t-options]="typeOptions">
+    </thf-radio-group>
+
+    <thf-radio-group class="thf-md-6"
+      name="status"
+      [(ngModel)]="status"
+      t-label="Status"
+      t-required
+      [t-options]="statusOptions">
+    </thf-radio-group>
+  </div>
+
+  <div class="thf-row">
+    <thf-switch class="thf-lg-12"
+      name="noErrorHeaderParam"
+      [(ngModel)]="noErrorHeaderParam"
+      t-help="Ativa/desativa o envio do parametro X-Totvs-No-Error no cabeçalho da requisição."
+      t-label="Ativar X-Totvs-No-Error"
+      t-label-off="Não"
+      t-label-on="Sim">
+    </thf-switch>
+  </div>
+
+  <div class="thf-row">
+    <thf-button class="thf-md-4"
+      t-label="Gerar Requisição"
+      [t-disabled]="!f.form.valid"
+      (t-click)="processRequest()">
+    </thf-button>
+  </div>
+
+</form>
+

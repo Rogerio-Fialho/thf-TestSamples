@@ -1,0 +1,73 @@
+<div class="thf-row">
+
+  <thf-widget
+    class="thf-lg-6 thf-mt-2"
+    t-background="../../../assets/graphics/days-to-payment.png"
+    t-height="210"
+    t-primary="true"
+    t-title="Days to Payment"
+    (t-click)="daysPayment()">
+
+    <div class="thf-font-subtitle thf-text-center">17 days left</div>
+    <div class="thf-text-center">Scheduled to 05/04/2018</div>
+  </thf-widget>
+
+  <thf-widget
+    class="thf-lg-3 thf-mt-2"
+    t-height="200"
+    t-primary="true"
+    t-primary-label="Details"
+    t-title="Total savings"
+    (t-primary-action)="openModal('savings')">
+
+    <div class="thf-font-subtitle thf-text-center">$5.000,00</div>
+    <div class="thf-text-center">Last updated at 18:34</div>
+  </thf-widget>
+
+  <thf-widget
+    class="thf-lg-3 thf-mt-2"
+    t-height="200"
+    t-primary-label="Details"
+    t-title="Total checking account"
+    (t-primary-action)="openModal('account')">
+
+    <div class="thf-font-subtitle thf-text-center">$2.818,29</div>
+    <div class="thf-text-center">Last updated at 08:20</div>
+  </thf-widget>
+
+</div>
+
+<div class="thf-row">
+
+  <thf-widget
+    class="thf-md-12 thf-lg-4 thf-mt-2"
+    t-title="Category with the highest expense">
+
+    <div class="thf-font-subtitle thf-text-center">$1.500,00</div>
+    <div class="thf-text-center">Meal</div>
+  </thf-widget>
+
+  <thf-widget
+    class="thf-md-12 thf-lg-4 thf-mt-2"
+    t-title="Most used payment type">
+
+    <div class="thf-font-subtitle thf-text-center">Credit card</div>
+    <div class="thf-text-center">MasterCard - 5500 0000 0000 0004</div>
+  </thf-widget>
+
+  <thf-widget
+    class="thf-md-12 thf-lg-4 thf-mt-2"
+    t-title="Higher revenue in month">
+
+    <div class="thf-font-subtitle thf-text-center">$2.000,00</div>
+    <div class="thf-text-center">05/03/2018</div>
+  </thf-widget>
+</div>
+
+<thf-modal #detailsModal [t-title]="titleDetailsModal">
+  <thf-table
+    [t-columns]="columnsDetails"
+    [t-items]="itemsDetails">
+  </thf-table>
+</thf-modal>
+

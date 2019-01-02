@@ -1,0 +1,213 @@
+<thf-list-view
+  [t-actions]="actions"
+  [t-height]="height"
+  [t-hide-select-all]="properties.includes('hideSelectAll')"
+  [t-items]="items"
+  [t-literals]="customLiterals"
+  [t-property-link]="propertyLink"
+  [t-property-title]="propertyTitle"
+  [t-select]="properties.includes('select')"
+  [t-show-more-disabled]="properties.includes('showMoreDisabled')"
+  (t-show-more)="showMore()"
+  (t-title-action)="changeAction('t-title-action')">
+
+  <ng-template t-list-view-content-template let-item>
+    <div class="thf-row">
+      <thf-info
+        class="thf-md-6 thf-lg-3"
+        t-label="Name"
+        [t-value]="item.name">
+      </thf-info>
+
+      <thf-info
+        class="thf-md-6 thf-lg-3"
+        t-label="Email"
+        [t-value]="item.email">
+      </thf-info>
+
+      <thf-info
+        class="thf-md-6 thf-lg-3"
+        t-label="Location"
+        [t-value]="item.location">
+      </thf-info>
+
+      <thf-info
+        class="thf-md-6 thf-lg-3"
+        t-label="Phone"
+        [t-value]="item.phone">
+      </thf-info>
+    </div>
+  </ng-template>
+
+  <ng-template t-list-view-detail-template let-item>
+    <div class="thf-row">
+      <thf-info
+        class="thf-md-6 thf-lg-3"
+        t-label="Company"
+        [t-value]="item.company">
+      </thf-info>
+
+      <thf-info
+        class="thf-md-6 thf-lg-3"
+        t-label="Zip Code"
+        [t-value]="item.zipCode">
+      </thf-info>
+    </div>
+  </ng-template>
+
+</thf-list-view>
+
+<hr>
+
+<div class="thf-row">
+  <thf-button
+    class="thf-md-3"
+    t-label="Add Item"
+    (t-click)="addItem()">
+  </thf-button>
+</div>
+
+<hr>
+
+<div class="thf-row">
+  <thf-info
+    class="thf-md-6"
+    t-label="Action"
+    [t-value]="titleAction">
+  </thf-info>
+</div>
+
+<hr>
+
+<form #propertiesForm="ngForm">
+  <div class="thf-row">
+    <thf-select
+      class="thf-md-6"
+      name="propertyTitle"
+      [(ngModel)]="propertyTitle"
+      t-help='Ex.: email'
+      t-label="Property title"
+      [t-options]="propertyTitleOptions">
+    </thf-select>
+
+    <thf-number
+      class="thf-md-6"
+      name="height"
+      [(ngModel)]="height"
+      t-help="Ex.: 200"
+      t-label="Height"
+      (t-change)="changeLiterals()">
+    </thf-number>
+  </div>
+
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-12"
+      name="propertyLinkValue"
+      [(ngModel)]="propertyLinkValue"
+      t-help='Ex.: "http://thf.totvs.com.br"'
+      t-label="Title Link">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-12"
+      name="literals"
+      [(ngModel)]="literals"
+      t-help='Ex.: { "hideDetails": "Esconder detalhes", "showDetails": "Ver detalhes", "loadMoreData": "Ver mais" }'
+      t-label="Literals"
+      (t-change)="changeLiterals()">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-checkbox-group
+      class="thf-md-12"
+      name="properties"
+      [(ngModel)]="properties"
+      t-columns="3"
+      t-label="Properties"
+      [t-options]="propertiesOptions"
+      (t-change)="changeActionOptions()">
+    </thf-checkbox-group>
+  </div>
+</form>
+
+<hr>
+
+<form #actionForm="ngForm">
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-4"
+      name="actionAction"
+      [(ngModel)]="action.action"
+      t-clean
+      t-label="Action">
+    </thf-input>
+
+    <thf-input
+      class="thf-md-4"
+      name="actionLabel"
+      [(ngModel)]="action.label"
+      t-label="Label"
+      t-required>
+    </thf-input>
+
+    <thf-input
+      class="thf-md-4"
+      name="actionURL"
+      [(ngModel)]="action.url"
+      t-label="URL">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-select
+      class="thf-md-3"
+      name="type"
+      [(ngModel)]="action.type"
+      t-label="Type"
+      [t-options]="typeOptions">
+    </thf-select>
+
+    <thf-select
+      class="thf-md-3"
+      name="icon"
+      [(ngModel)]="action.icon"
+      t-label="Icon"
+      [t-options]="iconOptions">
+    </thf-select>
+
+    <thf-checkbox-group
+      class="thf-md-6"
+      name="action"
+      [(ngModel)]="action"
+      t-columns="4"
+      t-indeterminate
+      t-label="Action properties"
+      [t-options]="actionOptions">
+    </thf-checkbox-group>
+
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-6 thf-lg-3"
+      t-label="Add Action"
+      [t-disabled]="actionForm.invalid"
+      (t-click)="addAction(action)">
+    </thf-button>
+  </div>
+</form>
+
+<hr>
+
+<div class="thf-row">
+  <thf-button
+    class="thf-md-3"
+    t-label="Sample Restore"
+    (t-click)="actionForm.reset(); restore()">
+  </thf-button>
+</div>
+

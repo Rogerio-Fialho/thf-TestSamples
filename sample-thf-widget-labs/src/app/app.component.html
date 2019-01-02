@@ -1,0 +1,102 @@
+<thf-widget
+  class="thf-sm-12"
+  [t-background]="background"
+  [t-height]="height"
+  [t-help]="help"
+  [t-no-shadow]="properties.includes('noShadow')"
+  [t-primary]="properties.includes('primaryWidget')"
+  [t-primary-label]="primaryLabel"
+  [t-secondary-label]="secondaryLabel"
+  [t-title]="title"
+  (t-primary-action)="changeAction('t-primary-action')"
+  (t-secondary-action)="changeAction('t-secondary-action')"
+  (t-setting)="changeAction('t-setting')"
+  (t-title-action)="changeAction('t-title-action')">
+    {{ content }}
+</thf-widget>
+
+<hr>
+
+<div class="thf-row">
+  <thf-info
+    class="thf-md-6"
+    t-label="Action"
+    [t-value]="action">
+  </thf-info>
+</div>
+
+<hr>
+
+<form #f="ngForm">
+
+  <thf-input
+    class="thf-md-4"
+    name="title"
+    [(ngModel)]="title"
+    t-label="Title">
+  </thf-input>
+
+  <thf-input
+    class="thf-md-4"
+    name="help"
+    [(ngModel)]="help"
+    t-label="Help">
+  </thf-input>
+
+  <thf-number
+    class="thf-md-4"
+    name="height"
+    [(ngModel)]="height"
+    t-label="Height">
+  </thf-number>
+
+  <thf-input
+    class="thf-md-12"
+    name="background"
+    [(ngModel)]="background"
+    t-clean
+    t-help="Ex.: 'http://image.com'; '../../image.png'"
+    t-label="Background">
+  </thf-input>
+
+  <thf-input
+    class="thf-md-6"
+    name="primaryLabel"
+    [(ngModel)]="primaryLabel"
+    t-label="Primary Label">
+  </thf-input>
+
+  <thf-input
+    class="thf-md-6"
+    name="secondaryLabel"
+    [(ngModel)]="secondaryLabel"
+    t-label="Secondary Label">
+  </thf-input>
+
+  <div class="thf-row">
+    <thf-checkbox-group
+      class="thf-md-12"
+      name="properties"
+      [(ngModel)]="properties"
+      t-label="Properties"
+      [t-options]="propertiesOptions">
+    </thf-checkbox-group>
+  </div>
+
+  <thf-textarea
+    class="thf-md-12"
+    [(ngModel)]="content"
+    name="content"
+    t-label="Content">
+  </thf-textarea>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      t-label="Sample Restore"
+      (t-click)="restore()">
+    </thf-button>
+  </div>
+
+</form>
+

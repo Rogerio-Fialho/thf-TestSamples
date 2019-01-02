@@ -1,0 +1,138 @@
+<thf-upload
+  name="upload"
+  [(ngModel)]="upload"
+  [t-auto-upload]="properties.includes('autoupload')"
+  [t-disabled]="properties.includes('disabled')"
+  [t-form-field]="formField"
+  [t-help]="help"
+  [t-label]="label"
+  [t-literals]="customLiterals"
+  [t-multiple]="properties.includes('multiple')"
+  [t-required]="properties.includes('required')"
+  [t-restrictions]="restrictions"
+  [t-url]="url"
+  (t-error)="changeEvent('t-error')"
+  (t-success)="changeEvent('t-success')"
+  (t-upload)="changeEvent('t-upload')">
+</thf-upload>
+
+<hr>
+
+<div class="thf-row">
+  <thf-info
+    class="thf-md-6"
+    t-label="Model"
+    [t-value]="upload | json">
+  </thf-info>
+
+  <thf-info
+    class="thf-md-6"
+    t-label="Event"
+    [t-value]="event">
+  </thf-info>
+</div>
+
+<hr>
+
+<form #fRestrictions="ngForm">
+  <div class="thf-row">
+    <thf-input
+      class="thf-lg-4"
+      name="allowedExtensions"
+      [(ngModel)]="allowedExtensions"
+      t-help="Enter the allowed extensions separated by comma"
+      t-label="Allowed Extensions"
+      t-placeholder=".png, .jpeg, .jpg"
+      (t-change)="onChangeExtension()">
+    </thf-input>
+
+    <thf-number
+      class="thf-md-6 thf-lg-4"
+      name="minSize"
+      [(ngModel)]="minSize"
+      t-clean
+      t-help="In megabytes"
+      t-label="Min File Size"
+      (t-change)="onChangeMinSize(minSize)">
+    </thf-number>
+
+    <thf-number
+      class="thf-md-6 thf-lg-4"
+      name="maxSize"
+      [(ngModel)]="maxSize"
+      t-clean
+      t-help="In megabytes"
+      t-label="Max File Size"
+      (t-change)="onChangeMaxSize(maxSize)">
+    </thf-number>
+  </div>
+</form>
+
+<hr>
+
+<form #f="ngForm">
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="label"
+      [(ngModel)]="label"
+      t-clean
+      t-label="Label">
+    </thf-input>
+
+    <thf-input
+      class="thf-md-6"
+      name="help"
+      [(ngModel)]="help"
+      t-clean
+      t-label="Help">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="formField"
+      [(ngModel)]="formField"
+      t-clean
+      t-label="Form Field">
+    </thf-input>
+
+    <thf-input
+      class="thf-md-6"
+      name="url"
+      [(ngModel)]="url"
+      t-clean
+      t-label="URL"
+      t-required>
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="literals"
+      [(ngModel)]="literals"
+      t-help='Ex.: {"selectFile": "Select file", "deleteFile": "Delete file", "cancel": "Cancel sending "}'
+      t-label="Literals"
+      (t-change)="changeLiterals()">
+    </thf-input>
+
+    <thf-checkbox-group
+      class="thf-md-6"
+      name="properties"
+      [(ngModel)]="properties"
+      t-label="Properties"
+      [t-options]="propertiesOptions">
+    </thf-checkbox-group>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      t-label="Sample Restore"
+      (t-click)="restore()">
+    </thf-button>
+  </div>
+</form>
+

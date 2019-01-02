@@ -1,0 +1,84 @@
+<div class="thf-row">
+  <thf-button-group
+    class="thf-md-12"
+    [t-buttons]="buttons"
+    [t-small]="small"
+    [t-toggle]="toggle">
+  </thf-button-group>
+</div>
+
+<hr>
+
+<form #fButtons="ngForm">
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-4"
+      name="buttonLabel"
+      [(ngModel)]="button.label"
+      t-label="Button label">
+    </thf-input>
+
+    <thf-input
+      class="thf-md-4"
+      name="buttonAction"
+      [(ngModel)]="button.action"
+      t-label="Button action"
+      t-required>
+    </thf-input>
+
+    <thf-switch
+      class="thf-md-4"
+      name="buttonDisabled"
+      [(ngModel)]="button.disabled"
+      t-label="Button disabled">
+    </thf-switch>
+
+    <thf-radio-group
+      class="thf-md-12"
+      name="buttonIcon"
+      [(ngModel)]="button.icon"
+      t-label="Button Icon"
+      [t-options]="iconsOptions">
+    </thf-radio-group>
+
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-2"
+      t-label="Add button"
+      [t-disabled]="fButtons.invalid"
+      (t-click)="addButton(); fButtons.reset()">
+    </thf-button>
+  </div>
+</form>
+
+<hr>
+
+<form #f="ngForm">
+  <div class="thf-row">
+    <thf-select
+      class="thf-md-3"
+      name="toggle"
+      [(ngModel)]="toggle"
+      t-label="Toggle"
+      [t-options]="toggleOptions">
+    </thf-select>
+
+    <thf-switch
+      class="thf-md-3"
+      name="small"
+      [(ngModel)]="small"
+      t-label="Small">
+    </thf-switch>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      t-label="Sample Restore"
+      (t-click)="f.reset(); fButtons.reset(); restore()">
+    </thf-button>
+  </div>
+</form>
+

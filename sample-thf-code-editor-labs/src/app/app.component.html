@@ -1,0 +1,51 @@
+<div class="thf-row">
+  <thf-code-editor
+    class="thf-md-12"
+    [(ngModel)]="codeEditor"
+    t-height="300"
+    [t-language]="language"
+    [t-readonly]="properties.includes('readonly')"
+    [t-theme]="theme">
+  </thf-code-editor>
+</div>
+
+<hr>
+
+<form #f="ngForm">
+  <div class="thf-row">
+    <thf-select
+      class="thf-md-6"
+      name="language"
+      [(ngModel)]="language"
+      t-label="Language"
+      [t-options]="languageOptions">
+    </thf-select>
+
+    <thf-select
+      class="thf-md-6"
+      name="theme"
+      [(ngModel)]="theme"
+      t-label="Theme"
+      [t-options]="themeOptions">
+    </thf-select>
+  </div>
+
+  <div class="thf-row">
+    <thf-checkbox-group
+      class="thf-md-6"
+      name="properties"
+      [(ngModel)]="properties"
+      t-label="Properties"
+      [t-options]="propertiesOptions">
+    </thf-checkbox-group>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      t-label="Sample Restore"
+      (t-click)="restore()">
+    </thf-button>
+  </div>
+</form>
+

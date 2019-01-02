@@ -1,0 +1,104 @@
+<thf-page-default
+  t-title="Send email"
+  [t-actions]="getPageAction()">
+
+  <form #formEmail="ngForm">
+    <thf-email
+      class="thf-sm-12"
+      name="from"
+      [(ngModel)]="from"
+      t-clean
+      t-label="From"
+      t-required>
+    </thf-email>
+
+    <thf-email
+      class="thf-sm-12"
+      name="to"
+      [(ngModel)]="to"
+      t-clean
+      t-label="To"
+      t-required>
+    </thf-email>
+
+    <thf-email
+      class="thf-sm-12"
+      name="cc"
+      [(ngModel)]="cc"
+      t-clean
+      t-label="CC">
+    </thf-email>
+
+    <thf-input
+      class="thf-sm-12"
+      name="subject"
+      [(ngModel)]="subject"
+      t-clean
+      t-label="Subject"
+      t-required>
+    </thf-input>
+
+    <thf-textarea
+      class="thf-sm-12"
+      name="emailText"
+      [(ngModel)]="emailText"
+      t-label="E-mail"
+      t-required
+      t-rows="8">
+    </thf-textarea>
+  </form>
+</thf-page-default>
+
+<thf-modal
+  t-title="Email successfully sent"
+  [t-primary-action]="primaryAction">
+
+  <div class="thf-row">
+    <thf-info
+      class="thf-md-6"
+      t-label="From:"
+      [t-value]="from">
+    </thf-info>
+
+    <thf-info
+      class="thf-md-6"
+      t-label="To:"
+      [t-value]="to">
+    </thf-info>
+  </div>
+
+  <hr>
+
+  <div *ngIf="cc !== ''">
+    <div class="thf-row">
+        <thf-info
+          class="thf-md-12"
+          t-label="CC:"
+          [t-value]="cc">
+        </thf-info>
+    </div>
+    <hr>
+  </div>
+
+  <div class="thf-row">
+    <thf-info
+      class="thf-md-12"
+      t-label="Subject:"
+      [t-value]="subject">
+    </thf-info>
+  </div>
+
+  <hr>
+
+  <div class="thf-row">
+    <thf-textarea
+      class="thf-md-12"
+      name="text"
+      [(ngModel)]="emailText"
+      t-label="E-mail"
+      t-readonly
+      t-rows="6">
+    </thf-textarea>
+  </div>
+</thf-modal>
+

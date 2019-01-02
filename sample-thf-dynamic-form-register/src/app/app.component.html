@@ -1,0 +1,14 @@
+<thf-dynamic-form #dynamicForm
+  [t-fields]="fields"
+  [t-value]="person">
+</thf-dynamic-form>
+
+<div class="thf-row">
+  <thf-button
+    class="thf-md-3"
+    t-label="Salvar"
+    [t-disabled]="dynamicForm?.form.invalid"
+    (t-click)="thfNotification.success('Data saved successfully!'); dynamicForm.form.reset()">
+  </thf-button>
+</div>
+

@@ -1,0 +1,35 @@
+<div class="thf-text-center">
+  <div class="thf-font-subtitle">
+    To gain a 25% discount on your purchases, confirm your identity with your username and password!
+  </div>
+
+  <thf-button t-label="Confirm Identity" (t-click)="openModal()">
+  </thf-button>
+</div>
+
+<thf-modal
+  t-hide-close="true"
+  t-size="auto"
+  t-title="Confirm your identity"
+  [t-primary-action]="primaryAction">
+
+  <thf-login
+    name="userLogin"
+    [(ngModel)]="userLogin"
+    t-clean
+    t-label="User"
+    t-maxlength="40"
+    t-placeholder="domain\user"
+    t-required>
+  </thf-login>
+
+  <thf-password
+    name="userPassword"
+    [(ngModel)]="userPassword"
+    t-clean
+    t-label="Password"
+    t-placeholder="Enter your password"
+    t-required>
+  </thf-password>
+</thf-modal>
+

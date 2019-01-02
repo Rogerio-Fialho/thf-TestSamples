@@ -1,0 +1,77 @@
+
+<div class="thf-row">
+  <thf-widget
+    class="thf-md-7">
+    <thf-chart
+      class="thf-md-12"
+      t-title="Gadgets Chart"
+      t-height="460"
+      [t-type]="type"
+      [t-categories]="categories"
+      [t-series]="series"
+      (t-series-click)="changeEvent($event)">
+    </thf-chart>
+  </thf-widget>
+
+  <div class="thf-md-5">
+    <thf-widget
+        class="thf-md-12"
+        t-background="../../../assets/graphics/sales-statistics.png"
+        t-height="190">
+    </thf-widget>
+
+    <thf-widget
+      class="thf-md-12"
+      t-title="Settings">
+      <form>
+        <div class="thf-row">
+          <thf-radio-group
+            class="thf-md-12"
+            name="type"
+            [(ngModel)]="type"
+            t-label="Chart Type"
+            [t-options]="typeOptions">
+          </thf-radio-group>
+        </div>
+
+        <div class="thf-row">
+          <thf-radio-group
+            class="thf-md-12"
+            name="period"
+            [(ngModel)]="period"
+            t-label="Periods"
+            [t-options]="periodOptions"
+            (t-change)="getSeries($event)">
+          </thf-radio-group>
+        </div>
+      </form>
+
+    </thf-widget>
+  </div>
+</div>
+
+<thf-modal #chartFormData
+  t-title="Informations">
+
+  <div class="thf-row">
+    <thf-info
+      class="thf-md-3"
+      t-label="Category"
+      [t-value]="category">
+    </thf-info>
+
+    <thf-info
+      class="thf-md-3"
+      t-label="Serie"
+      [t-value]="serie">
+    </thf-info>
+
+    <thf-info
+      class="thf-md-3"
+      t-label="Value"
+      t-value="{{value | currency}}">
+    </thf-info>
+
+  </div>
+</thf-modal>
+

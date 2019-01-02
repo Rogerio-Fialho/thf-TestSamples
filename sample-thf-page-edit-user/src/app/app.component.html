@@ -1,0 +1,110 @@
+<thf-page-edit
+  [t-breadcrumb]="breadcrumb"
+  [t-disable-submit]="formEditUser.invalid"
+  t-title="User Edit">
+
+  <form #formEditUser="ngForm">
+
+    <div class="thf-row">
+      <thf-number
+        class="thf-md-4"
+        name="userId"
+        [(ngModel)]="userId"
+        t-clean
+        t-label="User ID"
+        t-required>
+      </thf-number>
+
+      <thf-email
+        class="thf-md-4"
+        name="email"
+        [(ngModel)]="email"
+        t-clean
+        t-label="Email"
+        t-required>
+      </thf-email>
+
+      <thf-input
+        class="thf-md-4"
+        name="name"
+        [(ngModel)]="name"
+        t-clean
+        t-label="Name"
+        t-required>
+      </thf-input>
+    </div>
+
+    <div class="thf-row">
+      <thf-input
+        class="thf-md-4"
+        name="nickname"
+        [(ngModel)]="nickname"
+        t-clean
+        t-label="Nickname">
+      </thf-input>
+
+      <thf-datepicker
+        class="thf-md-4"
+        name="birthDate"
+        [(ngModel)]="birthDate"
+        t-clean
+        t-label="Birth Date">
+      </thf-datepicker>
+
+      <thf-input
+        class="thf-md-4"
+        name="genre"
+        [(ngModel)]="genre"
+        t-clean
+        t-label="Genre">
+      </thf-input>
+    </div>
+
+    <div class="thf-row">
+      <thf-input
+        class="thf-md-4"
+        name="nationality"
+        [(ngModel)]="nationality"
+        t-clean
+        t-label="Nationality">
+      </thf-input>
+
+      <thf-input
+        class="thf-md-4"
+        name="placeOfBirth"
+        [(ngModel)]="placeOfBirth"
+        t-clean
+        t-label="Place Of Birth">
+      </thf-input>
+
+      <thf-input
+        class="thf-md-4"
+        name="graduation"
+        [(ngModel)]="graduation"
+        t-clean
+        t-label="Graduation">
+      </thf-input>
+    </div>
+
+    <div class="thf-row">
+      <thf-input
+        class="thf-md-4"
+        name="fathersName"
+        [(ngModel)]="fathersName"
+        t-clean
+        t-label="Father's Name">
+      </thf-input>
+
+      <thf-input
+        class="thf-md-4"
+        name="mothersName"
+        [(ngModel)]="mothersName"
+        t-clean
+        t-label="Mother's Name">
+      </thf-input>
+    </div>
+
+  </form>
+
+</thf-page-edit>
+

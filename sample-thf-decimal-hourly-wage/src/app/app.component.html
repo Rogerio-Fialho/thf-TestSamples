@@ -1,0 +1,76 @@
+<form #f="ngForm">
+    <div class="thf-font-title">Calculate hourly wage</div>
+
+    <hr >
+
+    <div class="thf-row">
+      <thf-number
+        class="thf-md-6"
+        name="weekHours"
+        [(ngModel)]="weekHours"
+        t-label="Week Hours"
+        t-required>
+      </thf-number>
+
+      <thf-number
+        class="thf-md-6"
+        name="workingDaysPerWeek"
+        [(ngModel)]="workingDaysPerWeek"
+        t-label="Working days per week"
+        t-required>
+      </thf-number>
+    </div>
+
+    <div class="thf-row">
+      <thf-number
+        class="thf-md-6"
+        name="quantityDaysPerMonth"
+        [(ngModel)]="quantityDaysPerMonth"
+        t-label="Quantity days per month"
+        t-required>
+      </thf-number>
+
+      <thf-decimal
+        class="thf-md-6"
+        name="salary"
+        [(ngModel)]="salary"
+        t-decimals-length="2"
+        t-icon="thf-icon-finance"
+        t-label="Salary"
+        t-required
+        t-thousand-maxlength="13"
+        (t-change)="calculate()">
+      </thf-decimal>
+    </div>
+
+    <div class="thf-row">
+      <thf-decimal
+        class="thf-md-6"
+        name="hourlyWage"
+        [(ngModel)]="hourlyWage"
+        t-decimals-length="2"
+        t-disabled
+        t-icon="thf-icon-finance-secure"
+        t-label="Hourly Wage"
+        t-required
+        t-thousand-maxlength="13">
+      </thf-decimal>
+    </div>
+
+    <div class="thf-row">
+      <thf-button
+        class="thf-md-3"
+        t-label="Clean"
+        (t-click)="f.reset()">
+      </thf-button>
+
+      <thf-button
+        class="thf-md-3"
+        t-label="Recalculate"
+        t-type="primary"
+        [t-disabled]="!hourlyWage"
+        (t-click)="calculate()">
+      </thf-button>
+    </div>
+  </form>
+

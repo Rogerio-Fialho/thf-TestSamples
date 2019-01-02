@@ -1,0 +1,32 @@
+<div class="thf-font-title thf-mb-2">Create New Post</div>
+<thf-widget>
+  <div class="thf-row">
+    <div class="thf-md-3 thf-lg-2">
+      <thf-button-group
+        t-toggle="multiple"
+        [t-buttons]="fontStyle"> 
+      </thf-button-group>
+    </div>
+    <div class="thf-md-3 thf-lg-2">
+      <thf-button-group
+        t-toggle="single"
+        [t-buttons]="textAlign">
+      </thf-button-group>
+    </div>
+    <thf-textarea
+      class="thf-md-12"
+      name="textArea"
+      [(ngModel)]="textArea"
+      t-maxlength="400">
+    </thf-textarea>
+    <hr>
+    <div 
+      class="thf-md-12 thf-mt-3 thf-font-text-large"
+      [style.font-weight]="setBold ? 'bold' : 'normal'"
+      [style.font-style]="setItalic ? 'italic' : 'normal'"
+      [style.text-decoration]="setUnderline ? 'underline' : 'none'"
+      [style.text-align]="setTextAlignment">
+      {{ textArea }}
+    </div>
+  </div>
+</thf-widget>

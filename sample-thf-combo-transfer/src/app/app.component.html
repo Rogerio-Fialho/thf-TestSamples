@@ -1,0 +1,95 @@
+<div class="thf-text-center">
+  <div class="thf-font-title"> Banking Transfer </div>
+</div>
+
+<form #transferForm="ngForm">
+  <div class="thf-row">
+    <thf-select
+      class="thf-md-6"
+      name="typeAccount"
+      [(ngModel)]="typeAccount"
+      t-label="From"
+      t-required
+      [t-options]="typeAccounts">
+    </thf-select>
+
+    <thf-combo
+      class="thf-md-6"
+      name="contact"
+      [(ngModel)]="contact"
+      t-filter-service="https://thf.totvs.com.br/sample/api/new/customers?thfComboOption=true"
+      t-label="To contact"
+      t-placeholder="Select a contact"
+      t-required>
+    </thf-combo>
+  </div>
+
+  <div class="thf-row">
+    <thf-decimal
+      class="thf-md-6"
+      name="value"
+      [(ngModel)]="value"
+      t-clean
+      t-label="Value to transfer"
+      t-placeholder="R$ 0,00"
+      t-required>
+    </thf-decimal>
+
+    <thf-datepicker
+      class="thf-md-6"
+      name="dateTransfer"
+      [(ngModel)]="dateTransfer"
+      t-label="Date to transfer"
+      t-placeholder="dd/mm/yyyy"
+      t-required>
+    </thf-datepicker>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      t-label="Transfer"
+      t-type="primary"
+      [t-disabled]="transferForm.invalid"
+      (t-click)="transfer()">
+    </thf-button>
+  </div>
+</form>
+
+<thf-modal
+  t-title="Do you confirm transfer?"
+  [t-primary-action]="confirmAction"
+  [t-secondary-action]="cancelAction">
+
+  <div class="thf-row">
+    <thf-info
+      class="thf-md-6"
+      t-label="From"
+      [t-value]="typeAccount">
+    </thf-info>
+
+    <thf-info
+      class="thf-md-6"
+      t-label="To"
+      [t-value]="contact">
+    </thf-info>
+  </div>
+
+  <hr>
+
+  <div class="thf-row">
+    <thf-info
+      class="thf-md-6"
+      t-label="Value"
+      [t-value]="value">
+    </thf-info>
+
+    <thf-info
+      class="thf-md-6"
+      t-label="Date to transfer"
+      t-value="{{dateTransfer | date}}">
+    </thf-info>
+  </div>
+
+</thf-modal>
+

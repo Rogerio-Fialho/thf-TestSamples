@@ -1,0 +1,93 @@
+<thf-disclaimer-group
+  [t-disclaimers]="disclaimers"
+  [t-hide-remove-all]="properties?.includes('hideRemoveAll')"
+  [t-title]="title"
+  (t-change)="changeEvent('t-change')">
+</thf-disclaimer-group>
+
+<hr>
+
+<div class="thf-row">
+  <thf-info
+    class="thf-md-6"
+    t-label="Events"
+    [t-value]="event">
+  </thf-info>
+</div>
+
+<hr>
+
+<form #disclaimerForm="ngForm">
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="disclaimerLabel"
+      [(ngModel)]="disclaimer.label"
+      t-label="Disclaimer Label">
+    </thf-input>
+
+    <thf-input
+      class="thf-md-6"
+      name="disclaimerValue"
+      [(ngModel)]="disclaimer.value"
+      t-label="Disclaimer Value"
+      t-required>
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="disclaimerProperty"
+      [(ngModel)]="disclaimer.property"
+      t-label="Disclaimer Property">
+    </thf-input>
+
+    <thf-switch
+      class="thf-md-6"
+      name="disclaimerHideClose"
+      [(ngModel)]="disclaimer.hideClose"
+      t-label="Disclaimer Hide Close">
+    </thf-switch>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-6 thf-lg-3"
+      t-label="Add Disclaimer"
+      [t-disabled]="disclaimerForm.invalid"
+      (t-click)="addDisclaimer()">
+    </thf-button>
+  </div>
+</form>
+
+<hr>
+
+<form #propertiesForm="ngForm">
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="title"
+      [(ngModel)]="title"
+      t-clean
+      t-label="Title">
+    </thf-input>
+
+    <thf-checkbox-group
+      class="thf-md-6"
+      name="properties"
+      [(ngModel)]="properties"
+      t-label="Properties"
+      [t-options]="propertiesOptions">
+    </thf-checkbox-group>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      t-label="Sample Restore"
+      (t-click)="disclaimerForm.reset(); propertiesForm.reset(); restore()">
+    </thf-button>
+  </div>
+</form>
+

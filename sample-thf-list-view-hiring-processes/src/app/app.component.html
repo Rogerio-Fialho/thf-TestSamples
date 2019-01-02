@@ -1,0 +1,64 @@
+<thf-page-list
+  t-title="Hiring processes"
+  [t-actions]="pageActions"
+  [t-filter]="filterSettings">
+
+  <thf-list-view
+    t-hide-select-all
+    t-property-link="url"
+    t-property-title="name"
+    t-select
+    [t-actions]="actions"
+    [t-items]="hiringProcessesFiltered"
+    (t-title-action)="showDetailModal($event)">
+
+    <ng-template t-list-view-content-template let-item [t-title]="formatTitle">
+      <div class="thf-row">
+        <thf-info class="thf-lg-4" t-label="Id Card" [t-value]="item.idCard"></thf-info>
+
+        <thf-info class="thf-lg-4" t-label="Job description" [t-value]="item.jobDescription"></thf-info>
+
+        <thf-info class="thf-lg-4" t-label="Hire status" t-value="{{ item.hireStatus | uppercase }}"></thf-info>
+      </div>
+    </ng-template>
+
+    <ng-template t-list-view-detail-template let-item [t-show-detail]="showDetail">
+      <div class="thf-row">
+        <thf-info class="thf-md-6" t-label="Age" [t-value]="item.age"></thf-info>
+
+        <thf-info class="thf-md-6" t-label="City" [t-value]="item.city"></thf-info>
+      </div>
+    </ng-template>
+
+  </thf-list-view>
+
+  <thf-modal #detailsModal [t-title]="titleDetailsModal">
+    <div class="thf-row">
+      <div class="thf-md-5 thf-lg-4">
+        <thf-avatar t-size="xl" t-src="assets/graphics/avatar2.png"></thf-avatar>
+      </div>
+      <div class="thf-md-7 thf-lg-8">
+        <div class="thf-mb-1">
+          <thf-tag
+            [t-value]="selectedActionItem['hireStatus']"
+            [t-type]="selectedActionItem['hireStatus'] === 'hired' ? 'success' : 'info'">
+          </thf-tag>
+        </div>
+        <div class="thf-mb-1">
+          <thf-info
+            t-label="Email"
+            [t-value]="selectedActionItem['email']">
+          </thf-info>
+        </div>
+        <div class="thf-mb-1">
+          <thf-info
+            t-label="Telephone"
+            [t-value]="selectedActionItem['telephone']">
+          </thf-info>
+        </div>
+      </div>
+    </div>
+  </thf-modal>
+
+</thf-page-list>
+

@@ -1,0 +1,102 @@
+<thf-page-default
+  t-title="Credit Card Cancelation"
+  [t-actions]="action">
+
+  <form #form="ngForm">
+
+    <div class="thf-row">
+      <thf-radio-group
+        class="thf-md-8"
+        name="cardType"
+        [(ngModel)]="cardType"
+        t-label="Card type"
+        t-required
+        [t-options]="cardTypeOptions">
+      </thf-radio-group>
+    </div>
+
+    <div class="thf-row">
+      <thf-input
+        class="thf-md-8"
+        name="cardNumber"
+        [(ngModel)]="cardNumber"
+        t-label="Card number"
+        t-mask="9999 9999 9999 9999"
+        t-mask-format-model
+        t-minlength="19"
+        t-required>
+      </thf-input>
+
+      <thf-input
+        class="thf-md-4"
+        name="securityCode"
+        [(ngModel)]="securityCode"
+        t-label="Security code"
+        t-mask="999"
+        t-minlength="3"
+        t-required>
+      </thf-input>
+    </div>
+
+    <div class="thf-row">
+      <thf-input
+        class="thf-md-12"
+        name="name"
+        [(ngModel)]="name"
+        t-label="Name"
+        t-required>
+      </thf-input>
+    </div>
+
+    <div class="thf-row">
+      <thf-input
+        class="thf-md-6 thf-lg-3"
+        name="address"
+        [(ngModel)]="address"
+        t-label="Address">
+      </thf-input>
+
+      <thf-input
+        class="thf-md-6 thf-lg-3"
+        name="city"
+        [(ngModel)]="city"
+        t-label="City">
+      </thf-input>
+
+      <thf-input
+        class="thf-md-6 thf-lg-3"
+        name="stateProvince"
+        [(ngModel)]="stateProvince"
+        t-label="State/Province">
+      </thf-input>
+
+      <thf-input
+        class="thf-md-6 thf-lg-3"
+        name="zipPostalCode"
+        [(ngModel)]="zipPostalCode"
+        t-label="Zip/PostalCode">
+      </thf-input>
+    </div>
+
+    <div class="thf-row">
+      <thf-input
+        class="thf-md-6"
+        name="phoneNumber"
+        [(ngModel)]="phoneNumber"
+        t-label="Phone number"
+        t-mask="(99) 9?9999-9999"
+        t-mask-format-model>
+      </thf-input>
+
+      <thf-input
+        class="thf-md-6"
+        name="country"
+        [(ngModel)]="country"
+        t-label="Country">
+      </thf-input>
+    </div>
+
+  </form>
+
+</thf-page-default>
+

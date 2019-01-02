@@ -1,0 +1,105 @@
+<div class="thf-row">
+
+  <thf-widget
+    class="thf-md-12"
+    t-primary-label="Cancel"
+    t-secondary-label="Confirm"
+    t-title="Register New User"
+    (t-primary-action)="cancel()"
+    (t-secondary-action)="confirm()">
+
+    <form #formNewUser="ngForm">
+      <div class="thf-row">
+        <thf-input
+          class="thf-md-6"
+          name="registration"
+          [(ngModel)]="registration"
+          t-clean
+          t-label="Registration"
+          t-mask="99999-99/99"
+          t-minlength="11"
+          t-required
+          [t-tooltip]="registrationTooltip">
+        </thf-input>
+
+        <thf-email
+          class="thf-md-6"
+          name="email"
+          [(ngModel)]="email"
+          t-clean
+          t-label="Email"
+          t-pattern="@totvs.com"
+          t-required
+          [t-tooltip]="emailTooltip">
+        </thf-email>
+      </div>
+
+      <div class="thf-row">
+        <thf-input
+          class="thf-md-6"
+          name="name"
+          [(ngModel)]="name"
+          t-clean
+          t-label="Name"
+          t-required
+          [t-tooltip]="nameTooltip">
+        </thf-input>
+
+        <thf-input
+          class="thf-md-6"
+          name="CPF"
+          [(ngModel)]="CPF"
+          t-clean
+          t-label="CPF"
+          t-mask="999.999.999-99"
+          t-minlength="14"
+          t-required>
+        </thf-input>
+      </div>
+
+      <div class=thf-row>
+        <thf-datepicker
+          class="thf-md-6"
+          name="birthDate"
+          [(ngModel)]="birthDate"
+          t-clean
+          t-label="Birth Date">
+        </thf-datepicker>
+
+        <thf-input
+          class="thf-md-6"
+          name="genre"
+          [(ngModel)]="genre"
+          t-clean
+          t-label="Genre">
+        </thf-input>
+      </div>
+
+      <div class="thf-row">
+        <thf-password
+          class="thf-md-6"
+          name="password"
+          [(ngModel)]="password"
+          t-clean
+          t-label="Password"
+          t-minlength="8"
+          t-required
+          [t-tooltip]="passwordTooltip">
+        </thf-password>
+
+        <thf-password
+          class="thf-md-6"
+          name="confirmPassword"
+          [(ngModel)]="confirmPassword"
+          t-clean
+          t-label="Confirm Password"
+          t-required
+          [t-pattern]="password">
+        </thf-password>
+      </div>
+    </form>
+
+  </thf-widget>
+
+</div>
+

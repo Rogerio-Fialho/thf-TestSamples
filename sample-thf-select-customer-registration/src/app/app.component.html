@@ -1,0 +1,135 @@
+<form #f="ngForm">
+  <div class="thf-row">
+    <thf-radio-group
+      class="thf-md-6"
+      name="documentType"
+      [(ngModel)]="documentType"
+      t-label="Document type"
+      [t-options]="options"
+      (t-change)="changeType($event)">
+    </thf-radio-group>
+
+    <thf-input
+      class="thf-md-6"
+      name="document"
+      [(ngModel)]="document"
+      t-mask-format-model
+      t-required
+      [t-label]="documentLabel"
+      [t-mask]="mask"
+      [t-minlength]="minLength">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="name"
+      [(ngModel)]="name"
+      t-required
+      [t-label]="nameLabel">
+    </thf-input>
+
+    <thf-input
+      class="thf-md-6"
+      name="address"
+      [(ngModel)]="address"
+      t-label="Address">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-select
+      class="thf-md-6"
+      name="state"
+      [(ngModel)]="state"
+      t-label="State"
+      [t-options]="stateOptions"
+      (t-change)="onChangeState()">
+      <ng-template t-select-option-template let-option>
+
+        <div class="sample-select-option-template-container">
+          <thf-avatar
+            t-size="xs"
+            t-src="https://thf.totvs.com.br/sample/api/static/assets/{{option.value}}.png">
+          </thf-avatar>
+
+          <div class="sample-select-option-template-margin">
+            <div class="sample-select-option-template-label"> {{ option.label }} </div>
+            <div class="sample-select-option-template-value"> {{ option.value }} </div>
+          </div>
+
+        </div>
+
+      </ng-template>
+    </thf-select>
+
+    <thf-select
+      class="thf-md-6"
+      name="city"
+      [(ngModel)]="city"
+      t-label="City"
+      [t-options]="cityOptions">
+    </thf-select>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-4"
+      t-label="Send Informations"
+      [t-disabled]="f.invalid"
+      (t-click)="modal.open()">
+    </thf-button>
+  </div>
+</form>
+
+<thf-modal #modal
+  t-title="Informations">
+
+  <div class="thf-row">
+    <thf-info
+      class="thf-md-6"
+      t-label="Document type"
+      [t-value]="documentType">
+    </thf-info>
+
+    <thf-info
+      class="thf-md-6"
+      [t-label]="documentLabel"
+      [t-value]="document">
+    </thf-info>
+  </div>
+
+  <hr>
+
+  <div class="thf-row">
+    <thf-info
+      class="thf-md-6"
+      [t-label]="nameLabel"
+      [t-value]="name">
+    </thf-info>
+
+    <thf-info
+      class="thf-md-6"
+      t-label="Address"
+      [t-value]="address">
+    </thf-info>
+  </div>
+
+  <hr>
+
+  <div class="thf-row">
+    <thf-info
+      class="thf-md-6"
+      t-label="State"
+      [t-value]="getStateByValue(state)">
+    </thf-info>
+
+    <thf-info
+      class="thf-md-6"
+      t-label="City"
+      [t-value]="getCityByValue(city)">
+    </thf-info>
+  </div>
+</thf-modal>
+

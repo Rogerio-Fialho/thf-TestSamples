@@ -1,0 +1,107 @@
+<thf-modal
+  [t-click-out]="properties.includes('click-out')"
+  [t-hide-close]="properties.includes('hide-close')"
+  [t-primary-action]="primaryAction"
+  [t-secondary-action]="secondaryActionLabel ? secondaryAction : null"
+  [t-size]="size"
+  [t-title]="title">
+    {{ content }}
+</thf-modal>
+
+<thf-button
+  t-label="Open Modal"
+  [t-disabled]="f.form.invalid"
+  (t-click)="openModal()">
+</thf-button>
+
+<hr>
+
+<form #f="ngForm">
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="Title"
+      [(ngModel)]="title"
+      t-clean
+      t-label="Title"
+      t-maxlength="30"
+      t-required>
+    </thf-input>
+
+    <thf-input
+      class="thf-sm-12 thf-md-6"
+      name="Content"
+      [(ngModel)]="content"
+      t-clean
+      t-label="Content"
+      t-maxlength="100">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="primaryActionLabel"
+      [(ngModel)]="primaryActionLabel"
+      t-clean
+      t-label="Primary action label"
+      t-maxlength="30">
+    </thf-input>
+
+    <thf-checkbox-group
+      class="thf-md-6"
+      name="primaryActionProperties"
+      [(ngModel)]="primaryActionProperties"
+      t-columns="3"
+      t-label="Primary Action Properties"
+      [t-options]="primaryActionOptions">
+    </thf-checkbox-group>
+  </div>
+
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="secondaryActionLabel"
+      [(ngModel)]="secondaryActionLabel"
+      t-clean
+      t-label="Secondary action label"
+      t-maxlength="100">
+    </thf-input>
+
+    <thf-checkbox-group
+      class="thf-md-6"
+      name="secondaryActionProperties"
+      [(ngModel)]="secondaryActionProperties"
+      t-columns="3"
+      t-label="Secondary Action Properties"
+      [t-options]="secondaryActionOptions">
+    </thf-checkbox-group>
+  </div>
+
+  <div class="thf-row">
+    <thf-radio-group
+      class="thf-md-6"
+      name="Size"
+      [(ngModel)]="size"
+      t-label="Size"
+      [t-options]="sizeOptions">
+    </thf-radio-group>
+
+    <thf-checkbox-group
+      class="thf-md-6"
+      name="properties"
+      [(ngModel)]="properties"
+      t-label="Properties"
+      [t-options]="propertiesOptions">
+    </thf-checkbox-group>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      t-label="Sample Restore"
+      (t-click)="restore()">
+    </thf-button>
+  </div>
+</form>
+

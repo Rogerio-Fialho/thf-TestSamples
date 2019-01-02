@@ -1,0 +1,111 @@
+<thf-decimal
+  class="thf-md-12"
+  name="decimal"
+  [(ngModel)]="decimal"
+  [t-clean]="properties.includes('clean')"
+  [t-decimals-length]="decimalsLength"
+  [t-disabled]="properties.includes('disabled')"
+  [t-help]="help"
+  [t-icon]="icon"
+  [t-label]="label"
+  [t-placeholder]="placeholder"
+  [t-readonly]="properties.includes('readonly')"
+  [t-required]="properties.includes('required')"
+  [t-thousand-maxlength]="thousandMaxlength"
+  (t-blur)="changeEvent('t-blur')"
+  (t-change)="changeEvent('t-change')"
+  (t-change-model)="changeEvent('t-change-model')">
+</thf-decimal>
+
+<hr>
+
+<div class="thf-row">
+  <thf-info
+    class="thf-md-6"
+    t-label="Model"
+    [t-value]="decimal">
+  </thf-info>
+  <thf-info
+    class="thf-md-6"
+    t-label="Event"
+    [t-value]="event">
+  </thf-info>
+</div>
+
+<hr>
+
+<form #f="ngForm">
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="label"
+      [(ngModel)]="label"
+      t-clean
+      t-label="Label">
+    </thf-input>
+
+    <thf-input
+      class="thf-md-6"
+      name="help"
+      [(ngModel)]="help"
+      t-clean
+      t-label="Help">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-number
+      class="thf-md-6"
+      name="decimalsLength"
+      [(ngModel)]="decimalsLength"
+      t-clean
+      t-label="Decimals max length">
+    </thf-number>
+
+    <thf-number
+      class="thf-md-6"
+      name="thousandMaxlength"
+      [(ngModel)]="thousandMaxlength"
+      t-clean
+      t-label="Thousand max length">
+    </thf-number>
+  </div>
+
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="placeholder"
+      [(ngModel)]="placeholder"
+      t-clean
+      t-label="Placeholder">
+    </thf-input>
+
+    <thf-select
+      class="thf-md-6"
+      name="icon"
+      [(ngModel)]="icon"
+      t-clean
+      t-label="Icon"
+      [t-options]="iconOptions">
+    </thf-select>
+  </div>
+
+  <div class="thf-row">
+    <thf-checkbox-group
+      class="thf-md-12"
+      name="properties"
+      [(ngModel)]="properties"
+      t-label="Properties"
+      [t-options]="propertiesOptions">
+    </thf-checkbox-group>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      t-label="Sample Restore"
+      (t-click)="restore()">
+    </thf-button>
+  </div>
+</form>
+

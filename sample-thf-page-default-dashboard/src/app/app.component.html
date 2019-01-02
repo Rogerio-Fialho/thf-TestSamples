@@ -1,0 +1,82 @@
+<thf-page-default
+  t-title="Dashboard"
+  [t-actions]="actions"
+  [t-breadcrumb]="breadcrumb">
+
+  <div class="thf-row">
+    <thf-widget
+      class="thf-md-6 thf-lg-4 thf-mb-2"
+      t-title="Daily visitors">
+
+      <div class="thf-font-subtitle thf-text-center">540</div>
+      <div class="thf-text-center sample-widget-text-subtitle">www.thf.totvs.com.br</div>
+    </thf-widget>
+
+    <thf-widget
+      class="thf-md-6 thf-lg-4 thf-mb-2"
+      t-title="Most viewed page">
+
+      <div class="thf-font-subtitle thf-text-center">300 views</div>
+      <div class="thf-text-center sample-widget-text-subtitle">https://thf.totvs.com.br</div>
+    </thf-widget>
+
+    <thf-widget
+      class="thf-md-6 thf-lg-4 thf-mb-2"
+      t-title="Website status">
+
+    <div class="thf-font-subtitle thf-text-center">Online</div>
+    <div class="thf-text-center sample-widget-text-subtitle">28 days</div>
+  </thf-widget>
+
+    <thf-widget
+      class="thf-md-6 thf-lg-4 thf-mb-2"
+      t-title="NPM downloads">
+
+      <div class="thf-font-subtitle thf-text-center">266</div>
+      <div class="thf-text-center sample-widget-text-subtitle">@totvs/thf-ui - 1.10.1</div>
+    </thf-widget>
+
+    <thf-widget
+      class="thf-md-6 thf-lg-4 thf-mb-2"
+      t-title="Devforum THF questions">
+
+      <div class="thf-font-subtitle thf-text-center">800 questions</div>
+      <div class="thf-text-center sample-widget-text-subtitle">https://devforum.totvs.com.br</div>
+    </thf-widget>
+
+    <thf-widget
+      class="thf-md-6 thf-lg-4 thf-mb-2"
+      t-title="Angular versions supported">
+
+      <div class="thf-font-subtitle thf-text-center">AngularJS - Angular 6</div>
+      <div class="thf-text-center sample-widget-text-subtitle">Angular 6 most downloaded</div>
+    </thf-widget>
+  </div>
+
+  <hr>
+
+  <thf-table
+    [t-columns]="columns"
+    [t-items]="items">
+  </thf-table>
+
+</thf-page-default>
+
+<thf-modal
+  t-title="Share webpage"
+  [t-primary-action]="shareAction"
+  [t-secondary-action]="cancelAction">
+
+  <form #formShare="ngForm">
+    <thf-email
+      class="thf-lg-12"
+      name="email"
+      [(ngModel)]="email"
+      t-clean
+      t-label="Type an e-mail for sharing webpage: http://www.thf.totvs.com.br"
+      t-required>
+    </thf-email>
+  </form>
+
+</thf-modal>
+

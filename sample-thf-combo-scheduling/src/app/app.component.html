@@ -1,0 +1,93 @@
+<div class="thf-text-center">
+  <div class="thf-font-title"> Pre-appointment scheduling </div>
+</div>
+
+<form #schedulingForm="ngForm">
+  <div class="thf-row">
+    <thf-input
+      class="thf-lg-6"
+      name="name"
+      [(ngModel)]="name"
+      t-clean
+      t-label="Name"
+      t-required>
+    </thf-input>
+
+    <thf-email
+      class="thf-lg-6"
+      name="email"
+      [(ngModel)]="email"
+      t-clean
+      t-label="Email"
+      t-placeholder="example@domain.com"
+      t-required>
+    </thf-email>
+  </div>
+
+  <div class="thf-row">
+    <thf-datepicker
+      class="thf-lg-6"
+      name="birthday"
+      [(ngModel)]="birthday"
+      t-clean
+      t-label="Birthday"
+      t-placeholder="dd/mm/yyyy"
+      t-required>
+    </thf-datepicker>
+
+    <thf-input
+      class="thf-lg-6"
+      name="phone"
+      [(ngModel)]="phone"
+      t-clean
+      t-label="Phone number"
+      t-mask="(99) 99999-9999"
+      t-placeholder="(99) 99999-9999"
+      t-required>
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-select
+      class="thf-lg-6"
+      name="typeScheduling"
+      [(ngModel)]="typeScheduling"
+      t-label="Type scheduling"
+      t-required
+      t-sort
+      [t-options]="typeSchedulings">
+    </thf-select>
+
+    <thf-combo
+      class="thf-lg-6"
+      name="especiality"
+      [(ngModel)]="especiality"
+      t-label="Especiality/Exam"
+      t-required
+      t-sort
+      [t-options]="especialities">
+    </thf-combo>
+  </div>
+
+  <div class="thf-row">
+    <thf-textarea
+      class="thf-sm-12"
+      name="informations"
+      [(ngModel)]="informations"
+      t-help="Additional informations"
+      t-label="Informations">
+    </thf-textarea>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      t-label="Schedule"
+      t-type="primary"
+      [t-disabled]="schedulingForm.invalid"
+      (t-click)="confirmPreAppointment(name)">
+    </thf-button>
+  </div>
+</form>
+
+

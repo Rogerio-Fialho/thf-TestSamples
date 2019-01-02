@@ -1,0 +1,109 @@
+<thf-chart
+  [t-categories]="categories"
+  [t-height]="height"
+  [t-label-visible]="properties.includes('labelVisible')"
+  [t-max-value]="maxValue"
+  [t-min-value]="minValue"
+  [t-series]="series"
+  [t-title]="title"
+  [t-type]="type"
+  (t-series-click)="changeEvent('t-series-click')"
+  (t-series-hover)="changeEvent('t-series-hover')">
+</thf-chart>
+
+<hr>
+
+<div class="thf-row">
+  <thf-info
+    t-label="Event"
+    [t-value]="event">
+  </thf-info>
+</div>
+
+<hr>
+
+<form>
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-12"
+      name="category"
+      [(ngModel)]="category"
+      t-label="Category">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      t-label="Add Data"
+      (t-click)="addData()">
+    </thf-button>
+  </div>
+</form>
+
+<hr>
+
+<form>
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="title"
+      [(ngModel)]="title"
+      t-label="Title">
+    </thf-input>
+
+    <thf-select
+      class="thf-md-6"
+      name="type"
+      [(ngModel)]="type"
+      t-label="Type"
+      [t-options]="typeOptions"
+      (t-change)="changeTypeOptions(type)">
+    </thf-select>
+  </div>
+
+  <div class="thf-row">
+    <thf-number
+      class="thf-md-4"
+      name="height"
+      [(ngModel)]="height"
+      t-clean
+      t-label="Height">
+    </thf-number>
+
+    <thf-number
+      class="thf-md-4"
+      name="minValue"
+      [(ngModel)]="minValue"
+      t-clean
+      t-label="Min value">
+    </thf-number>
+
+    <thf-number
+      class="thf-md-4"
+      name="maxValue"
+      [(ngModel)]="maxValue"
+      t-clean
+      t-label="Max value">
+    </thf-number>
+  </div>
+
+  <div class="thf-row">
+    <thf-checkbox-group
+      class="thf-md-12"
+      name="properties"
+      [(ngModel)]="properties"
+      t-label="Properties"
+      [t-options]="propertiesOptions">
+    </thf-checkbox-group>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      t-label="Sample Restore"
+      (t-click)="restore()">
+    </thf-button>
+  </div>
+</form>
+

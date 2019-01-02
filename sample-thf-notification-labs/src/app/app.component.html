@@ -1,0 +1,64 @@
+<thf-button
+  (t-click)="showNotification()"
+  t-label="Open Notification">
+</thf-button>
+
+<hr>
+
+<form #f="ngForm">
+
+  <thf-radio-group
+    class="thf-md-12"
+    name="type"
+    [(ngModel)]="type"
+    t-label="Type"
+    [t-options]="typeOptions">
+  </thf-radio-group>
+
+  <thf-input
+    class="thf-md-6"
+    name="message"
+    [(ngModel)]="message"
+    t-clean
+    t-label="Message"
+    t-required>
+  </thf-input>
+
+  <thf-input
+    class="thf-md-6"
+    name="actionLabel"
+    [(ngModel)]="actionLabel"
+    t-clean
+    t-label="Action Label">
+  </thf-input>
+
+  <thf-radio-group
+    class="thf-md-12"
+    name="orientation"
+    [(ngModel)]="orientation"
+    t-label="Orientation"
+    [t-options]="orientationOptions">
+  </thf-radio-group>
+
+  <thf-switch
+    class="thf-md-3"
+    name="action"
+    [(ngModel)]="action"
+    t-label="Action">
+  </thf-switch>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      t-label="Sample Restore"
+      (t-click)="restore()">
+    </thf-button>
+  </div>
+
+</form>
+
+<thf-modal
+  t-title="Totvs Notification">
+  Notification Action
+</thf-modal>
+

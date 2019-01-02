@@ -1,0 +1,39 @@
+<div class="thf-row">
+  <thf-widget class="thf-md-6 thf-lg-4" t-title="Order Summary">
+    <form [formGroup]="formOrderSummary">
+
+      <thf-table
+        [t-columns]="columns"
+        [t-items]="items">
+      </thf-table>
+
+      <thf-switch
+        name="serviceFee"
+        formControlName="serviceFee"
+        t-label="Allow a 10% service fee?"
+        t-label-off="No, thank you."
+        t-label-on="Yes, please."
+        [t-label-position]="labelPosition"
+        (t-change)="addServiceFee()">
+      </thf-switch>
+
+      <div class="thf-pull-right">
+        <div class="thf-font-text-large-bold"> Total value </div>
+        <span class="thf-font-text">R$</span>
+        <span class="thf-pull-right thf-font-title">{{ totalAmount }}</span>
+      </div>
+
+      <div class="thf-row">
+        <thf-button
+          class="thf-md-12"
+          t-icon="thf-icon thf-icon-ok"
+          t-label="Confirm"
+          t-type="primary"
+          (t-click)="confirm()">
+        </thf-button>
+      </div>
+
+    </form>
+  </thf-widget>
+</div>
+

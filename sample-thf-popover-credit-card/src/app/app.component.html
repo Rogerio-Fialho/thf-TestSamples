@@ -1,0 +1,81 @@
+<thf-popover
+  t-trigger="hover"
+  [t-target]="cardcoderef">
+  <img src="assets/graphics/card-code.jpg">
+</thf-popover>
+
+<thf-popover
+  t-trigger="hover"
+  [t-target]="carddateref">
+  <img src="assets/graphics/card-date.jpg">
+</thf-popover>
+
+<thf-popover
+  t-trigger="hover"
+  [t-target]="cardnameref">
+  <img src="assets/graphics/card-owner.jpg">
+</thf-popover>
+
+<form #f="ngForm">
+  <div class="thf-row">
+    <thf-input
+      #cardname
+      class="thf-lg-6"
+      name="inputCardName"
+      [(ngModel)]="inputCardName"
+      t-clean
+      t-label="Name"
+      t-required>
+    </thf-input>
+
+    <thf-input
+      #cardcode
+      class="thf-lg-4 thf-md-9"
+      name="inputCardCode"
+      [(ngModel)]="inputCardCode"
+      t-clean
+      t-label="Code"
+      t-mask="9999 9999 9999 9999"
+      t-mask-format-model
+      t-pattern="\d{4} \d{4} \d{4} \d{4}"
+      t-required>
+    </thf-input>
+
+    <thf-input
+      #carddate
+      class="thf-lg-2 thf-md-3"
+      name="inputCardValid"
+      [(ngModel)]="inputCardValid"
+      t-clean
+      t-label="Expiration Date"
+      t-mask="12/99"
+      t-mask-format-model
+      t-pattern="\d{2}\/\d{2}"
+      t-required>
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-2"
+      t-label="Confirm"
+      [t-disabled]="f.form.invalid"
+      (click)="modalCreditCard.open()">
+    </thf-button>
+  </div>
+</form>
+
+<thf-modal
+  #modalCreditCard
+  t-title="Your Credit Card">
+  <div class="thf-row">
+    <div>Card Code: {{ inputCardCode }}</div>
+  </div>
+  <div class="thf-row">
+    <div>Card Expiration: {{ inputCardValid }}</div>
+  </div>
+  <div class="thf-row">
+    <div>Card Owner: {{ inputCardName }}</div>
+  </div>
+</thf-modal>
+

@@ -1,0 +1,39 @@
+<div class="thf-row">
+
+  <thf-radio-group
+    class="thf-md-12"
+    name="filterParams"
+    [(ngModel)]="filterParams"
+    t-label="Choose the entity of SW to search"
+    [t-options]="entities">
+  </thf-radio-group>
+
+</div>
+
+<hr>
+
+<div class="thf-row">
+  <thf-lookup
+    class="thf-md-12"
+    name="entity"
+    [(ngModel)]="entity"
+    t-field-label="name"
+    t-field-value="name"
+    t-help="Select a {{ entityLabel }} to see the list of movies in which it participated"
+    t-label="{{ entityLabel | titlecase }} of Star Wars"
+    [t-columns]="entityColumns"
+    [t-filter-params]="filterParams"
+    [t-filter-service]="filterService"
+    (t-selected)="onSelected($event)">
+  </thf-lookup>
+</div>
+
+<div class="thf-row" *ngIf="filmItemsFiltered && entity">
+  <thf-table
+    class="thf-sm-12"
+    [t-columns]="filmColumns"
+    [t-items]="filmItemsFiltered"
+    [t-sort]="true">
+  </thf-table>
+</div>
+

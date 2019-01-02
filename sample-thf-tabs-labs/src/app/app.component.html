@@ -1,0 +1,93 @@
+<thf-tabs [t-small]="properties.includes('small')">
+
+  <thf-tab *ngFor="let tab of tabs; let i = index"
+    [t-active]="tab.active"
+    [t-disabled]="tab.disabled"
+    [t-hide]="tab.hide"
+    [t-label]="tab.label"
+    (t-click)="onClick(tab)">
+
+    <div class="thf-font-subtitle"> Tab Content {{ i }} </div>
+  </thf-tab>
+
+</thf-tabs>
+
+<hr>
+
+<form #tabForm="ngForm">
+
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="tabLabel"
+      [(ngModel)]="tab.label"
+      t-label="Label"
+      t-required>
+    </thf-input>
+
+    <thf-input
+      class="thf-md-6"
+      name="tabClick"
+      [(ngModel)]="tab.click"
+      t-label="Click">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-switch
+      class="thf-md-4"
+      name="tabActive"
+      [(ngModel)]="tab.active"
+      t-label="Active">
+    </thf-switch>
+
+    <thf-switch
+      class="thf-md-4"
+      name="tabDisabled"
+      [(ngModel)]="tab.disabled"
+      t-label="Disabled">
+    </thf-switch>
+
+    <thf-switch
+      class="thf-md-4"
+      name="tabHide"
+      [(ngModel)]="tab.hide"
+      t-label="Hide">
+    </thf-switch>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      t-label="Add Tab"
+      [t-disabled]="tabForm.invalid"
+      (t-click)="addTab(tab); tabForm.reset();">
+    </thf-button>
+  </div>
+
+</form>
+
+<hr>
+
+<form #propertiesForm="ngForm">
+
+  <div class="thf-row">
+    <thf-checkbox-group
+      class="thf-sm-12"
+      name="properties"
+      [(ngModel)]="properties"
+      t-label="Properties"
+      [t-options]="propertiesOptions">
+    </thf-checkbox-group>
+  </div>
+
+</form>
+
+<div class="thf-row">
+  <thf-button
+    class="thf-md-3"
+    t-label="Sample Restore"
+    (t-click)="restore()">
+  </thf-button>
+</div>
+

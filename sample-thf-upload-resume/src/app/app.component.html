@@ -1,0 +1,57 @@
+<form #formOpportunity="ngForm">
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-12"
+      name="name"
+      [(ngModel)]="name"
+      t-clean
+      t-label="Full Name"
+      t-required>
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-textarea
+      class="thf-md-12"
+      name="biograph"
+      [(ngModel)]="biograph"
+      t-label="Biograph"
+      t-required>
+    </thf-textarea>
+  </div>
+
+  <div class="thf-row">
+    <thf-url
+      class="thf-md-12"
+      name="linkedin"
+      [(ngModel)]="linkedin"
+      t-clean
+      t-label="LinkedIn URL">
+    </thf-url>
+  </div>
+
+  <div class="thf-row">
+    <thf-upload
+      class="thf-md-12"
+      name="resume"
+      [(ngModel)]="resume"
+      t-help="Maximum file size limit: 200kb"
+      t-label="Resume"
+      t-required
+      t-restrictions="{maxSize: 200}"
+      t-url="https://thf.totvs.com.br/sample/api/uploads/addFile"
+      (t-error)="resumeUploadError()"
+      (t-success)="resumeUploadSuccess()">
+    </thf-upload>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-4"
+      t-label="Apply"
+      [t-disabled]="formOpportunity.invalid || !uploadedResume"
+      (t-click)="apply()">
+    </thf-button>
+  </div>
+</form>
+

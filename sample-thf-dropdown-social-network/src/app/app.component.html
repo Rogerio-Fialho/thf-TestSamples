@@ -1,0 +1,46 @@
+<div class="thf-row">
+  <thf-widget
+    class="thf-lg-6"
+    t-title="Friend Request">
+
+    <ng-container *ngIf="currentFriend; else noMoreRequest">
+      <div class="thf-row">
+        <thf-avatar
+          class="thf-md-4"
+          t-size="lg"
+          [t-src]="userAvatar">
+        </thf-avatar>
+
+        <div class="thf-md-8">
+          <span class="thf-sm-12 thf-font-subtitle">
+            {{ currentFriend.name }}
+          </span>
+
+          <span class="thf-sm-12 thf-font-text">
+            {{ currentFriend.mutualFriends }} mutual friends
+          </span>
+
+          <span class="thf-sm-12 thf-font-text">
+            Resides in {{ currentFriend.reside }}
+          </span>
+        </div>
+      </div>
+
+      <div class="thf-row">
+        <thf-dropdown
+          class="thf-lg-8 thf-offset-md-4 thf-offset-lg-4 thf-offset-xl-4"
+          t-label="Add as friend?"
+          [t-actions]="answers">
+        </thf-dropdown>
+      </div>
+    </ng-container>
+
+    <ng-template #noMoreRequest>
+      <div class="thf-row">
+        <span class="thf-lg-8 thf-font-subtitle">Congratulations Totver, no more requests!</span>
+      </div>
+    </ng-template>
+
+  </thf-widget>
+</div>
+

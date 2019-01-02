@@ -1,0 +1,41 @@
+<thf-page-list
+  t-title="Hiring processes"
+  [t-actions]="actions"
+  [t-breadcrumb]="breadcrumb"
+  [t-disclaimer-group]="disclaimerGroup"
+  [t-filter]="filterSettings">
+
+  <thf-table
+    t-checkbox
+    t-single-select
+    t-sort="true"
+    t-striped="true"
+    [t-columns]="hiringProcessesColumns"
+    [t-items]="hiringProcessesFiltered">
+  </thf-table>
+
+</thf-page-list>
+
+<thf-modal
+  #advancedFilterModal
+  t-title="Advanced filter"
+  [t-primary-action]="advancedFilterPrimaryAction">
+
+  <form #f="ngForm">
+    <thf-multiselect
+      name="jobDescription"
+      [(ngModel)]="jobDescription"
+      t-label="Job description"
+      [t-options]="jobDescriptionOptions">
+    </thf-multiselect>
+
+    <thf-checkbox-group
+      name="status"
+      [(ngModel)]="status"
+      t-label="Status"
+      [t-options]="statusOptions">
+    </thf-checkbox-group>
+  </form>
+
+</thf-modal>
+

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'thf-root',
-  templateUrl: './app.component.html'
+  selector: 'sample-thf-avatar-basic',
+  templateUrl: './sample-thf-avatar-basic.component.html'
 })
-export class AppComponent { }
+export class SampleThfAvatarBasicComponent { }
+

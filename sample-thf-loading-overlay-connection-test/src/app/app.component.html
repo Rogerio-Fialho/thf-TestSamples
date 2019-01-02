@@ -1,0 +1,55 @@
+<form #formConfig="ngForm">
+
+  <div>
+    <thf-loading-overlay [hidden]="isHideLoading"></thf-loading-overlay>
+  </div>
+
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="urlServer"
+      [(ngModel)]="environment.urlServer"
+      t-clean
+      t-label="URL Server"
+      t-required>
+    </thf-input>
+
+    <thf-input
+      class="thf-md-6"
+      name="urlDB"
+      [(ngModel)]="environment.urlDB"
+      t-clean
+      t-label="URL Database"
+      t-required>
+    </thf-input>
+
+    <thf-input
+      class="thf-md-6"
+      name="userDB"
+      [(ngModel)]="environment.userDB"
+      t-clean
+      t-label="User Database"
+      t-required>
+    </thf-input>
+
+    <thf-password
+      class="thf-md-6"
+      name="passwordDB"
+      [(ngModel)]="environment.passwordDB"
+      t-clean
+      t-label="Password Database"
+      t-required>
+    </thf-password>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-4"
+      t-label="Connect"
+      [t-disabled]="formConfig.invalid"
+      (t-click)="connectionTest(); formConfig.reset();">
+    </thf-button>
+  </div>
+
+</form>
+

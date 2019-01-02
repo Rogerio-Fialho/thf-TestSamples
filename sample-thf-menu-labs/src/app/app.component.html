@@ -1,0 +1,93 @@
+<div class="thf-wrapper">
+  <thf-menu
+    [t-filter]="filter"
+    [t-menus]="menuItems">
+  </thf-menu>
+
+  <thf-page-default t-title="Totvs Menu">
+
+    <div class="thf-row">
+      <thf-info
+        t-label="Menu Item Selected"
+        [t-value]="menuItemSelected">
+      </thf-info>
+    </div>
+
+    <hr>
+
+    <form #f="ngForm">
+      <div class="thf-row">
+        <thf-switch
+          class="thf-lg-12"
+          name="filterMenu"
+          [(ngModel)]="filter"
+          t-label="Filter"
+          t-label-off="Disabled"
+          t-label-on="Enabled">
+        </thf-switch>
+      </div>
+
+      <div class="thf-row">
+        <thf-select
+          class="thf-md-6"
+          name="parent"
+          [(ngModel)]="parent"
+          t-label="Parent"
+          t-placeholder="Add new menu at root level"
+          [t-options]="parentList">
+        </thf-select>
+
+        <thf-input
+          class="thf-md-6"
+          name="label"
+          [(ngModel)]="label"
+          t-label="Label"
+          t-required>
+        </thf-input>
+      </div>
+
+      <div class="thf-row">
+        <thf-url
+          class="thf-md-6"
+          name="link"
+          [(ngModel)]="link"
+          t-label="External link"
+          t-placeholder="http://">
+        </thf-url>
+
+        <thf-input
+          class="thf-md-6"
+          name="shortLabel"
+          [(ngModel)]="shortLabel"
+          t-label="Short Label"
+          t-required>
+        </thf-input>
+      </div>
+
+      <div class="thf-row">
+        <thf-radio-group
+          class="thf-lg-12"
+          name="icon"
+          [(ngModel)]="icon"
+          t-label="Icon"
+          [t-disabled]="parent"
+          [t-options]="iconsOptions">
+        </thf-radio-group>
+     </div>
+
+      <div class="thf-row">
+        <thf-button
+          class="thf-xl-2 thf-md-4"
+          t-label="Add"
+          (t-click)="addMenuItem()">
+        </thf-button>
+
+        <thf-button
+          class="thf-xl-3 thf-md-5"
+          t-label="Sample Restore"
+          (t-click)="restore()">
+        </thf-button>
+      </div>
+    </form>
+  </thf-page-default>
+</div>

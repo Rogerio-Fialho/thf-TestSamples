@@ -1,0 +1,46 @@
+<div class="thf-row">
+  <thf-input
+    class="thf-md-4"
+    name="name"
+    [(ngModel)]="name"
+    t-help="Contains planet name"
+    t-label="Planet Name"
+    (t-change)="changeFilter(name, 'name')">
+  </thf-input>
+
+  <thf-combo
+    class="thf-md-4"
+    name="climate"
+    [(ngModel)]="climate"
+    t-help="Planet climate"
+    t-label="Climate"
+    [t-options]="climates"
+    (t-change)="changeFilter(climate, 'climate')">
+  </thf-combo>
+
+  <thf-combo
+    class="thf-md-4"
+    [(ngModel)]="terrain"
+    name="terrain"
+    t-help="Planet terrain"
+    t-label="Terrain"
+    [t-options]="terrains"
+    (t-change)="changeFilter(terrain, 'terrain')">
+  </thf-combo>
+
+  <thf-disclaimer-group
+    [t-disclaimers]="filters"
+    (t-change)="changeFilters(filters)">
+  </thf-disclaimer-group>
+</div>
+
+<hr>
+
+<div class="thf-row">
+  <thf-table
+    class="thf-md-12"
+    [t-columns]="columns"
+    [t-items]="filteredItems">
+  </thf-table>
+</div>
+

@@ -1,0 +1,8 @@
+<span #target class="thf-clickable thf-icon thf-icon-help" (click)="popup.toggle()">
+</span>
+
+<thf-popup #popup
+  [t-actions]="[{ label: 'THF Popup' }]"
+  [t-target]="target">
+</thf-popup>
+

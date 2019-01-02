@@ -1,0 +1,85 @@
+<!-- Component -->
+<div class="thf-row">
+  <thf-stepper
+    class="thf-sm-12"
+    [t-mode]="mode"
+    [t-sequential]="properties.includes('sequential')"
+    [t-step]="step"
+    [t-steps]="steps"
+    (t-change-step)="changeStep($event)">
+  </thf-stepper>
+</div>
+
+<hr>
+
+<form #fStep="ngForm">
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="stepLabel"
+      [(ngModel)]="stepItem.label"
+      t-clean
+      t-label="Step Label"
+      t-required>
+    </thf-input>
+
+    <thf-select
+      class="thf-md-6"
+      name="stepStatus"
+      [(ngModel)]="stepItem.status"
+      t-label="Step Status"
+      [t-options]="stepOptions">
+    </thf-select>
+  </div>
+  <div class="thf-row">
+    <thf-button
+      class="thf-lg-3"
+      t-label="Add Item"
+      [t-disabled]="fStep.invalid"
+      (t-click)="addItem()">
+    </thf-button>
+  </div>
+</form>
+
+<hr>
+
+<!-- Properties -->
+<form #f="ngForm">
+
+  <div class="thf-row">
+
+    <thf-input
+      class="thf-md-4"
+      name="step"
+      [(ngModel)]="step"
+      t-clean
+      t-label="Step">
+    </thf-input>
+
+    <thf-radio-group
+      class="thf-lg-4"
+      name="mode"
+      [(ngModel)]="mode"
+      t-label="Mode"
+      [t-options]="modeOptions">
+    </thf-radio-group>
+
+    <thf-checkbox-group
+        class="thf-md-4"
+        name="properties"
+        [(ngModel)]="properties"
+        t-label="Properties"
+        [t-options]="propertiesOptions">
+      </thf-checkbox-group>
+    </div>
+
+    <div class="thf-row">
+      <thf-button
+        class="thf-md-3"
+        t-label="Sample Restore"
+        (t-click)="restore()">
+      </thf-button>
+    </div>
+
+</form>
+

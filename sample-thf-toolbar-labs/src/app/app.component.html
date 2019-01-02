@@ -1,0 +1,171 @@
+<style> .sample-container { margin-top: 50px; }</style>
+
+<thf-toolbar
+  [t-actions]="actions"
+  [t-actions-icon]="actionsIcon"
+  [t-profile]="profile"
+  [t-profile-actions]="profileActions"
+  [t-notification-actions]="notificationActions"
+  [t-notification-number]="notificationNumber"
+  [t-show-notification]="showNotification"
+  [t-title]="title">
+</thf-toolbar>
+
+<div class="sample-container">
+  <form #formAction="ngForm">
+    <div class="thf-row">
+      <thf-input
+        class="thf-md-6"
+        name="actionAction"
+        [(ngModel)]="action.action"
+        t-clean
+        t-label="Action">
+      </thf-input>
+
+      <thf-select
+        class="thf-md-6"
+        name="actionIcon"
+        [(ngModel)]="action.icon"
+        t-clean
+        t-label="Action icon"
+        [t-options]="iconOptions">
+      </thf-select>
+
+      <thf-input
+        class="thf-md-6"
+        name="actionLabel"
+        [(ngModel)]="action.label"
+        t-clean
+        t-label="Action label"
+        t-required>
+      </thf-input>
+
+      <thf-input
+        class="thf-md-6"
+        name="actionUrl"
+        [(ngModel)]="action.url"
+        t-clean
+        t-label="Action url">
+      </thf-input>
+
+      <thf-radio-group
+        class="thf-md-6"
+        name="actionType"
+        [(ngModel)]="action.type"
+        t-label="Action type"
+        [t-options]="actionTypes">
+      </thf-radio-group>
+
+      <thf-switch
+        class="thf-md-6"
+        name="actionDisabled"
+        [(ngModel)]="action.separator"
+        t-clean
+        t-label="Action separator">
+      </thf-switch>
+
+      <thf-radio-group
+        class="thf-md-6"
+        name="toolbarActionType"
+        [(ngModel)]="toolbarActionType"
+        t-columns="3"
+        t-label="Toolbar action type"
+        [t-options]="toolbarActionTypes">
+      </thf-radio-group>
+    </div>
+
+    <div class="thf-row">
+      <thf-button
+        class="thf-md-3"
+        t-label="Add Action"
+        [t-disabled]="formAction.invalid"
+        (t-click)="addAction(action, formAction)">
+      </thf-button>
+    </div>
+  </form>
+
+  <hr>
+
+  <div class="thf-row">
+    <thf-select
+      class="thf-md-6"
+      name="actionsIcon"
+      [(ngModel)]="actionsIcon"
+      t-clean
+      t-label="Actions icon"
+      [t-options]="iconOptions">
+    </thf-select>
+  </div>
+
+  <hr>
+
+  <form #formProfile="ngForm">
+    <div class="thf-row">
+      <thf-input
+        class="thf-md-6"
+        name="profileTitle"
+        [(ngModel)]="profile.title"
+        t-clean
+        t-label="Profile title"
+        t-required>
+      </thf-input>
+
+      <thf-input
+        class="thf-md-6"
+        name="profileSubtitle"
+        [(ngModel)]="profile.subtitle"
+        t-clean
+        t-label="Profile subtitle">
+      </thf-input>
+
+      <thf-input
+        class="thf-md-6"
+        name="profileAvatar"
+        [(ngModel)]="profile.avatar"
+        t-clean
+        t-label="Profile avatar">
+      </thf-input>
+    </div>
+  </form>
+
+  <hr>
+
+  <form #formToolbar="ngForm">
+    <div class="thf-row">
+      <thf-input
+        class="thf-md-4"
+        name="title"
+        [(ngModel)]="title"
+        t-clean
+        t-label="Title"
+        t-required>
+      </thf-input>
+
+      <thf-number
+        class="thf-md-4"
+        name="notificationNumber"
+        [(ngModel)]="notificationNumber"
+        t-clean
+        t-label="Notification number">
+      </thf-number>
+
+      <thf-switch
+        class="thf-md-4"
+        name="showNotification"
+        [(ngModel)]="showNotification"
+        t-clean
+        t-label="Show notification">
+      </thf-switch>
+    </div>
+
+    <div class="thf-row">
+      <thf-button
+        class="thf-md-3"
+        t-label="Sample Restore"
+        (t-click)="formToolbar.reset(); formProfile.reset(); formAction.reset(); restore()">
+      </thf-button>
+    </div>
+
+  </form>
+</div>
+

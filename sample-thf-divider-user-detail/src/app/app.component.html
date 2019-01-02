@@ -1,0 +1,92 @@
+<thf-page-detail
+  t-title="User Detail"
+  [t-breadcrumb]="breadcrumb">
+
+  <div class="thf-row thf-mb-4">
+    <thf-divider class="thf-md-12" t-label="Status"></thf-divider>
+
+    <thf-tag
+      class="thf-md-4"
+      t-icon
+      t-label="Status"
+      t-type="success"
+      [t-value]="statusValue">
+    </thf-tag>
+
+    <thf-info
+      class="thf-md-4"
+      t-label="User ID"
+      [t-value]="userId">
+    </thf-info>
+  </div>
+
+  <div class="thf-row thf-mb-4">
+    <thf-divider class="thf-md-12" t-label="Personal data"></thf-divider>
+
+    <thf-info
+      class="thf-md-4 thf-mb-md-2"
+      t-label="Name"
+      [t-value]="name">
+    </thf-info>
+
+    <thf-info
+      class="thf-md-4 thf-mb-md-2"
+      t-label="Nickname"
+      [t-value]="nickname">
+    </thf-info>
+
+    <thf-info
+      class="thf-md-4 thf-mb-md-2"
+      t-label="E-mail"
+      [t-value]="email">
+    </thf-info>
+
+    <thf-info
+      class="thf-md-4 thf-mb-md-2"
+      t-label="Birthday"
+      [t-value]="birthDate">
+    </thf-info>
+
+    <thf-info
+      class="thf-md-4 thf-mb-md-2"
+      t-label="Genre"
+      [t-value]="genre">
+    </thf-info>
+
+    <thf-info
+      class="thf-md-4 thf-mb-md-2"
+      t-label="Nationality"
+      [t-value]="nationality">
+    </thf-info>
+
+    <thf-info
+      class="thf-md-4"
+      t-label="Place of birth"
+      [t-value]="placeOfBirth">
+    </thf-info>
+
+    <thf-info
+      class="thf-md-4"
+      t-label="Gratuation"
+      [t-value]="graduation">
+    </thf-info>
+  </div>
+
+  <div class="thf-row thf-mb-4">
+    <thf-divider class="thf-md-12" t-label="Relationship"></thf-divider>
+
+    <thf-info
+      class="thf-md-4"
+      t-label="Father's name"
+      [t-value]="fathersName">
+    </thf-info>
+
+    <thf-info
+      class="thf-md-4"
+      t-label="Mother's name"
+      [t-value]="mothersName">
+    </thf-info>
+  </div>
+
+</thf-page-detail>
+

@@ -1,0 +1,214 @@
+<thf-tabs>
+  <thf-tab
+    t-active
+    t-label="Destination">
+
+    <form #formTravel="ngForm">
+      <div class="thf-row">
+        <thf-input
+          class="thf-lg-12"
+          name="origin"
+          [(ngModel)]="origin"
+          t-label="Origin"
+          t-required>
+        </thf-input>
+      </div>
+
+      <div class="thf-row">
+        <thf-input
+          class="thf-lg-12"
+          name="destination"
+          [(ngModel)]="destination"
+          t-label="Destination"
+          t-required>
+        </thf-input>
+      </div>
+
+      <div class="thf-row">
+        <thf-datepicker
+          class="thf-md-6"
+          name="departDate"
+          [(ngModel)]="departDate"
+          t-label="Depart"
+          t-required>
+        </thf-datepicker>
+
+        <thf-datepicker
+          class="thf-md-6"
+          name="returnDate"
+          [(ngModel)]="returnDate"
+          t-label="Return"
+          t-required
+          [t-start]="departDate">
+        </thf-datepicker>
+      </div>
+
+      <div class="thf-row">
+        <thf-radio-group
+          class="thf-lg-12"
+          name="transportation"
+          [(ngModel)]="transportation"
+          t-label="Transportation"
+          t-required
+          [t-options]="transportationOptions">
+        </thf-radio-group>
+      </div>
+    </form>
+
+  </thf-tab>
+  <thf-tab
+    t-label="Trains"
+    [t-hide]="transportation!=='train'">
+
+    <form #formTrain="ngForm">
+      <div class="thf-row">
+        <thf-select
+          class="thf-lg-12"
+          name="trainCompany"
+          [(ngModel)]="trainCompany"
+          t-label="Tran Company"
+          t-required
+          [t-options]="trainCompanyOptions">
+        </thf-select>
+      </div>
+
+      <div class="thf-row">
+        <thf-select
+          class="thf-lg-12"
+          name="classTrain"
+          [(ngModel)]="classTrain"
+          t-label="Class"
+          t-required
+          [t-options]="classTrainOptions">
+        </thf-select>
+      </div>
+    </form>
+
+  </thf-tab>
+  <thf-tab
+    t-label="Flights"
+    [t-hide]="transportation!=='flight'">
+
+    <form #formFlight="ngForm">
+      <div class="thf-row">
+        <thf-select
+          class="thf-lg-12"
+          name="flightCompany"
+          [(ngModel)]="flightCompany"
+          t-label="Flight Company"
+          t-required
+          [t-options]="flightCompanyOptions">
+        </thf-select>
+      </div>
+
+      <div class="thf-row">
+        <thf-select
+          class="thf-lg-12"
+          name="classFlight"
+          [(ngModel)]="classFlight"
+          t-label="Class"
+          t-required
+          [t-options]="classFlightOptions">
+        </thf-select>
+      </div>
+    </form>
+  </thf-tab>
+  <thf-tab
+    t-label="Payment"
+    [t-disabled]="isPaymentEnable(formTravel, formTrain, formFlight)===false">
+
+    <div class="thf-row">
+      <thf-info
+        class="thf-md-6"
+        t-label="Total Cost"
+        [t-value]="getTotalCost()">
+      </thf-info>
+    </div>
+
+    <thf-tabs t-small>
+      <thf-tab
+        t-active
+        t-label="Credit Card">
+
+        <form #formCreditCard="ngForm">
+          <div class="thf-row">
+            <thf-input
+              class="thf-md-8 thf-lg-6"
+              name="cardName"
+              [(ngModel)]="cardName"
+              t-clean
+              t-label="Name on Card"
+              t-required>
+            </thf-input>
+          </div>
+
+          <div class="thf-row">
+            <thf-input
+              class="thf-md-8 thf-lg-6"
+              name="card"
+              [(ngModel)]="card"
+              t-clean
+              t-label="Card Number"
+              t-mask="9999 9999 9999 9999"
+              t-required>
+            </thf-input>
+          </div>
+
+          <div class="thf-row">
+            <thf-input
+              class="thf-md-2"
+              name="expiryMonth"
+              [(ngModel)]="expiryMonth"
+              t-clean
+              t-label="Expiry Month"
+              t-mask="19"
+              t-required>
+            </thf-input>
+
+            <thf-input
+              class="thf-md-2"
+              name="expiryYear"
+              [(ngModel)]="expiryYear"
+              t-clean
+              t-label="Year"
+              t-mask="2999"
+              t-required>
+            </thf-input>
+
+            <thf-input
+              class="thf-md-2"
+              name="cvv"
+              [(ngModel)]="cvv"
+              t-clean
+              t-label="CVV"
+              t-mask="9999"
+              t-required>
+            </thf-input>
+          </div>
+
+          <div class="thf-row">
+            <thf-button
+              class="thf-md-3"
+              t-label="Pay now"
+              [t-disabled]="!formCreditCard.form.valid || !totalCost"
+              (t-click)="payment()">
+            </thf-button>
+          </div>
+        </form>
+      </thf-tab>
+
+      <thf-tab t-label="Bank Billet">
+        <div class="thf-row">
+          <thf-button
+            class="thf-md-4"
+            t-label="Generate Bank Billet"
+            [t-disabled]="!totalCost"
+            (t-click)="bankBillet()">
+          </thf-button>
+        </div>
+      </thf-tab>
+    </thf-tabs>
+
+  </thf-tab>
+</thf-tabs>
+

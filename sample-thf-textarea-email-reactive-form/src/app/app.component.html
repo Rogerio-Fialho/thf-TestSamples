@@ -1,0 +1,107 @@
+<thf-page-default
+  t-title="Send email"
+  [t-actions]="getPageAction()">
+
+  <form [formGroup]="formEmail">
+
+    <thf-email
+      class="thf-sm-12"
+      name="from"
+      formControlName="from"
+      t-clean
+      t-label="From"
+      t-required>
+    </thf-email>
+
+    <thf-email
+      class="thf-sm-12"
+      name="to"
+      formControlName="to"
+      t-clean
+      t-label="To"
+      t-required>
+    </thf-email>
+
+    <thf-email
+      class="thf-sm-12"
+      name="cc"
+      formControlName="cc"
+      t-clean
+      t-label="CC">
+    </thf-email>
+
+    <thf-input
+      class="thf-sm-12"
+      name="subject"
+      formControlName="subject"
+      t-clean
+      t-label="Subject"
+      t-required>
+    </thf-input>
+
+    <thf-textarea
+      class="thf-sm-12"
+      name="emailText"
+      formControlName="emailText"
+      t-label="E-mail"
+      t-rows="8"
+      t-required>
+    </thf-textarea>
+
+  </form>
+</thf-page-default>
+
+<thf-modal
+  t-title="Email successfully sent"
+  [t-primary-action]="primaryAction">
+
+  <div class="thf-row">
+    <thf-info
+      class="thf-md-6"
+      t-label="From:"
+      [t-value]="formEmail.get('from').value">
+    </thf-info>
+
+    <thf-info
+      class="thf-md-6"
+      t-label="To:"
+      [t-value]="formEmail.get('to').value">
+    </thf-info>
+  </div>
+
+  <hr>
+
+  <div *ngIf="formEmail.get('cc').value">
+    <div class="thf-row">
+      <thf-info
+        class="thf-md-12"
+        t-label="CC:"
+        [t-value]="formEmail.get('cc').value">
+      </thf-info>
+    </div>
+    <hr>
+  </div>
+
+  <div class="thf-row">
+    <thf-info
+      class="thf-md-12"
+      t-label="Subject:"
+      [t-value]="formEmail.get('subject').value">
+    </thf-info>
+  </div>
+
+  <hr>
+
+  <div class="thf-row">
+    <thf-textarea
+      class="thf-md-12"
+      name="text"
+      [ngModel]="formEmail.get('emailText').value"
+      t-label="E-mail"
+      t-readonly
+      t-required
+      t-rows="6">
+    </thf-textarea>
+  </div>
+</thf-modal>
+

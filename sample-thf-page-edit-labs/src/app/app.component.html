@@ -1,0 +1,135 @@
+<thf-page-edit
+  [t-breadcrumb]="breadcrumb"
+  [t-disable-submit]="properties.includes('disableSubmit')"
+  [t-literals]="customLiterals"
+  [t-title]="title">
+
+  <div class="thf-row">
+    <thf-info
+      class="thf-md-12"
+      t-label="Action"
+      [t-value]="action">
+    </thf-info>
+  </div>
+
+  <hr>
+
+  <form>
+    <div class="thf-row">
+      <thf-input
+        class="thf-md-6"
+        name="title"
+        [(ngModel)]="title"
+        t-label="Title">
+      </thf-input>
+
+      <thf-checkbox-group
+        class="thf-md-6"
+        name="properties"
+        [(ngModel)]="properties"
+        t-label="Properties"
+        [t-options]="propertiesOptions">
+      </thf-checkbox-group>
+    </div>
+
+    <hr>
+
+    <form #formBreadcrumbFavorite="ngForm">
+      <div class="thf-row">
+        <thf-input
+          class="thf-lg-6"
+          name="breadcrumbFavorite"
+          [(ngModel)]="breadcrumb.favorite"
+          t-clean
+          t-help="https://thf.totvs.com.br/sample/api/favorite"
+          t-label="Breadcrumb favorite">
+        </thf-input>
+      </div>
+    </form>
+
+    <form #formBreadcrumbItems="ngForm">
+      <div class="thf-row">
+        <thf-input
+          class="thf-md-6"
+          name="breadcrumbItemLabel"
+          [(ngModel)]="breadcrumbItem.label"
+          t-clean
+          t-label="Breadcrumb item label"
+          t-required>
+        </thf-input>
+
+        <thf-input
+          class="thf-md-6"
+          name="breadcrumbItemLink"
+          [(ngModel)]="breadcrumbItem.link"
+          t-clean
+          t-label="Breadcrumb item link"
+          t-required>
+        </thf-input>
+      </div>
+
+      <div class="thf-row">
+        <thf-button
+          class="thf-md-6 thf-lg-4"
+          t-label="Add breadcrumb item"
+          [t-disabled]="formBreadcrumbItems.invalid"
+          (t-click)="addBreadcrumbItem()">
+        </thf-button>
+      </div>
+    </form>
+
+    <hr>
+
+    <form #formBreadcrumbParams="ngForm">
+      <div class="thf-row">
+        <thf-input
+          class="thf-md-6"
+          name="breadcrumbParamsProperty"
+          [(ngModel)]="breadcrumbParams.property"
+          t-clean
+          t-label="Breadcrumb params property"
+          t-required>
+        </thf-input>
+
+        <thf-input
+          class="thf-md-6"
+          name="breadcrumbParamsValue"
+          [(ngModel)]="breadcrumbParams.value"
+          t-clean
+          t-label="Breadcrumb params value"
+          t-required>
+        </thf-input>
+      </div>
+
+      <div class="thf-row">
+        <thf-button
+          class="thf-md-6 thf-lg-4"
+          t-label="Add breadcrumb params"
+          [t-disabled]="formBreadcrumbParams.invalid"
+          (t-click)="addBreadcrumbParam()">
+        </thf-button>
+      </div>
+    </form>
+
+    <div class="thf-row">
+      <thf-input
+        class="thf-lg-12"
+        name="literals"
+        [(ngModel)]="literals"
+        t-help='Ex.: {"cancel": "Voltar", "save": "Confirmar", "saveNew": "Confirmar e criar um novo"}'
+        t-label="Literals"
+        (t-change)="changeLiterals()">
+      </thf-input>
+    </div>
+
+    <div class="thf-row">
+      <thf-button
+        class="thf-md-3"
+        t-label="Sample Restore"
+        (t-click)="restore()">
+      </thf-button>
+    </div>
+  </form>
+
+</thf-page-edit>
+

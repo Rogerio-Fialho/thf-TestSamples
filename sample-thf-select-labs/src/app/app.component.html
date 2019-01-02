@@ -1,0 +1,109 @@
+<thf-select
+  class="thf-md-12"
+  name="select"
+  [(ngModel)]="select"
+  [t-disabled]="properties.includes('disabled')"
+  [t-help]="help"
+  [t-label]="label"
+  [t-options]="options"
+  [t-placeholder]="placeholder"
+  [t-required]="properties.includes('required')"
+  (t-blur)="changeEvent('t-blur')"
+  (t-change)="changeEvent('t-change')"
+  (t-change-model)="changeEvent('t-change-model')"
+  (t-enter)="changeEvent('t-enter')">
+</thf-select>
+
+<hr>
+
+<div class="thf-row">
+  <thf-info
+    class="thf-md-6"
+    t-label="Model"
+    [t-value]="select">
+  </thf-info>
+
+  <thf-info
+    class="thf-md-6"
+    t-label="Event"
+    [t-value]="event">
+  </thf-info>
+</div>
+
+<hr>
+
+<form #fOption="ngForm">
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="optionLabel"
+      [(ngModel)]="option.label"
+      t-label="Option Label"
+      t-required>
+    </thf-input>
+
+    <thf-input
+      class="thf-md-6"
+      name="optionValue"
+      [(ngModel)]="option.value"
+      t-label="Option Value"
+      t-required>
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-6 thf-lg-3"
+      t-label="Add Option"
+      [t-disabled]="fOption.invalid"
+      (t-click)="addOption()">
+    </thf-button>
+  </div>
+</form>
+
+<hr>
+
+<form #f="ngForm">
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-4"
+      name="label"
+      [(ngModel)]="label"
+      t-label="Label">
+    </thf-input>
+
+   <thf-input
+      class="thf-md-4"
+      name="help"
+      [(ngModel)]="help"
+      t-label="Help">
+    </thf-input>
+
+    <thf-input
+      class="thf-md-4"
+      name="placeholder"
+      [(ngModel)]="placeholder"
+      t-label="Placeholder">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-checkbox-group
+      class="thf-md-12"
+      name="properties"
+      [(ngModel)]="properties"
+      t-label="Properties"
+      [t-options]="propertiesOptions">
+    </thf-checkbox-group>
+  </div>
+
+  <div class="thf-row">
+    <div class="thf-md-3">
+      <thf-button
+        t-label="Sample Restore"
+        (t-click)="restore()">
+      </thf-button>
+    </div>
+  </div>
+<form>
+

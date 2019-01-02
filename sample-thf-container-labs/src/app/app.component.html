@@ -1,0 +1,48 @@
+<thf-container
+  [t-height]="height"
+  [t-no-padding]="properties.includes('noPadding')"
+  [t-no-shadow]="properties.includes('noShadow')">
+  {{content}}
+</thf-container>
+
+<hr>
+
+<form #f="ngForm">
+
+  <div class="thf-row">
+    <thf-number
+      class="thf-md-6"
+      name="height"
+      [(ngModel)]="height"
+      t-label="Height">
+    </thf-number>
+
+    <thf-checkbox-group
+      class="thf-md-6"
+      name="properties"
+      [(ngModel)]="properties"
+      t-label="Properties"
+      [t-options]="propertiesOptions">
+    </thf-checkbox-group>
+  </div>
+
+  <div class="thf-row">
+
+    <thf-textarea
+      class="thf-md-12"
+      [(ngModel)]="content"
+      name="content"
+      t-label="Content">
+    </thf-textarea>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      t-label="Sample Restore"
+      (t-click)="restore()">
+    </thf-button>
+  </div>
+
+</form>
+

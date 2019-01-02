@@ -1,0 +1,48 @@
+<form #f="ngForm">
+  <div class="thf-row">
+    <thf-url
+      class="thf-lg-6"
+      name="url"
+      [(ngModel)]="url"
+      t-label="Type your URL to be shortened"
+      t-required>
+    </thf-url>
+
+    <thf-input
+      #boxUrl
+      class="thf-lg-6"
+      name="shortenedUrl"
+      [(ngModel)]="shortenedUrl"
+      t-label="URL shortened"
+      t-readonly>
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-lg-2"
+      t-label="Shorten URL"
+      t-type="primary"
+      [t-disabled]="f.invalid"
+      (t-click)="shortenUrl()">
+    </thf-button>
+
+    <thf-button
+      class="thf-offset-lg-4 thf-offset-xl-4 thf-lg-2"
+      t-icon="thf-icon-copy"
+      t-label="Copy"
+      [t-disabled]="!shortenedUrl"
+      (click)="copyToClipboard()">
+    </thf-button>
+  </div>
+
+</form>
+
+<hr>
+
+<thf-table
+  t-striped="true"
+  [t-columns]="urlColumns"
+  [t-items]="baseUrls">
+</thf-table>
+

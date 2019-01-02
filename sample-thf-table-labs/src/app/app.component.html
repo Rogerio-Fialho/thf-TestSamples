@@ -1,0 +1,159 @@
+<thf-table
+  [t-actions]="actions"
+  [t-checkbox]="selection.includes('checkbox')"
+  [t-columns]="columns"
+  [t-container]="container"
+  [t-height]="height"
+  [t-hide-detail]="properties.includes('hideDetail')"
+  [t-hide-select-all]="selection.includes('hideSelectAll')"
+  [t-hide-text-overflow]="properties.includes('hideTextOverflow')"
+  [t-items]="items"
+  [t-literals]="customLiterals"
+  [t-loading]="properties.includes('loading')"
+  [t-show-more-disabled]="!properties.includes('showMoreDisabled')"
+  [t-single-select]="selection.includes('singleSelect')"
+  [t-sort]="properties.includes('sort')"
+  [t-striped]="properties.includes('striped')"
+  (t-all-selected)="changeEvent('t-all-selected')"
+  (t-all-unselected)="changeEvent('t-all-unselected')"
+  (t-selected)="changeEvent('t-selected')"
+  (t-show-more)="showMore()"
+  (t-unselected)="changeEvent('t-unselected')">
+</thf-table>
+
+<thf-divider></thf-divider>
+
+<div class="thf-row">
+  <thf-info
+    class="thf-md-12"
+    t-label="Event"
+    [t-value]="event">
+  </thf-info>
+</div>
+
+<thf-divider></thf-divider>
+
+<div class="thf-row">
+  <thf-button
+    class="thf-md-3"
+    t-label="Add Item"
+    (t-click)="addItem()">
+  </thf-button>
+</div>
+
+<thf-divider></thf-divider>
+
+<form #f="ngForm">
+
+  <div class="thf-row">
+    <thf-checkbox-group
+      class="thf-md-12"
+      name="columnsName"
+      [(ngModel)]="columnsName"
+      t-label="Columns"
+      t-columns="4"
+      [t-options]="columnsOptions"
+      (t-change)="updateColumns()">
+    </thf-checkbox-group>
+  </div>
+
+  <div class="thf-row">
+    <thf-radio-group
+      class="thf-lg-6"
+      name="typeHeader"
+      [(ngModel)]="columnsDefinition.detail.detail.typeHeader"
+      t-label="Column detail typeHeader"
+      [t-options]="typeHeaderOptions">
+    </thf-radio-group>
+
+    <thf-switch
+      class="thf-lg-6"
+      name="hideSelect"
+      [(ngModel)]="columnsDefinition.detail.detail.hideSelect"
+      t-label="Column detail hideSelect">
+    </thf-switch>
+  </div>
+
+  <div class="thf-row">
+    <thf-checkbox-group
+      class="thf-lg-12"
+      name="properties"
+      [(ngModel)]="properties"
+      t-label="Properties"
+      [t-options]="propertiesOptions">
+    </thf-checkbox-group>
+  </div>
+
+  <div class="thf-row">
+    <thf-number
+      class="thf-md-3"
+      name="height"
+      [(ngModel)]="height"
+      t-clean
+      t-help="Height of table"
+      t-label="Height">
+    </thf-number>
+
+    <thf-input
+      class="thf-md-9"
+      name="literals"
+      [(ngModel)]="literals"
+      t-help='Ex.: {"noData": "Sem dados a serem exibidos", "noColumns": "Colunas não definidas"}'
+      t-label="Literals"
+      (t-change)="changeLiterals()">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-checkbox-group
+      class="thf-lg-12"
+      name="actionsDefinition"
+      [(ngModel)]="actionsDefinition"
+      t-columns="4"
+      t-indeterminate
+      t-label="Actions"
+      [t-options]="actionsDefinitionOptions"
+      (t-change)="changeActionOptions()">
+    </thf-checkbox-group>
+  </div>
+
+  <div class="thf-row">
+    <thf-checkbox-group
+      class="thf-lg-6"
+      name="selection"
+      [(ngModel)]="selection"
+      t-label="Selection"
+      [t-options]="selectionOptions"
+      (t-change)="changeSelectionOptions()">
+    </thf-checkbox-group>
+
+    <thf-radio-group
+      class="thf-lg-6"
+      name="container"
+      [(ngModel)]="container"
+      t-label="Container"
+      [t-options]="containerOptions">
+    </thf-radio-group>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      t-label="Sample Restore"
+      (t-click)="restore()">
+    </thf-button>
+  </div>
+
+</form>
+
+<thf-modal
+  t-click-out="true"
+  t-size="sm"
+  t-title="Totvs Table">
+
+  <thf-info
+    t-label="Chosen Item:"
+    [t-value]="currentItem">
+  </thf-info>
+</thf-modal>
+

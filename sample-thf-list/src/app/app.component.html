@@ -1,0 +1,62 @@
+<thf-list>
+
+  <thf-list-item *ngFor="let item of data2; let i = index"  [t-title]="item.name">
+     </thf-list-item>
+   </thf-list>
+
+<hr/>
+<thf-list>
+
+  <thf-list-item *ngFor="let item of data2; let i = index"  [t-title]="item.name">
+
+    <thf-list-item-content>
+       {{item.name}}  </thf-list-item-content>
+     </thf-list-item>
+   </thf-list>
+
+<hr/>
+<thf-list (t-show-more)="showMoreFunction()" [t-show-more-disabled]="showMoreDisabled">
+
+  <thf-list-item *ngFor="let item of data; let i = index"  [t-title]="item.title"  [t-index]="i"  [t-actions]="eventsObject">
+
+    <thf-list-item-content style="display:flex">
+
+      <thf-info t-label="Cadastro" [t-value]="item.register"></thf-info>
+
+      <thf-info t-label="E-mail" [t-value]="item.mail" style="margin-left: 80px;"></thf-info>
+
+      <thf-info t-label="Última Atualização" [t-value]="item.updated" style="margin-left: 80px;"></thf-info>
+
+      <thf-info t-label="Telefone" [t-value]="item.phoneNumber" style="margin-left: 80px;"></thf-info>
+       </thf-list-item-content>
+
+    <thf-list-item-detail>
+
+      <div>Outros detalhes a serem exibidos</div>
+       </thf-list-item-detail>
+     </thf-list-item>
+   </thf-list>
+
+<hr/>
+<thf-list (t-show-more)="showMoreFunction()" [t-show-more-disabled]="showMoreDisabled">
+
+  <thf-list-item *ngFor="let item of data; let i = index"  [t-title]="item.title"  [t-index]="i"  [t-actions]="eventsObject2">
+
+    <thf-list-item-content style="display:flex">
+
+      <thf-info t-label="Cadastro" [t-value]="item.register"></thf-info>
+
+      <thf-info t-label="E-mail" [t-value]="item.mail" style="margin-left: 80px;"></thf-info>
+
+      <thf-info t-label="Última Atualização" [t-value]="item.updated" style="margin-left: 80px;"></thf-info>
+
+      <thf-info t-label="Telefone" [t-value]="item.phoneNumber" style="margin-left: 80px;"></thf-info>
+       </thf-list-item-content>
+
+    <thf-list-item-detail>
+
+      <div>Outros detalhes a serem exibidos</div>
+       </thf-list-item-detail>
+     </thf-list-item>
+   </thf-list>
+

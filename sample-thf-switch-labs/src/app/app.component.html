@@ -1,0 +1,92 @@
+<thf-switch
+  name="switch"
+  [(ngModel)]="switch"
+  [t-disabled]="properties.includes('disabled')"
+  [t-help]="help"
+  [t-label]="label"
+  [t-label-off]="labelOff"
+  [t-label-on]="labelOn"
+  [t-label-position]="labelPosition"
+  (t-change)="changeEvent('t-change')">
+</thf-switch>
+
+<hr>
+
+<div class="thf-row">
+  <thf-info
+    class="thf-lg-6"
+    t-label="Model"
+    [t-value]="switch">
+  </thf-info>
+
+  <thf-info
+    class="thf-lg-6"
+    t-label="Event"
+    [t-value]="event">
+  </thf-info>
+</div>
+
+<hr>
+
+<form #f="ngForm">
+  <div class="thf-row">
+    <thf-input
+      class="thf-lg-6"
+      name="label"
+      [(ngModel)]="label"
+      t-label="Label">
+    </thf-input>
+
+    <thf-input
+      class="thf-lg-6"
+      name="help"
+      [(ngModel)]="help"
+      t-label="Help">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-input
+      class="thf-lg-6"
+      name="labelOff"
+      [(ngModel)]="labelOff"
+      t-help="Text displayed when Totvs Switch is set to 'false'"
+      t-label="Label Off">
+    </thf-input>
+
+    <thf-input
+      class="thf-lg-6"
+      name="labelOn"
+      [(ngModel)]="labelOn"
+      t-help="Text displayed when Totvs Switch is set to 'true'"
+      t-label="Label On">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-radio-group
+      class="thf-lg-6"
+      name="labelPosition"
+      [(ngModel)]="labelPosition"
+      t-label="Label Position"
+      [t-options]="labelPositionOptions">
+    </thf-radio-group>
+
+    <thf-checkbox-group
+      class="thf-lg-6"
+      name="properties"
+      [(ngModel)]="properties"
+      t-label="Properties"
+      [t-options]="propertiesOptions">
+    </thf-checkbox-group>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      t-label="Sample Restore"
+      (t-click)="restore()">
+    </thf-button>
+  </div>
+</form>
+

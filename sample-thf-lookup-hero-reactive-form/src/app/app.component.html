@@ -1,0 +1,49 @@
+<div class="thf-row">
+  <thf-info
+    class="thf-lg-6"
+    t-label="New mission found"
+    t-value="Objective: Stop an asteroid collision on Earth" >
+  </thf-info>
+</div>
+
+<hr>
+
+<form [formGroup]="formMission">
+  <div class="thf-row">
+    <thf-lookup
+      class="thf-md-6"
+      name="hero"
+      formControlName="hero"
+      t-field-label="label"
+      t-field-value="label"
+      t-help="Select hero for mission"
+      t-label="Hero"
+      t-required
+      [t-columns]="columns"
+      [t-field-format]="fieldFormat"
+      [t-filter-service]="service"
+      [t-literals]="{'modalTitle' : 'Heroes available for mission'}">
+    </thf-lookup>
+
+    <thf-select
+      class="thf-md-6"
+      name="vehicle"
+      formControlName="vehicle"
+      t-help="Select a vehicle for the hero"
+      t-label="Vehicle"
+      t-placeholder="None"
+      [t-options]="vehicles">
+    </thf-select>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-6"
+      t-label="Start Mission"
+      [t-disabled]="formMission.invalid"
+      (t-click)="startMission()">
+    </thf-button>
+  </div>
+
+</form>
+

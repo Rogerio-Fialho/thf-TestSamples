@@ -1,0 +1,118 @@
+<thf-popup #popup
+  [t-actions]="actions"
+  [t-hide-arrow]="properties.includes('hideArrow')"
+  [t-position]="position"
+  [t-target]="targetRef">
+</thf-popup>
+
+<div class="thf-row sample-button-container">
+  <div class="thf-offset-xl-5 thf-offset-lg-5 thf-md-2 thf-lg-2">
+
+    <thf-button #target
+      t-label="PopUp"
+      (t-click)="popup.toggle()">
+    </thf-button>
+
+  </div>
+</div>
+
+<hr>
+
+<form #formAction="ngForm">
+
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-4"
+      name="actionAction"
+      [(ngModel)]="action.action"
+      t-clean
+      t-label="Action">
+    </thf-input>
+
+    <thf-input
+      class="thf-md-4"
+      name="actionLabel"
+      [(ngModel)]="action.label"
+      t-label="Label"
+      t-required>
+    </thf-input>
+
+    <thf-input
+      class="thf-md-4"
+      name="actionURL"
+      [(ngModel)]="action.url"
+      t-label="URL">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-select
+      class="thf-md-3"
+      name="type"
+      [(ngModel)]="action.type"
+      t-label="Type"
+      [t-options]="typeOptions">
+    </thf-select>
+
+    <thf-select
+      class="thf-md-3"
+      name="icon"
+      [(ngModel)]="action.icon"
+      t-label="Icon"
+      [t-options]="iconOptions">
+    </thf-select>
+
+    <thf-checkbox-group
+      class="thf-md-6"
+      name="action"
+      [(ngModel)]="action"
+      t-columns="4"
+      t-indeterminate
+      t-label="Action properties"
+      [t-options]="actionOptions">
+    </thf-checkbox-group>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-6 thf-lg-3"
+      t-label="Add Action"
+      [t-disabled]="formAction.form.invalid"
+      (t-click)="addAction(action)">
+    </thf-button>
+  </div>
+
+</form>
+
+<hr>
+
+<form #f="ngForm">
+
+  <div class="thf-row">
+    <thf-radio-group
+      class="thf-md-8"
+      name="position"
+      [(ngModel)]="position"
+      t-label="Position"
+      [t-options]="positionOptions">
+    </thf-radio-group>
+
+    <thf-checkbox-group
+      class="thf-md-4"
+      name="properties"
+      [(ngModel)]="properties"
+      t-label="Properties"
+      [t-options]="propertiesOptions">
+    </thf-checkbox-group>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      t-label="Sample Restore"
+      (t-click)="f.reset(); formAction.reset(); restore()">
+    </thf-button>
+  </div>
+
+</form>
+

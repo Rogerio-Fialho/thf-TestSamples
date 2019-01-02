@@ -1,0 +1,114 @@
+<thf-radio-group
+  name="radioGroupLabs"
+  [(ngModel)]="radioGroup"
+  [t-columns]="columns"
+  [t-disabled]="properties.includes('disabled')"
+  [t-help]="help"
+  [t-label]="label"
+  [t-options]="options"
+  [t-required]="properties.includes('required')"
+  (t-change)="changeEvent('t-change')">
+</thf-radio-group>
+
+<hr>
+
+<div class="thf-row">
+  <thf-info
+    class="thf-md-6"
+    t-label="Model"
+    [t-value]="radioGroup">
+  </thf-info>
+
+  <thf-info
+    class="thf-md-6"
+    t-label="Event"
+    [t-value]="event">
+  </thf-info>
+</div>
+
+<hr>
+
+<form #optionForm="ngForm">
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6 thf-lg-4"
+      name="optionLabel"
+      [(ngModel)]="option.label"
+      t-label="Option Label"
+      t-required>
+    </thf-input>
+
+    <thf-input
+      class="thf-md-6 thf-lg-4"
+      name="optionValue"
+      [(ngModel)]="option.value"
+      t-label="Option Value"
+      t-required>
+    </thf-input>
+
+    <thf-switch
+      class="thf-lg-4"
+      name="optionDisabled"
+      [(ngModel)]="option.disabled"
+      t-label="Option Disabled">
+    </thf-switch>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-6 thf-lg-3"
+      t-label="Add Option"
+      [t-disabled]="optionForm.invalid"
+      (t-click)="addOption(); optionForm.reset()">
+    </thf-button>
+  </div>
+</form>
+
+<hr>
+
+<form #propertiesForm="ngForm">
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="label"
+      [(ngModel)]="label"
+      t-clean
+      t-label="Label">
+    </thf-input>
+
+    <thf-input
+      class="thf-md-6"
+      name="help"
+      [(ngModel)]="help"
+      t-clean
+      t-label="Help">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-radio-group
+      class="thf-md-6"
+      name="columns"
+      [(ngModel)]="columns"
+      t-label="Columns"
+      [t-options]="columnOptions">
+    </thf-radio-group>
+
+    <thf-checkbox-group
+      class="thf-md-6"
+      name="properties"
+      [(ngModel)]="properties"
+      t-label="Properties"
+      [t-options]="propertiesOptions">
+    </thf-checkbox-group>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      t-label="Sample Restore"
+      (click)="propertiesForm.reset(); restore()">
+    </thf-button>
+  </div>
+</form>
+

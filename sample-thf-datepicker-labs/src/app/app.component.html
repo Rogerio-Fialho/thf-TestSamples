@@ -1,0 +1,135 @@
+<thf-datepicker
+  class="thf-sm-12"
+  name="datepicker"
+  [(ngModel)]="datepicker"
+  [t-clean]="properties.includes('clean')"
+  [t-disabled]="properties.includes('disabled')"
+  [t-end]="end"
+  [t-error-pattern]="errorPattern"
+  [t-format]="format"
+  [t-help]="help"
+  [t-label]="label"
+  [t-locale]="locale"
+  [t-placeholder]="placeholder"
+  [t-readonly]="properties.includes('readonly')"
+  [t-required]="properties.includes('required')"
+  [t-start]="start"
+  (t-blur)="changeEvent('t-blur')"
+  (t-change)="changeEvent('t-change')">
+</thf-datepicker>
+
+<hr>
+
+<div class="thf-row">
+  <thf-info
+    class="thf-md-6"
+    t-label="Model"
+    [t-value]="datepicker">
+  </thf-info>
+
+  <thf-info
+    class="thf-md-6"
+    t-label="Event"
+    [t-value]="event">
+  </thf-info>
+</div>
+
+<hr>
+
+<form #f="ngForm">
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="label"
+      [(ngModel)]="label"
+      t-clean
+      t-label="Label">
+    </thf-input>
+
+    <thf-input
+      class="thf-md-6"
+      name="help"
+      [(ngModel)]="help"
+      t-clean
+      t-label="Help">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="placeholder"
+      [(ngModel)]="placeholder"
+      t-clean
+      t-label="Placeholder">
+    </thf-input>
+
+    <thf-input
+      class="thf-md-6"
+      name="errorPattern"
+      [(ngModel)]="errorPattern"
+      t-clean
+      t-label="Error Pattern">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-datepicker
+      class="thf-md-6"
+      name="start"
+      [(ngModel)]="start"
+      t-clean
+      t-label="Start"
+      [t-end]="end"
+      [t-format]="format">
+    </thf-datepicker>
+
+    <thf-datepicker
+      class="thf-md-6"
+      name="end"
+      [(ngModel)]="end"
+      t-clean
+      t-label="End"
+      [t-format]="format"
+      [t-start]="start">
+    </thf-datepicker>
+  </div>
+
+  <div class="thf-row">
+    <thf-checkbox-group
+      class="thf-sm-12"
+      name="properties"
+      [(ngModel)]="properties"
+      t-label="Properties"
+      [t-options]="propertiesOptions">
+    </thf-checkbox-group>
+  </div>
+
+  <div class="thf-row">
+    <thf-radio-group
+      class="thf-md-6"
+      name="format"
+      [(ngModel)]="format"
+      t-label="Format"
+      [t-options]="formatOptions">
+    </thf-radio-group>
+
+    <thf-radio-group
+      class="thf-md-6"
+      name="locale"
+      [(ngModel)]="locale"
+      t-label="Locale"
+      [t-options]="localeOptions">
+    </thf-radio-group>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      name="restore"
+      t-label="Sample Restore"
+      (t-click)="restore()">
+    </thf-button>
+  </div>
+</form>
+

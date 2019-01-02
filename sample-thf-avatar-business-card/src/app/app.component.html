@@ -1,0 +1,25 @@
+<div class="thf-row">
+  <thf-widget
+    class="thf-sm-12 thf-md-8 thf-lg-6"
+    t-height="250"
+    t-title="Business Card"
+    t-primary-label="Call"
+    t-secondary-label="Send e-mail"
+    (t-primary-action)="callContact(contact.phone)"
+    (t-secondary-action)="sendContact(contact.email)">
+
+    <thf-avatar
+      class="thf-md-4"
+      t-size="lg"
+      t-src="https://thf.totvs.com.br/assets/graphics/logo-thf.png">
+    </thf-avatar>
+
+    <div class="thf-md-8">
+      <p><strong>Name:</strong> {{ contact.name }}</p>
+      <p><strong>Phone:</strong> {{ formatPhoneNumber(contact.phone) }}</p>
+      <p><strong>E-mail:</strong> {{ contact.email }}</p>
+    </div>
+
+  </thf-widget>
+</div>
+

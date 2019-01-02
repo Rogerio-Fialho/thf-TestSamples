@@ -1,0 +1,34 @@
+<div class="thf-row">
+  <thf-widget
+    class="thf-lg-6"
+    t-height="300"
+    t-primary-label="Angular"
+    t-secondary-label="Typescript"
+    t-title="Javascript technologies"
+    [t-help]="help"
+    (t-primary-action)="showAngular()"
+    (t-secondary-action)="showTypescript()"
+    (t-title-action)="showJavascriptTechnologies()">
+
+    <thf-info
+      [t-label]="label"
+      [t-value]="value">
+    </thf-info>
+
+  </thf-widget>
+</div>
+
+<thf-modal t-title="Javascript Technologies">
+
+  There are several Javascript technologies that help us in the construction of fast and dynamic
+  screens, among them we can mention:
+
+  <div class="thf-ml-3">
+    <ul>
+      <li *ngFor="let technology of technologies"> {{ technology }} </li>
+    </ul>
+  </div>
+
+</thf-modal>
+
+

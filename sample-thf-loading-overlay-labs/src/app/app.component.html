@@ -1,0 +1,43 @@
+<div class="sample-container">
+
+  <thf-loading-overlay
+    [t-screen-lock]="properties?.includes('screenLock')"
+    [t-text]="text">
+  </thf-loading-overlay>
+
+</div>
+
+<hr>
+
+<form #formProperties="ngForm">
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="text"
+      [(ngModel)]="text"
+      t-label="Text">
+    </thf-input>
+
+    <thf-checkbox-group
+      class="thf-md-6"
+      name="properties"
+      [(ngModel)]="properties"
+      t-label="Properties"
+      [t-options]="propertiesOptions"
+      (t-change)="onChangeCheckbox($event)">
+    </thf-checkbox-group>
+  </div>
+
+  <div class="thf-row">
+    <div class="thf-md-3">
+
+      <thf-button
+        t-label="Sample Restore"
+        (t-click)="formProperties.reset();">
+      </thf-button>
+
+    </div>
+  </div>
+
+</form>
+

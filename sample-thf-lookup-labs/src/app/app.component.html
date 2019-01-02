@@ -1,0 +1,126 @@
+<thf-lookup
+  name="lookup"
+  [(ngModel)]="lookup"
+  [t-columns]="columns"
+  [t-disabled]="properties.includes('disabled')"
+  [t-field-label]="fieldLabel"
+  [t-field-value]="fieldValue"
+  [t-field-format]="fieldFormat"
+  [t-filter-service]="filterService"
+  [t-help]="help"
+  [t-label]="label"
+  [t-literals]="customLiterals"
+  [t-placeholder]="placeholder"
+  [t-required]="properties.includes('required')"
+  (t-error)="changeEvent('t-error')"
+  (t-selected)="changeEvent('t-selected')">
+</thf-lookup>
+
+<hr>
+
+<div class="thf-row">
+  <thf-info
+    class="thf-md-6"
+    t-label="Model"
+    [t-value]="lookup">
+  </thf-info>
+
+  <thf-info
+    class="thf-md-6"
+    t-label="Event"
+    [t-value]="event">
+  </thf-info>
+</div>
+
+<hr>
+
+<form #f="ngForm">
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="label"
+      [(ngModel)]="label"
+      t-clean
+      t-label="Label">
+    </thf-input>
+
+    <thf-checkbox-group
+      class="thf-md-6"
+      name="columnsName"
+      [(ngModel)]="columnsName"
+      t-columns="4"
+      t-label="Columns"
+      [t-options]="columnsOptions"
+      (t-change)="updateColumns()">
+    </thf-checkbox-group>
+  </div>
+
+  <div class="thf-row">
+    <thf-select
+      class="thf-md-6"
+      name="fieldLabel"
+      [(ngModel)]="fieldLabel"
+      t-label="Field Label"
+      t-required
+      [t-options]="columnsOptions">
+    </thf-select>
+
+    <thf-select
+      class="thf-md-6"
+      name="fieldValue"
+      [(ngModel)]="fieldValue"
+      t-label="Field Value"
+      t-required
+      [t-options]="columnsOptions">
+    </thf-select>
+  </div>
+
+  <div class="thf-row">
+    <thf-input
+      class="thf-lg-6"
+      name="help"
+      [(ngModel)]="help"
+      t-clean
+      t-label="Help">
+    </thf-input>
+
+    <thf-input
+      class="thf-lg-6"
+      name="placeholder"
+      [(ngModel)]="placeholder"
+      t-clean
+      t-label="Placeholder">
+    </thf-input>
+
+  </div>
+
+  <div class="thf-row">
+    <thf-input
+      class="thf-lg-6"
+      name="literals"
+      [(ngModel)]="literals"
+      t-help='Ex.: { "modalTitle": "Select a register", "modalPrimaryActionLabel": "Select", "modalPlaceholder": "Search Value" }'
+      t-label="Literals"
+      (t-change)="changeLiterals()">
+    </thf-input>
+
+    <thf-checkbox-group
+      class="thf-lg-6"
+      name="properties"
+      [(ngModel)]="properties"
+      t-columns="3"
+      t-label="Properties"
+      [t-options]="propertiesOptions"
+      (t-change)="onChangeProperties($event)">
+    </thf-checkbox-group>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      t-label="Sample Restore"
+      (t-click)="restore()">
+    </thf-button>
+  </div>
+</form>
+

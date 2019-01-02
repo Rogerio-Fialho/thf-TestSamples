@@ -1,0 +1,35 @@
+<form #f="ngForm">
+
+  <div class="thf-row">
+    <thf-radio-group
+      class="thf-lg-4"
+      name="language"
+      [(ngModel)]="language"
+      t-label="Select a Language"
+      t-required
+      [t-options]="languageOptions"
+      (t-change)="changeLanguage($event)">
+    </thf-radio-group>
+
+    <thf-select
+      class="thf-lg-4"
+      name="original"
+      [(ngModel)]="original"
+      t-label="Original Text (Portuguese)"
+      t-required
+      [t-options]="optionsList"
+      (t-change)="changeLanguage($event)">
+    </thf-select>
+
+    <thf-input
+      class="thf-lg-4"
+      name="translated"
+      [(ngModel)]="translated"
+      t-label="Translated Text"
+      t-readonly
+      t-required>
+    </thf-input>
+  </div>
+
+</form>
+

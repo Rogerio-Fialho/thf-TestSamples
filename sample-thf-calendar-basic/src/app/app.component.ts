@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'thf-root',
-  templateUrl: './app.component.html'
+  selector: 'sample-thf-calendar-basic',
+  templateUrl: './sample-thf-calendar-basic.component.html'
 })
-export class AppComponent { }
+export class SampleThfCalendarBasicComponent { }
+

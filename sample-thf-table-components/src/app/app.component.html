@@ -1,0 +1,22 @@
+<div class="thf-font-text-large">Totvs Field Commom Components</div>
+
+<hr>
+
+<thf-table
+  t-container="shadow"
+  [t-columns]="columns"
+  [t-items]="items">
+</thf-table>
+
+<thf-modal
+  t-click-out="true"
+  t-size="sm"
+  t-title="{{ title }} - {{ extraInformation?.component }}">
+
+  <ul *ngFor="let extra of extraInformation?.extras">
+    <li class="thf-font-text">{{ extra }}</li>
+    <hr>
+  </ul>
+
+</thf-modal>
+

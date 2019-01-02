@@ -1,0 +1,87 @@
+<thf-dropdown
+  [t-actions]="actions"
+  [t-disabled]="properties.includes('disabled')"
+  [t-label]="label">
+</thf-dropdown>
+
+<hr>
+
+<form #fAction="ngForm">
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="actionLabel"
+      [(ngModel)]="action.label"
+      t-clean
+      t-label="Action Label"
+      t-required>
+    </thf-input>
+
+    <thf-input
+      class="thf-md-6"
+      name="actionUrl"
+      [(ngModel)]="action.url"
+      t-clean
+      t-label="Action Url">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="actionAction"
+      [(ngModel)]="action.action"
+      t-clean
+      t-label="Action">
+    </thf-input>
+
+    <thf-switch
+      class="thf-md-6"
+      name="actionDisabled"
+      [(ngModel)]="action.disabled"
+      t-clean
+      t-label="Action Disabled">
+    </thf-switch>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      t-label="Add Action"
+      [t-disabled]="fAction.invalid"
+      (t-click)="addAction()">
+    </thf-button>
+  </div>
+</form>
+
+<hr>
+
+<form #f="ngForm">
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="label"
+      [(ngModel)]="label"
+      t-clean
+      t-label="Label"
+      t-required>
+    </thf-input>
+
+    <thf-checkbox-group
+      class="thf-md-6"
+      name="properties"
+      [(ngModel)]="properties"
+      t-label="Properties"
+      [t-options]="propertiesOptions">
+    </thf-checkbox-group>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      t-label="Sample Restore"
+      (t-click)="restore()">
+    </thf-button>
+  </div>
+</form>
+

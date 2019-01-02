@@ -1,0 +1,215 @@
+<thf-page-login
+  [t-background]="background"
+  [t-custom-field]="customField"
+  [t-hide-remember-user]="properties.includes('hideRememberUser')"
+  [t-loading]="properties.includes('loading')"
+  [t-literals]="customLiterals"
+  [t-login]="login"
+  [t-login-pattern]="loginPattern"
+  [t-password-pattern]="passwordPattern"
+  [t-recovery-url]="recoverUrl"
+  [t-register-url]="registerUrl"
+  (t-login-submit)="loginSubmit($event)">
+</thf-page-login>
+
+<hr>
+
+<form #f="ngForm">
+  <div class="thf-row">
+    <thf-input
+      class="thf-lg-12"
+      name="literals"
+      [(ngModel)]="literals"
+      t-help='Ex.: {"title": "Hello", "submitLabel":"Access System", "highlightInfo": "Awesome, THF is beautiful!!!"}'
+      t-label="Literals"
+      (t-change)="changeLiterals()">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-input
+      class="thf-lg-6"
+      name="loginPattern"
+      [(ngModel)]="loginPattern"
+      t-clean
+      t-help="Ex.: ^[a-zA-Z]*$ (Only letters)"
+      t-label="Login Pattern">
+    </thf-input>
+
+    <thf-input
+      class="thf-lg-6"
+      name="login"
+      [(ngModel)]="login"
+      t-clean
+      t-help="Ex.: totvsdev"
+      t-label="Login">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-input
+      class="thf-lg-6"
+      name="passwordPattern"
+      [(ngModel)]="passwordPattern"
+      t-clean
+      t-help="Ex.: ^(\d*)$ (Only numbers)"
+      t-label="Password Pattern">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-input
+      class="thf-lg-4"
+      name="background"
+      [(ngModel)]="background"
+      t-clean
+      t-label="Background">
+    </thf-input>
+
+    <thf-input
+      class="thf-lg-4"
+      name="recoverUrl"
+      [(ngModel)]="recoverUrl"
+      t-clean
+      t-label="Recover URL">
+    </thf-input>
+
+    <thf-input
+      class="thf-lg-4"
+      name="registerUrl"
+      [(ngModel)]="registerUrl"
+      t-clean
+      t-label="Register URL">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-checkbox-group
+      class="thf-lg-6"
+      name="properties"
+      [(ngModel)]="properties"
+      t-label="Properties"
+      [t-options]="propertiesOptions">
+    </thf-checkbox-group>
+  </div>
+
+  <div class="thf-row">
+    <thf-input
+      class="thf-lg-6"
+      name="customFieldProperty"
+      [(ngModel)]="customField.property"
+      t-clean
+      t-help="Ex.: domain"
+      t-label="Custom Field Property"
+      (t-change-model)="onChangeCustomProperties()">
+    </thf-input>
+
+    <thf-input
+      class="thf-lg-6"
+      name="customFieldValue"
+      [(ngModel)]="customField.value"
+      t-clean
+      t-help="Ex.: JV01"
+      t-label="Custom Field Value">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-input
+      class="thf-lg-4"
+      name="customFieldPlaceholder"
+      [(ngModel)]="customField.placeholder"
+      t-clean
+      t-help="Ex.: Enter your domain"
+      t-label="Custom Field Placeholder">
+    </thf-input>
+
+    <thf-input
+      class="thf-lg-4"
+      name="customFieldPattern"
+      [(ngModel)]="customField.pattern"
+      t-clean
+      t-help="Ex.: [a-z]"
+      t-label="Custom Field Pattern">
+    </thf-input>
+
+    <thf-input
+      class="thf-lg-4"
+      name="customFieldErrorPattern"
+      [(ngModel)]="customField.errorPattern"
+      t-clean
+      t-help="Ex.: Value doesn`t match expected"
+      t-label="Custom Field Error Pattern">
+    </thf-input>
+  </div>
+
+  <hr>
+
+  <div class="thf-row">
+    <thf-input
+      class="thf-lg-6"
+      name="customFieldComboUrl"
+      [(ngModel)]="customField.url"
+      t-clean
+      t-help="Ex.: https://thf.totvs.com.br/sample/api/comboOption/heroes"
+      t-label="Custom Field URL"
+      (t-change-model)="onChangeCustomProperties()">
+    </thf-input>
+
+    <thf-input
+      class="thf-lg-6"
+      name="customFieldComboValue"
+      [(ngModel)]="customField.fieldValue"
+      t-clean
+      t-help="Property to specify the return field. Ex.: value, nickname, label"
+      t-label="Custom Field Field Value"
+      (t-change-model)="onChangeCustomProperties()">
+    </thf-input>
+
+  </div>
+
+  <hr>
+
+  <form #formCustomFieldOptions="ngForm">
+    <div class="thf-row">
+      <thf-input
+        class="thf-md-6"
+        name="customFieldOptionLabel"
+        [(ngModel)]="customFieldOption.label"
+        t-clean
+        t-label="Custom Field Option Label"
+        t-required>
+      </thf-input>
+
+      <thf-input
+        class="thf-md-6"
+        name="customFieldOptionValue"
+        [(ngModel)]="customFieldOption.value"
+        t-clean
+        t-label="Custom Field Option Value"
+        t-required>
+      </thf-input>
+    </div>
+
+    <div class="thf-row">
+      <thf-button
+        class="thf-md-6 thf-lg-4"
+        t-label="Add Custom Field Option"
+        [t-disabled]="formCustomFieldOptions.invalid"
+        (t-click)="addCustomFieldOption()">
+      </thf-button>
+    </div>
+  </form>
+
+  <br>
+  <hr>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      t-label="Sample Restore"
+      (t-click)="restore()">
+    </thf-button>
+  </div>
+</form>
+

@@ -1,0 +1,46 @@
+<thf-table
+  [t-columns]="columns"
+  [t-items]="items"
+  t-sort="true"
+  [t-striped]="true">
+
+  <ng-template t-table-row-template let-rowItem let-i="rowIndex" [t-table-row-template-show]="isUndelivered">
+
+    <thf-widget t-title="Transport detail {{ rowItem.code }}">
+      <div class="thf-row">
+        <thf-select
+          class="thf-md-6"
+          name="status"
+          [(ngModel)]="rowItem.status"
+          t-label="Transport status"
+          [t-options]="statusOptions">
+        </thf-select>
+      </div>
+
+      <div class="thf-row">
+        <thf-info
+          class="thf-md-4"
+          t-label="Batch of product"
+          t-orientation="horizontal"
+          [t-value]="rowItem.batch_product">
+        </thf-info>
+
+        <thf-info class="thf-md-4"
+          t-label="Driver"
+          t-orientation="horizontal"
+          [t-value]="rowItem.driver">
+        </thf-info>
+
+        <thf-info
+          class="thf-md-4"
+          t-label="License plate"
+          t-orientation="horizontal"
+          [t-value]="rowItem.license_plate">
+        </thf-info>
+      </div>
+    </thf-widget>
+
+  </ng-template>
+
+</thf-table>
+

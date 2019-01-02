@@ -1,0 +1,52 @@
+<div class="thf-row">
+  <thf-info
+    class="thf-lg-12"
+    t-label="Pending Requests"
+    [t-value]="pendingRequests">
+  </thf-info>
+</div>
+
+<div class="thf-row">
+  <thf-input
+    class="thf-lg-6"
+    name="url"
+    [(ngModel)]="url"
+    t-help="https://thf.totvs.com.br/sample/api/comboOption/heroes"
+    t-label="URL"
+    t-required>
+  </thf-input>
+</div>
+
+<div class="thf-row">
+  <thf-switch
+    class="thf-lg-6"
+    name="countPendingRequestHeaderParam"
+    [(ngModel)]="countPendingRequestHeaderParam"
+    t-help="Enable/disable the sent param in header of request"
+    t-label="X-Totvs-No-Count-Pending-Requests"
+    t-label-off="Disable"
+    t-label-on="Enable"
+    ngDefaultControl>
+  </thf-switch>
+
+  <thf-switch
+    class="thf-lg-6"
+    name="screenLockHeaderParam"
+    [(ngModel)]="screenLockHeaderParam"
+    t-help="Enable/disable the sent param in header of request"
+    t-label="X-Totvs-Screen-Lock"
+    t-label-off="Disable"
+    t-label-on="Enable"
+    ngDefaultControl>
+  </thf-switch>
+</div>
+
+<div class="thf-row">
+  <thf-button
+    class="thf-md-4"
+    t-label="Get request"
+    [t-disabled]="!url"
+    (t-click)="getRequest()">
+  </thf-button>
+</div>
+

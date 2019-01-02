@@ -1,0 +1,65 @@
+<!-- Component -->
+<div class="thf-row">
+  <thf-button
+    class="thf-sm-12"
+    [t-disabled]="properties.includes('disabled')"
+    [t-icon]="icon"
+    [t-label]="label"
+    [t-loading]="properties.includes('loading')"
+    [t-small]="properties.includes('small')"
+    [t-type]="type"
+    (t-click)="buttonClick()">
+  </thf-button>
+</div>
+
+<hr>
+
+<!-- Properties -->
+<form #f="ngForm">
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="label"
+      [(ngModel)]="label"
+      t-clean
+      t-label="Label">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-checkbox-group
+      class="thf-md-12"
+      name="properties"
+      [(ngModel)]="properties"
+      t-label="Properties"
+      [t-options]="propertiesOptions">
+    </thf-checkbox-group>
+  </div>
+
+  <div class="thf-row">
+    <thf-radio-group
+      class="thf-lg-12"
+      name="icon"
+      [(ngModel)]="icon"
+      t-label="Icon"
+      [t-options]="iconsOptions">
+    </thf-radio-group>
+
+    <thf-radio-group
+      class="thf-lg-12"
+      name="type"
+      [(ngModel)]="type"
+      t-label="Type"
+      [t-options]="typesOptions">
+    </thf-radio-group>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      t-label="Sample Restore"
+      (t-click)="restore()">
+    </thf-button>
+  </div>
+</form>
+

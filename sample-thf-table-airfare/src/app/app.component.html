@@ -1,0 +1,64 @@
+<div class="thf-font-text-bold">
+  Choose one or more promotional airfares
+</div>
+
+<thf-divider></thf-divider>
+
+<thf-table
+  t-checkbox
+  t-container
+  t-height="400"
+  t-hide-select-all="true"
+  t-hide-text-overflow
+  t-sort="true"
+  t-striped="true"
+  [t-actions]="actions"
+  [t-columns]="columns"
+  [t-items]="items"
+  (t-selected)="sumTotal($event)"
+  (t-unselected)="decreaseTotal($event)">
+</thf-table>
+
+<thf-divider></thf-divider>
+
+<thf-info
+  class="thf-md-6 thf-mb-sm-2 thf-mb-md-2 thf-lb-lg-2"
+  t-label="Total Value"
+  t-orientation="horizontal"
+  t-value="{{total | currency:'USD'}}">
+</thf-info>
+
+<div class="thf-row">
+  <thf-button
+    class="thf-md-3"
+    t-icon="thf-icon-cart"
+    t-label="Add items to cart"
+    (t-click)="addToCart()">
+  </thf-button>
+</div>
+
+<thf-modal
+  t-click-out="true"
+  t-size="sm"
+  t-title="{{detail?.destination}} - {{detail?.country}}">
+
+  <thf-info
+    class="thf-sm-6"
+    t-label="Airline"
+    t-value="{{ detail?.airline }}">
+  </thf-info>
+
+  <thf-info
+    class="thf-sm-2"
+    t-label="Initials"
+    t-value="{{ detail?.initials }}">
+  </thf-info>
+
+  <thf-info
+    class="thf-sm-4"
+    t-label="Class"
+    t-value="{{ detail?.class }}">
+  </thf-info>
+
+</thf-modal>
+

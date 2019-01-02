@@ -1,0 +1,56 @@
+<thf-page-default
+  t-title="Tickets sales"
+  [t-actions]="pageActions">
+
+  <div class="thf-row">
+
+    <div class="thf-lg-8 thf-md-7">
+
+        <thf-divider class="thf-md-12" t-label="Prices"></thf-divider>
+
+        <thf-info
+          class="thf-md-6"
+          t-label="Weekends and holidays"
+          t-value="$ 20,00">
+        </thf-info>
+
+        <thf-info
+          class="thf-md-6"
+          t-label="Working days"
+          t-value="$ 10,00">
+        </thf-info>
+
+        <thf-divider class="thf-md-12" t-label="Quantity"></thf-divider>
+
+        <thf-select
+          class="thf-lg-6"
+          [(ngModel)]="tickets"
+          t-help="From 12 years"
+          t-label="Adults"
+          [t-options]="ticketsOptions">
+        </thf-select>
+
+        <thf-select
+          class="thf-lg-6"
+          [(ngModel)]="halfPriceTicketQuantity"
+          t-help="04 to 11 years"
+          t-label="Children and older adults"
+          [t-options]="ticketsOptions">
+        </thf-select>
+
+    </div>
+
+    <div class="thf-lg-4 thf-md-5">
+
+      <thf-divider class="thf-md-12" t-label="Select the date"></thf-divider>
+
+      <thf-calendar
+        [(ngModel)]="date"
+        t-locale="en">
+      </thf-calendar>
+
+    </div>
+
+  </div>
+</thf-page-default>
+

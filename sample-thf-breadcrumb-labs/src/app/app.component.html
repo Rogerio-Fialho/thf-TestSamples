@@ -1,0 +1,75 @@
+<thf-breadcrumb
+  [t-favorite-service]="favoriteService"
+  [t-items]="breadcrumbItems"
+  [t-params-service]="paramsService">
+</thf-breadcrumb>
+
+<hr>
+
+<form #breadcrumbForm="ngForm">
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-4"
+      name="breadcrumbAction"
+      [(ngModel)]="breadcrumbItem.action"
+      t-label="Breadcrumb action">
+    </thf-input>
+
+    <thf-input
+      class="thf-md-4"
+      name="breadcrumbLabel"
+      [(ngModel)]="breadcrumbItem.label"
+      t-label="Breadcrumb label"
+      t-required>
+    </thf-input>
+
+    <thf-input
+      class="thf-md-4"
+      name="breadcrumbLink"
+      [(ngModel)]="breadcrumbItem.link"
+      t-label="Breadcrumb link">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      t-label="Add breadcrumb"
+      [t-disabled]="breadcrumbForm.invalid"
+      (t-click)="addBreadcrumb()">
+    </thf-button>
+  </div>
+</form>
+
+<hr>
+
+<form #propertiesForm="ngForm">
+  <div class="thf-row">
+    <thf-input
+      class="thf-md-6"
+      name="favoriteService"
+      [(ngModel)]="favoriteService"
+      t-clean
+      t-help="Ex.: https://thf.totvs.com.br/sample/api/favorite"
+      t-label="Favorite service">
+    </thf-input>
+
+    <thf-input
+      class="thf-md-6"
+      name="paramsService"
+      [(ngModel)]="paramsService"
+      t-clean
+      t-help="Ex.: { id: 14, user: 'dev.totvs' }"
+      t-label="Params service">
+    </thf-input>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      t-label="Sample Restore"
+      (t-click)="breadcrumbForm.reset(); propertiesForm.reset(); restore()">
+    </thf-button>
+  </div>
+</form>
+

@@ -1,0 +1,86 @@
+<form [formGroup]="formVacationSuggestion">
+
+  <thf-divider
+    class="thf-md-9"
+    t-label="Vacation suggestion">
+  </thf-divider>
+
+  <div class="thf-row">
+    <thf-datepicker-range
+      class="thf-md-6"
+      formControlName="datepickerRange"
+      t-clean
+      t-label="Select the period"
+      t-required
+      (t-change)="calculateQuantityOfVacationDays()">
+    </thf-datepicker-range>
+
+    <thf-number
+      class="thf-md-3"
+      formControlName="quantityOfDays"
+      t-disabled
+      t-label="Quantity of days"
+      t-required>
+    </thf-number>
+  </div>
+
+  <div class="thf-row">
+    <thf-textarea
+      class="thf-md-9"
+      formControlName="reason"
+      t-label="Reason">
+    </thf-textarea>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-2 thf-offset-md-5 thf-offset-lg-5 thf-offset-xl-5"
+      t-label="Clean"
+      (t-click)="clean()">
+    </thf-button>
+
+    <thf-button
+      class="thf-md-2"
+      t-label="Submit"
+      [t-disabled]="validateForm"
+      (t-click)="submitForm();modalVacationSuggestion.open()">
+    </thf-button>
+  </div>
+</form>
+
+<thf-modal #modalVacationSuggestion
+  t-hide-close
+  t-title="Confirm vacation suggestion"
+  [t-primary-action]="submit"
+  [t-secondary-action]="cancel">
+
+<div class="thf-row">
+  <thf-info
+    class="thf-md-4"
+    t-label="Initial period"
+    [t-value]="datepickerRange?.start | date:'longDate':'+0000'">
+  </thf-info>
+
+  <thf-info
+    class="thf-md-4"
+    t-label="Final period"
+    [t-value]="datepickerRange?.end | date:'longDate':'+0000'">
+  </thf-info>
+
+  <thf-info
+    class="thf-md-4"
+    t-label="Quantity of days"
+    [t-value]="quantityOfDays">
+  </thf-info>
+</div>
+
+<div class="thf-row">
+  <thf-textarea
+    class="thf-md-12"
+    [(ngModel)]="reason"
+    t-disabled
+    t-label="Reason"
+    t-required>
+  </thf-textarea>
+</div>
+

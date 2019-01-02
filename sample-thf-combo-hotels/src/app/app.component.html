@@ -1,0 +1,91 @@
+<div class="thf-text-center">
+  <div class="thf-font-title"> Booking a Hotel </div>
+</div>
+
+<form #bookingForm="ngForm">
+
+  <div class="thf-row">
+    <thf-datepicker
+      class="thf-md-4"
+      name="checkin"
+      [(ngModel)]="checkin"
+      t-label="Check In"
+      t-placeholder="dd/mm/yyyy"
+      t-required
+      [t-end]="checkout">
+    </thf-datepicker>
+
+    <thf-datepicker
+      class="thf-md-4"
+      name="checkout"
+      [(ngModel)]="checkout"
+      t-label="Check Out"
+      t-placeholder="dd/mm/yyyy"
+      t-required
+      [t-start]="checkin">
+    </thf-datepicker>
+
+    <thf-switch
+      class="thf-md-4"
+      name="switch"
+      [(ngModel)]="category"
+      t-label-off="No, thank you."
+      t-label-on="Yes, please."
+      t-label="Only Luxury Category">
+    </thf-switch>
+  </div>
+
+  <div class="thf-row">
+    <thf-select
+      class="thf-md-4"
+      name="rooms"
+      [(ngModel)]="rooms"
+      t-label="Rooms"
+      [t-options]="roomsOptions">
+    </thf-select>
+
+    <thf-select
+      class="thf-md-4"
+      name="children"
+      [(ngModel)]="children"
+      t-label="Children"
+      [t-options]="childrenOptions">
+    </thf-select>
+
+    <thf-select
+      class="thf-md-4"
+      name="adults"
+      [(ngModel)]="adults"
+      t-label="Adults"
+      [t-options]="adultsOptions">
+    </thf-select>
+  </div>
+
+  <div class="thf-row">
+    <thf-combo
+      class="thf-sm-12"
+      name="hotel"
+      [(ngModel)]="hotel"
+      t-debounce-time="500"
+      t-disabled-init-filter
+      t-filter-minlength="1"
+      t-label="Search a Hotel"
+      t-required
+      t-sort
+      [t-filter-service]="comboService"
+      [t-filter-params]="category">
+    </thf-combo>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-3"
+      t-label="Booking"
+      t-type="primary"
+      [t-disabled]="bookingForm.invalid"
+      (t-click)="booking()">
+    </thf-button>
+  </div>
+
+</form>
+

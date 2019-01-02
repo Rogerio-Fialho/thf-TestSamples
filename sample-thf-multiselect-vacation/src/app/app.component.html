@@ -1,0 +1,98 @@
+<form #f="ngForm">
+  <h3>Collective vacations</h3>
+
+  <hr>
+
+  <div class="thf-row">
+    <thf-datepicker
+      class="thf-md-6"
+      name="initialPeriod"
+      [(ngModel)]="initialPeriod"
+      t-label="Initial period"
+      t-required
+      [t-start]="startPeriod">
+    </thf-datepicker>
+
+    <thf-datepicker
+      class="thf-md-6"
+      name="finalPeriod"
+      [(ngModel)]="finalPeriod"
+      t-label="Final period"
+      t-required
+      [t-start]="initialPeriod">
+    </thf-datepicker>
+  </div>
+
+  <div class="thf-row">
+    <thf-radio-group
+      class="thf-lg-12"
+      name="days"
+      [(ngModel)]="days"
+      t-help="Maximum of days that employs can choose"
+      t-label="How many days of vacation the employees will be able to have?"
+      t-required
+      [t-options]="daysOptions">
+    </thf-radio-group>
+  </div>
+
+  <div class="thf-row">
+    <thf-multiselect
+      class="thf-md-12"
+      name="employeesVacations"
+      [(ngModel)]="employeesVacations"
+      t-label="Select your employees for collective vacations"
+      [t-options]="employees"
+      t-required>
+    </thf-multiselect>
+  </div>
+
+  <div class="thf-row">
+    <thf-button
+      class="thf-md-4 thf-offset-md-5 thf-offset-lg-5 thf-offset-xl-5"
+      name="Approve Vacations"
+      t-label="Approve Vacations"
+      [t-disabled]="f.form.invalid"
+      (t-click)="updateNameEmployeesVacations();modalEmployeesVacation.open()">
+    </thf-button>
+
+    <thf-button
+      class="thf-md-3"
+      t-label="Clean"
+      (t-click)="clean()">
+    </thf-button>
+  </div>
+</form>
+
+<thf-modal #modalEmployeesVacation
+  t-title="Collective Vacation">
+  <div class="thf-row">
+    <thf-info
+      class="thf-md-5"
+      t-label="Initial period"
+      [t-value]="initialPeriod | date:'longDate':'+0000'">
+    </thf-info>
+
+    <thf-info
+      class="thf-md-5"
+      t-label="Final period"
+      [t-value]="finalPeriod | date:'longDate':'+0000'">
+    </thf-info>
+
+    <thf-info
+      class="thf-md-2"
+      t-label="Days"
+      [t-value]="days">
+    </thf-info>
+  </div>
+
+  <hr>
+
+  <div class="thf-row">
+    <thf-info
+      class="thf-lg-12"
+      t-label="Employees"
+      [t-value]="nameEmployeesVacations">
+    </thf-info>
+  </div>
+</thf-modal>
+
