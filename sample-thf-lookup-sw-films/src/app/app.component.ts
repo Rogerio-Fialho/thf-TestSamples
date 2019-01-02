@@ -1,43 +1,45 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { ThfRadioGroupOption } from '@totvs/thf-ui/components/thf-field';
 
-import { ThfLookupFilter, ThfLookupResponseApi } from '@totvs/thf-ui/components/thf-field';
+import { SampleThfLookupSwFilmsService } from './sample-thf-lookup-sw-films.service';
 
-@Injectable()
-export class SampleThfLookupSwFilmsService implements ThfLookupFilter {
+@Component({
+  selector: 'sample-thf-lookup-sw-films',
+  templateUrl: './sample-thf-lookup-sw-films.component.html',
+  providers: [SampleThfLookupSwFilmsService]
+})
+export class SampleThfLookupSwFilmsComponent implements OnInit {
 
-  private baseUrl = 'https://swapi.co/api';
-  private filmsUrl = 'https://swapi.co/api/films/';
+  entity;
+  filmItemsFiltered;
+  filterParams = 'people';
 
-  constructor(private http: HttpClient) { }
+  private filmItems;
 
-  getFilms() {
-    return this.http.get(this.filmsUrl);
-  }
+  readonly characterColumns = [
+    { column: 'name', label: 'Name' },
+    { column: 'gender', label: 'Gender' },
+    { column: 'height', label: 'Height' },
+    { column: 'mass', label: 'Mass' },
+  ];
 
-  getFilteredData(filter: string, page: number, pageSize, filterParams: any): Observable<ThfLookupResponseApi> {
-    const searchParam = { params: { page: page.toString(), search: filter } };
+  readonly entities: Array<ThfRadioGroupOption> = [
+    { label: 'Character', value: 'people' },
+    { label: 'Planet', value: 'planets' },
+    { label: 'Starship', value: 'starships' }
+  ];
 
-    return this.http.get(`${this.baseUrl}/${filterParams}`, searchParam)
-      .pipe(map((response: { results: Array<any>, next: string }) => {
-        return {
-          items: response.results,
-          hasNext: !!response.next
-        };
-      }));
-  }
+  readonly filmColumns = [
+    { column: 'episode_id', label: 'Episode id' },
+    { column: 'title', label: 'Title' },
+    { column: 'director', label: 'Director' },
+    { column: 'producer', label: 'Producer' },
+    { column: 'release_date', label: 'Release date', type: 'date' },
+  ];
 
-  getObjectByValue(value: string, filterParams: any): Observable<any> {
-    return this.http.get(`${this.baseUrl}/${filterParams}/?search=${value}`)
-      .pipe(map((response: { results: Array<any> }) => response.results[0]));
-  }
-
-}
-
-   { column: 'name', label: 'Name' },
+  readonly planetsColumns = [
+    { column: 'name', label: 'Name' },
     { column: 'diameter', label: 'Diameter' },
     { column: 'population', label: 'Population' },
     { column: 'climate', label: 'Climate' },

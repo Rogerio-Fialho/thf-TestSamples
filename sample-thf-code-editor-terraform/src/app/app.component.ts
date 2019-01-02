@@ -1,44 +1,30 @@
-/**
- * Exemplo de configuração de um módulo com forRegister.
- */
+import { ThfCodeEditorRegisterable
+} from '@totvs/thf-code-editor/components/thf-code-editor/interfaces/thf-code-editor-registerable.interface';
 
-// import { NgModule } from '@angular/core';
+/** Definindo propriedades de uma nova sintaxe. */
+export const customRegister: ThfCodeEditorRegisterable = {
 
-// import { HttpClientModule } from '@angular/common/http';
-
-// import { ThfModule } from '@totvs/thf-ui/thf.module';
-//
-// import { ThfCodeEditorModule } from '@totvs/thf-ui/components/thf-code-editor/thf-code-editor.module';
-// import { ThfCodeEditorRegisterable } from '@totvs/thf-ui/components/thf-code-editor/thf-code-editor-registerable.interface';
-
-// const customRegister: ThfCodeEditorRegisterable = {
-//   language: 'terraform'
-//   options: {
-//     keywords: ['resource', 'provider', 'variable', 'output', 'module', 'true', 'false'],
-//     operators: ['{', '}', '(', ')', '[', ']', '?', ':'],
-//     symbols:  /[=><!~?:&|+\-*\/\^%]+/,
-//     escapes: /\\(?:[abfnrtv\\"']|x[0-9A-Fa-f]{1,4}|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})/,
-//     tokenizer: {
-//      ...
-//     }
-//   }
-// };
-//
-// @NgModule({
-//   imports: [
-//     HttpClientModule,
-
-//     ThfModule,
-//     ThfCodeEditorModule.forRegister(customRegister)
-//   ],
-//   declarations: [
-//   ],
-//   exports: [],
-//   providers: []
-// })
-// export class SampleThfCodeEditorRegisterModule { }
-
-omment' ],
+  language: 'terraform',
+  options: {
+    keywords: [ 'resource', 'provider', 'variable', 'output', 'module', 'true', 'false' ],
+    operators: [ '{', '}', '(', ')', '[', ']', '?', ':' ],
+    symbols:  new RegExp('[=><!~?:&|+\\-*\\/\\^%]+'),
+    escapes: new RegExp(`\\\\(?:[abfnrtv\\\\\"']|x[0-9A-Fa-f]{1,4}|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})`),
+    tokenizer: {
+      root: [
+        [`[a-z_$][\\w$]*`, { cases: { '@keywords': 'keyword', '@default': 'identifier' } }],
+        { include: '@whitespace' },
+        [`\\d*\\.\\d+([eE][\\-+]?\\d+)?`, 'number.float'],
+        [`0[x][0-9a-fA-F]+`, 'number.hex'],
+        [`\\d+`, 'number'],
+        [`[;,.]`, 'delimiter'],
+        [`\"([^\"\\\\]|\\\\.)*$`, 'string.invalid' ],
+        [`\"`,  { token: 'string.quote', bracket: '@open', next: '@string' } ],
+        [`'[^\\\\']'`, 'string'],
+        [`'`, 'string.invalid']
+      ],
+      comment: [
+        [`[^\\/*]+`, 'comment' ],
         [`[\\/*]`, 'comment' ],
         [`[\\#.*]`, 'comment']
       ],

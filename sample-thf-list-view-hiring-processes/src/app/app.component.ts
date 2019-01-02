@@ -1,100 +1,83 @@
-import { Injectable } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
-@Injectable()
-export class SampleThfListViewHiringProcessesService {
+import { ThfListViewAction } from '@totvs/thf-ui/components/thf-list-view';
+import { ThfModalComponent } from '@totvs/thf-ui/components/thf-modal';
+import { ThfNotificationService } from '@totvs/thf-ui/services/thf-notification';
+import { ThfPageAction, ThfPageFilter } from '@totvs/thf-ui/components/thf-page';
 
-  getItems() {
-    return [
-      {
-        hireStatus: 'hired',
-        name: 'James Johnson',
-        city: 'Ontario',
-        age: 24,
-        idCard: 'AB34lxi90',
-        email: 'james@johnson.com',
-        telephone: '1-541-754-3010',
-        jobDescription: 'Systems Analyst',
-        url: 'https://www.totvs.com/trabalhe-conosco/'
-      },
-      {
-        hireStatus: 'progress',
-        name: 'Brian Brown',
-        city: 'Buffalo',
-        age: 23,
-        idCard: 'HG56lds54',
-        email: 'brian@brown.com',
-        telephone: '1-543-456-9876',
-        jobDescription: 'Trainee',
-        url: 'https://www.totvs.com/trabalhe-conosco/'
-      },
-      {
-        hireStatus: 'canceled',
-        name: 'Mary Davis',
-        city: 'Albany',
-        age: 31,
-        idCard: 'DF23cfr65',
-        email: 'mary@davis.com',
-        telephone: '1-521-223-3232',
-        jobDescription: 'Programmer'
-      },
-      {
-        hireStatus: 'progress',
-        name: 'Margaret Garcia',
-        city: 'New York',
-        age: 29,
-        idCard: 'GF45fgh34',
-        email: 'margaret@garcia.com',
-        telephone: '1-541-344-2211',
-        jobDescription: 'Web developer',
-        url: 'https://www.totvs.com/trabalhe-conosco/'
-      },
-      {
-        hireStatus: 'hired',
-        name: 'Emma Hall',
-        city: 'Ontario',
-        age: 34,
-        idCard: 'RF76jut21',
-        email: 'emma@hall.com',
-        telephone: '1-555-321-3234',
-        jobDescription: 'Recruiter',
-        url: 'https://www.totvs.com/trabalhe-conosco/'
-      },
-      {
-        hireStatus: 'progress',
-        name: 'Lucas Clark',
-        city: 'Utica',
-        age: 32,
-        idCard: 'HY21kgu65',
-        email: 'lucas@clark.com',
-        telephone: '1-541-322-4343',
-        jobDescription: 'Consultant'
-      },
-      {
-        hireStatus: 'progress',
-        name: 'Ella Scott',
-        city: 'Ontario',
-        age: 24,
-        idCard: 'UL78flg68',
-        email: 'ella@scott.com',
-        telephone: '1-229-324-3434',
-        jobDescription: 'DBA'
-      },
-      {
-        hireStatus: 'progress',
-        name: 'Chloe Walker',
-        city: 'Albany',
-        age: 29,
-        idCard: 'JH12oli98',
-        email: 'chloe@walker.com',
-        telephone: '1-518-222-1212',
-        jobDescription: 'Programmer'
-      },
-    ];
+import { SampleThfListViewHiringProcessesService } from './sample-thf-list-view-hiring-processes.service';
+
+@Component({
+  selector: 'sample-thf-list-view-hiring-processes',
+  templateUrl: 'sample-thf-list-view-hiring-processes.component.html',
+  providers: [ SampleThfListViewHiringProcessesService ]
+})
+export class SampleThfListViewHiringProcessesComponent implements OnInit {
+
+  hiringProcesses: Array<any>;
+  hiringProcessesFiltered: Array<object>;
+  labelFilter: string = '';
+  modalDetail: boolean = false;
+  selectedActionItem = {};
+  titleDetailsModal: string = 'User Detail';
+
+  readonly actions: Array<ThfListViewAction> = [
+    {
+      label: 'Hire',
+      action: this.hireCandidate.bind(this),
+      disabled: this.isHiredOrCanceled.bind(this),
+      icon: 'thf-icon-ok'
+    },
+    {
+      label: 'Cancel',
+      action: this.cancelCandidate.bind(this),
+      disabled: this.isHiredOrCanceled.bind(this),
+      type: 'danger',
+      icon: 'thf-icon-close'
+    }
+  ];
+
+  readonly pageActions: Array<ThfPageAction> = [
+    {
+      label: 'Hire selected',
+      action: this.updateCandidates.bind(this, this.hireCandidate),
+      disabled: this.disableHireButton.bind(this),
+      icon: 'thf-icon-ok'
+    },
+    {
+      label: 'Cancel selected',
+      action: this.updateCandidates.bind(this, this.cancelCandidate),
+      disabled: this.disableHireButton.bind(this),
+      icon: 'thf-icon-close'
+    }
+  ];
+
+  readonly filterSettings: ThfPageFilter = {
+    action: 'hiringProcessesFilter',
+    ngModel: 'labelFilter',
+    placeholder: 'Search'
+  };
+
+  @ViewChild('detailsModal') detailsModalElement: ThfModalComponent;
+
+  constructor(
+    private thfNotification: ThfNotificationService,
+    private hiringProcessesService: SampleThfListViewHiringProcessesService) { }
+
+  ngOnInit() {
+    this.hiringProcesses = this.hiringProcessesService.getItems();
+    this.hiringProcessesFiltered = [...this.hiringProcesses];
   }
 
-}
+  formatTitle(item) {
+    return `${item.idCard} - ${item.name}`;
+  }
 
-tailModal(event) {
+  showDetail(item) {
+    return item.url;
+  }
+
+  showDetailModal(event) {
     this.getModalItem(event);
     this.titleDetailsModal = `Get in touch with ${this.selectedActionItem['name']}`;
     this.detailsModalElement.open();

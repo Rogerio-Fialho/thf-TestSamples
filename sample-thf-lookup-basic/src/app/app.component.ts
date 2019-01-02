@@ -1,15 +1,19 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component } from '@angular/core';
 
-import { ThfLookupFilter } from '@totvs/thf-ui/components/thf-field';
+import { SampleThfLookupService } from '../sample-thf-lookup.service';
 
-@Injectable()
-export class SampleThfLookupService implements ThfLookupFilter {
+@Component({
+  selector: 'sample-thf-lookup-basic',
+  templateUrl: './sample-thf-lookup-basic.component.html',
+  providers: [ SampleThfLookupService ]
+})
+export class SampleThfLookupBasicComponent {
 
-  private url = 'https://thf.totvs.com.br/sample/api/comboOption/heroes';
+  constructor(public filterService: SampleThfLookupService) { }
 
-  constructor(private httpClient: HttpClient) { }
+}
+
+lient: HttpClient) { }
 
   getFilteredData(filter: string, page: number, pageSize: number): Observable<any> {
     return this.httpClient.get(this.url, { params: { page: page.toString(), pageSize: pageSize.toString(), filter } });

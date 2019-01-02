@@ -1,56 +1,49 @@
-/**
- * Exemplo de configuração de um módulo com i18n.
- */
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
-// import { NgModule } from '@angular/core';
+import { Subscription } from 'rxjs';
 
-// import { HttpClientModule } from '@angular/common/http';
+import { ThfDialogService } from '@totvs/thf-ui/services/thf-dialog';
+import { ThfI18nService } from '@totvs/thf-ui/services/thf-i18n';
+import { ThfPageLoginCustomField, ThfPageLoginLiterals } from '@totvs/thf-templates/components/thf-page-login';
 
-// import { ThfModule } from '@totvs/thf-ui/thf.module';
-// import { ThfI18nConfig, ThfI18nModule } from '@totvs/thf-ui/services/thf-i18n';
+@Component({
+  selector: 'sample-thf-page-login-human-resources',
+  templateUrl: './sample-thf-page-login-human-resources.component.html',
+})
+export class SampleThfPageLoginHumanResourcesComponent implements OnDestroy, OnInit {
 
-// import { SampleThfPageLoginHumanResourcesComponent } from './sample-thf-page-login-human-resources.component';
+  customField: ThfPageLoginCustomField = {
+    property: 'domain',
+    placeholder: 'Enter your domain'
+  };
 
-// const humanResourcesEnLiterals = {
-//   title: 'Welcome to Human Resources',
-//   oginErrorPattern: 'Invalid ID',
-//   loginPlaceholder: 'Insert your ID',
-//   passwordErrorPattern: 'Invalid PIN',
-//   passwordPlaceholder: 'Insert your PIN',
-//   submitLabel: 'Access your account',
-//   forgotPassword: 'Forgot your ID or PIN?',
-//   highlightInfo: 'For us the future is now'
-// };
+  literalsI18n: ThfPageLoginLiterals;
+  loading: boolean = false;
 
-// const thfI18nConfig: ThfI18nConfig = {
-//   contexts: {
-//     general: {
-//       'en-US': humanResourcesEnLiterals
-//     }
-//   },
-//   default: {
-//    language: 'en-US',
-//    context: 'general',
-//    cache: true
-//   }
-// };
+  private i18nSubscription: Subscription;
 
-// @NgModule({
-//   imports: [
-//     HttpClientModule,
+  constructor(
+    private thfI18nService: ThfI18nService,
+    private thfDialog: ThfDialogService) { }
 
-//     ThfModule,
-//     ThfI18nModule.config(thfI18nConfig)
-//   ],
-//   declarations: [
-//     SampleThfPageLoginHumanResourcesComponent
-//   ],
-//   exports: [],
-//   providers: []
-// })
-// export class SampleThfPageLoginHumanResourcesModule { }
+  ngOnDestroy() {
+    this.i18nSubscription.unsubscribe();
+  }
 
-: 'Access released',
+  ngOnInit() {
+    this.i18nSubscription = this.thfI18nService.getLiterals().subscribe(literals => {
+      this.literalsI18n = literals;
+    });
+  }
+
+  checkLogin(formData) {
+    this.loading = true;
+
+    setTimeout(() => {
+      if (formData.login === 'devtotvs' && formData.password === '1986') {
+        this.thfDialog.alert({
+          ok: () => this.loading = false,
+          title: 'Access released',
           message: 'You are on vacation, take time to rest.'
         });
 

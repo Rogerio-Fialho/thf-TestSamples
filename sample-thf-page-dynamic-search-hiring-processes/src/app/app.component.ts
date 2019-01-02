@@ -1,77 +1,79 @@
-import { Injectable } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
+import { ThfBreadcrumb } from '@totvs/thf-ui/components/thf-breadcrumb';
+import { ThfPageAction } from '@totvs/thf-ui/components/thf-page';
+import { ThfDialogService } from '@totvs/thf-ui/services/thf-dialog';
+import { ThfNotificationService } from '@totvs/thf-ui/services/thf-notification';
 import { ThfTableColumn } from '@totvs/thf-ui/components/thf-table';
 
-@Injectable()
-export class SampleThfPageDynamicSearchHiringProcessesService {
+import { SampleThfPageDynamicSearchHiringProcessesService } from './sample-thf-page-dynamic-search-hiring-processes.service';
 
-  filter(filters) {
-    let filteredItems = [...this.getItems()];
+@Component({
+  selector: 'sample-thf-page-dynamic-search-hiring-processes',
+  templateUrl: './sample-thf-page-dynamic-search-hiring-processes.component.html',
+  providers: [SampleThfPageDynamicSearchHiringProcessesService]
+})
+export class SampleThfPageDynamicSearchHiringProcessesComponent implements OnInit {
 
-    Object.keys(filters).forEach(filter => {
-      filteredItems = filteredItems.filter(register => {
-        return register[filter].toLocaleLowerCase().includes(filters[filter].toLocaleLowerCase());
-      });
+  hiringProcesses: Array<object>;
+  hiringProcessesColumns: Array<ThfTableColumn>;
+
+  private jobDescriptionOptions: Array<object> ;
+  private statusOptions: Array<object>;
+
+  public readonly actions: Array<ThfPageAction> = [
+    { label: 'Hire', action: this.hireCandidate.bind(this), disabled: this.disableHireButton.bind(this) }
+  ];
+
+  public readonly breadcrumb: ThfBreadcrumb = {
+    items: [
+      { label: 'Home', action: this.beforeRedirect.bind(this) },
+      { label: 'Hiring processes' }
+    ]
+  };
+
+  public readonly filters: Array<any> = [
+    { property: 'hireStatus', label: 'Hire Status', options: this.statusOptions, gridColumns: 6 },
+    { property: 'name', label: 'Name', gridColumns: 6 },
+    { property: 'city', label: 'City', gridColumns: 6 },
+    { property: 'jobDescription', label: 'Job Description', options: this.jobDescriptionOptions, gridColumns: 6 },
+  ];
+
+  constructor(
+    private sampleHiringProcessesService: SampleThfPageDynamicSearchHiringProcessesService,
+    private thfNotification: ThfNotificationService,
+    private thfDialog: ThfDialogService,
+    private router: Router) { }
+
+  ngOnInit() {
+    this.hiringProcesses = this.sampleHiringProcessesService.getItems();
+    this.hiringProcessesColumns = this.sampleHiringProcessesService.getColumns();
+    this.jobDescriptionOptions = this.sampleHiringProcessesService.getJobs();
+    this.statusOptions = this.sampleHiringProcessesService.getHireStatus();
+
+    this.updateFilters();
+  }
+
+  onAdvancedSearch(filter) {
+    filter ? this.searchItems(filter) : this.resetFilters();
+  }
+
+  onChangeDisclaimers(disclaimers) {
+    const filter = {};
+    disclaimers.forEach(item => {
+      filter[item.property] = item.value;
     });
-
-    return filteredItems;
+    this.searchItems(filter);
   }
 
-  getColumns(): Array<ThfTableColumn> {
-    return [
-      { column: 'hireStatus', label: 'Status', type: 'subtitle', subtitles: [
-        { value: 'hired', type: 'success', label: 'Hired', content: '1' },
-        { value: 'progress', type: 'warning', label: 'Progress', content: '2' },
-        { value: 'canceled', type: 'danger', label: 'Canceled', content: '3' }
-      ]},
-      { column: 'idCard', label: 'Identity card', type: 'string' },
-      { column: 'name', label: 'Name'},
-      { column: 'age', label: 'Age' },
-      { column: 'city', label: 'City' },
-      { column: 'jobDescription', label: 'Job description', type: 'string' }
-    ];
+  onQuickSearch(filter) {
+    filter ? this.searchItems({ name: filter }) : this.resetFilters();
   }
 
-  getHireStatus() {
-    return [
-      { value: 'hired', label: 'Hired' },
-      { value: 'progress', label: 'Progress' },
-      { value: 'canceled', label: 'Canceled'}
-    ];
-  }
-
-  getItems() {
-    return [
-      { hireStatus: 'hired', name: 'James Johnson', city: 'Ontario', age: 24, idCard: 'AB34lxi90', jobDescription: 'Systems Analyst' },
-      { hireStatus: 'progress', name: 'Brian Brown', city: 'Buffalo', age: 23, idCard: 'HG56lds54', jobDescription: 'Trainee' },
-      { hireStatus: 'canceled', name: 'Mary Davis', city: 'Albany', age: 31, idCard: 'DF23cfr65', jobDescription: 'Programmer' },
-      { hireStatus: 'hired', name: 'Margaret Garcia', city: 'New York', age: 29, idCard: 'GF45fgh34', jobDescription: 'Web developer' },
-      { hireStatus: 'hired', name: 'Emma Hall', city: 'Ontario', age: 34, idCard: 'RF76jut21', jobDescription: 'Recruiter' },
-      { hireStatus: 'progress', name: 'Lucas Clark', city: 'Utica', age: 32, idCard: 'HY21kgu65', jobDescription: 'Consultant' },
-      { hireStatus: 'hired', name: 'Ella Scott', city: 'Ontario', age: 24, idCard: 'UL78flg68', jobDescription: 'DBA' },
-      { hireStatus: 'progress', name: 'Chloe Walker', city: 'Albany', age: 29, idCard: 'JH12oli98', jobDescription: 'Programmer' },
-    ];
-  }
-
-  getJobs() {
-    return [
-      { value: 'Systems Analyst', label: 'Systems Analyst' },
-      { value: 'Trainee', label: 'Trainee' },
-      { value: 'Programmer', label: 'Programmer'},
-      { value: 'Web Developer', label: 'Web developer'},
-      { value: 'Recruiter', label: 'Recruiter'},
-      { value: 'Consultant', label: 'Consultant'},
-      { value: 'DBA', label: 'DBA'}
-    ];
-  }
-
-  resetFilterHiringProcess() {
-    return [...this.getItems()];
-  }
-
-}
-
-.confirm({
+  private beforeRedirect(itemBreadcrumbLabel) {
+    if (this.hiringProcesses.some(candidate => candidate['$selected'])) {
+      this.thfDialog.confirm({
         title: `Confirm redirect to ${itemBreadcrumbLabel}`,
         message: `There is data selected. Are you sure you want to quit?`,
         confirm: () => this.router.navigate(['/'])

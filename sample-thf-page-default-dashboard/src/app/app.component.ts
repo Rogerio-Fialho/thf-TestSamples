@@ -1,34 +1,30 @@
-import { Injectable } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
+import { ThfBreadcrumb } from '@totvs/thf-ui/components/thf-breadcrumb';
+import { ThfModalAction, ThfModalComponent } from '@totvs/thf-ui/components/thf-modal';
+import { ThfNotificationService } from '@totvs/thf-ui/services/thf-notification';
+import { ThfPageAction } from '@totvs/thf-ui/components/thf-page';
 import { ThfTableColumn } from '@totvs/thf-ui/components/thf-table';
 
-@Injectable()
-export class SampleDashboardService {
+import { SampleDashboardService } from './sample-thf-page-default-dashboard.service';
 
-  getColumns(): Array<ThfTableColumn> {
-    return [
-      { column: 'cities', label: 'Cities that most downloaded THF'},
-      { column: 'package', label: 'Package version' },
-      { column: 'downloads', label: 'Downloads' }
-    ];
-  }
+@Component({
+  selector: 'sample-thf-page-default-dashboard',
+  templateUrl: './sample-thf-page-default-dashboard.component.html',
+  styles: [`
+    .sample-widget-text-subtitle {
+      font-family: NunitoSans;
+      font-size: 14px;
+      text-align: center;
+      color: #9da7a9;
+    }
+  `],
+  providers: [SampleDashboardService]
+})
+export class SampleThfPageDefaultDashboardComponent {
 
-  getItems() {
-    return [
-      { cities: 'São Paulo', package: '2.0.0-beta.2', downloads: '2000'},
-      { cities: 'Joinville', package: '1.9.1', downloads: '1000' },
-      { cities: 'Rio de Janeiro', package: '2.0.0-beta.2', downloads: '250'},
-      { cities: 'Santa Catarina', package: '1.9.1', downloads: '100' },
-      { cities: 'Curitiba', package: '2.0.0-beta.2', downloads: '1040' },
-      { cities: 'Goiania', package: '1.9.1', downloads: '250' },
-      { cities: 'Londrina', package: '1.9.1', downloads: '35' },
-      { cities: 'Belo Horizonte', package: '1.9.1', downloads: '1100' },
-    ];
-  }
-
-}
-
-lumns();
+  columns: Array<ThfTableColumn> = this.sampleDashboardService.getColumns();
   email: string = undefined;
   isSubscribed: boolean = false;
   items: Array<object> = this.sampleDashboardService.getItems();

@@ -1,15 +1,24 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
-import { Subscription } from 'rxjs';
+@Injectable()
+export class SampleThfSelectCustomerRegistrationService {
 
-import { ThfRadioGroupOption, ThfSelectOption } from '@totvs/thf-ui/components/thf-field';
+  private url: string = 'https://thf.totvs.com.br/sample/api/sampleSelect/';
 
-import { SampleThfSelectCustomerRegistrationService } from './sample-thf-select-customer-registration.service';
+  constructor(private http: HttpClient) { }
 
-@Component({
-  selector: 'sample-thf-select-customer-registration',
-  templateUrl: './sample-thf-select-customer-registration.component.html',
-  providers: [ SampleThfSelectCustomerRegistrationService ],
+  getCitiesByState(uf: string) {
+    return this.http.get(`${this.url}/getCities/${uf}`);
+  }
+
+  getStates() {
+   return this.http.get(`${this.url}/getStates`);
+  }
+
+}
+
+ [ SampleThfSelectCustomerRegistrationService ],
   styles: [`
     .sample-select-option-template-container {
       display: inline-flex;

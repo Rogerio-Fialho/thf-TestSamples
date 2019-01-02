@@ -1,27 +1,28 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 
-import { ThfLookupFilter } from '@totvs/thf-ui/components/thf-field';
+import { ThfCheckboxGroupOption, ThfLookupColumn, ThfLookupLiterals } from '@totvs/thf-ui/components/thf-field';
 
-@Injectable()
-export class SampleThfLookupService implements ThfLookupFilter {
+import { SampleThfLookupService } from '../sample-thf-lookup.service';
 
-  private url = 'https://thf.totvs.com.br/sample/api/comboOption/heroes';
+@Component({
+  selector: 'sample-thf-lookup-labs',
+  templateUrl: './sample-thf-lookup-labs.component.html',
+  providers: [ SampleThfLookupService ]
+})
+export class SampleThfLookupLabsComponent implements OnInit {
 
-  constructor(private httpClient: HttpClient) { }
-
-  getFilteredData(filter: string, page: number, pageSize: number): Observable<any> {
-    return this.httpClient.get(this.url, { params: { page: page.toString(), pageSize: pageSize.toString(), filter } });
-  }
-
-  getObjectByValue(value: string): Observable<any> {
-    return this.httpClient.get(`${this.url}/${value}`);
-  }
-
-}
-
-older: string;
+  columns: Array<ThfLookupColumn>;
+  columnsName: Array<string>;
+  customLiterals: ThfLookupLiterals;
+  event: string;
+  fieldFormat: (objectSelected) => string;
+  fieldLabel: string;
+  fieldValue: string;
+  help: string;
+  label: string;
+  literals: string;
+  lookup: any;
+  placeholder: string;
   properties: Array<string>;
 
   private readonly columnsDefinition = {
